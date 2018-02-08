@@ -10,4 +10,5 @@ import java.util.List;
 public interface IUserDAO {
     @Select("select * from test.user")
     public List<UserDO>  listUsers();
+
 }
