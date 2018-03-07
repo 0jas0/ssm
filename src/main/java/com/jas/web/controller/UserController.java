@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.LinkedList;
 import java.util.List;
 
 @Controller
@@ -19,7 +20,11 @@ public class UserController {
     @RequestMapping("ajax/list_user")
     @ResponseBody
     public Object listUsers(){
-        List<UserModel> userModelList = userService.listUsers(new UserParam());
+        //List<UserModel> userModelList = userService.listUsers(new UserParam());
+        List<UserModel> userModelList = new LinkedList<UserModel>();
+        userModelList.add(new UserModel(1,"aaaa"));
+        userModelList.add(new UserModel(2,"bbbbb"));
+        userModelList.add(new UserModel(3,"ccccc"));
         return userModelList;
     }
 }

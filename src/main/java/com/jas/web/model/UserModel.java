@@ -8,6 +8,12 @@ public class UserModel {
 
     public UserModel() {
     }
+
+    public UserModel(Integer id, String username) {
+        this.id = id;
+        this.username = username;
+    }
+
     public UserModel(UserDO userDO) {
         id = userDO.getId();
         username = userDO.getUsername();
