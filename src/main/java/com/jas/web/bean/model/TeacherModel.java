@@ -1,14 +1,15 @@
-package com.jas.web.domain;
+package com.jas.web.bean.model;
 
-import java.util.Date;
+import com.jas.web.bean.domain.TeacherDO;
+import com.jas.web.enums.ESex;
+import com.jas.web.utils.DateUtil;
 
-public class TeacherDO{
-    private Integer id;
+public class TeacherModel {
     private String teacherId;
     private String password;
     private String name;
-    private Date bornDate;
-    private Integer sex;
+    private String bornDate;
+    private String sex;
     private String education;
     private String position;
     private String nation;
@@ -16,16 +17,25 @@ public class TeacherDO{
     private String postalcode;
     private String mobile;
     private String identityCardNumber;
-    private Integer isDel;
-    private Integer addtime;
-    private Integer modtime;
 
-    public Integer getId() {
-        return id;
+    public TeacherModel(){
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public TeacherModel(TeacherDO teacherDO){
+        if (teacherDO != null){
+            this.teacherId = teacherDO.getTeacherId();
+            this.password = teacherDO.getPassword();
+            this.name = teacherDO.getName();
+            this.bornDate = DateUtil.getStringDateByFormat(teacherDO.getBornDate(), "yyyy-MM-dd");
+            this.sex = ESex.getDescByValue(teacherDO.getSex());
+            this.education = teacherDO.getEducation();
+            this.position = teacherDO.getPosition();
+            this.nation = teacherDO.getNation();
+            this.address = teacherDO.getAddress();
+            this.postalcode = teacherDO.getPostalcode();
+            this.mobile = teacherDO.getMobile();
+            this.identityCardNumber = teacherDO.getIdentityCardNumber();
+        }
     }
 
     public String getTeacherId() {
@@ -52,19 +62,19 @@ public class TeacherDO{
         this.name = name;
     }
 
-    public Date getBornDate() {
+    public String getBornDate() {
         return bornDate;
     }
 
-    public void setBornDate(Date bornDate) {
+    public void setBornDate(String bornDate) {
         this.bornDate = bornDate;
     }
 
-    public Integer getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(Integer sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 
@@ -122,29 +132,5 @@ public class TeacherDO{
 
     public void setIdentityCardNumber(String identityCardNumber) {
         this.identityCardNumber = identityCardNumber;
-    }
-
-    public Integer getIsDel() {
-        return isDel;
-    }
-
-    public void setIsDel(Integer isDel) {
-        this.isDel = isDel;
-    }
-
-    public Integer getAddtime() {
-        return addtime;
-    }
-
-    public void setAddtime(Integer addtime) {
-        this.addtime = addtime;
-    }
-
-    public Integer getModtime() {
-        return modtime;
-    }
-
-    public void setModtime(Integer modtime) {
-        this.modtime = modtime;
     }
 }
