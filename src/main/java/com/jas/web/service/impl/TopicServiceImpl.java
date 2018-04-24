@@ -34,7 +34,12 @@ public class TopicServiceImpl implements ITopicService{
 
     @Transactional
     public void update(TopicModel topicModel){
-        topicDAO.upload(new TopicDO(topicModel));
+        TopicDO topicDO = topicDAO.getById(topicModel.getTopicId());
+        topicDO.setLimitStudent(topicModel.getLimitStudent());
+        topicDO.setMajor(topicModel.getMajor());
+        topicDO.setRemark(topicModel.getRemark());
+        topicDO.setTitle(topicModel.getTitle());
+        topicDAO.upload(topicDO);
     }
 
     public TopicModel getByTopicId(String topicId){

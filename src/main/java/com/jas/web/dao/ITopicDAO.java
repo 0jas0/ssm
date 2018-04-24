@@ -15,7 +15,7 @@ public interface ITopicDAO {
     @Options(useGeneratedKeys=true, keyProperty="id")
     public int insert(TopicDO topicDO);
 
-    @Update("update `topic` set title = #{title}, major = #{major}, limit_student = #{limitStudent}, teacher_id = #{teacherId}, status = #{status}, remark = #{remark} modtime = unix_timestamp()" +
+    @Update("update `topic` set title = #{title}, major = #{major}, limit_student = #{limitStudent}, teacher_id = #{teacherId}, status = #{status}, remark = #{remark}, modtime = unix_timestamp()" +
             " where topic_id = #{topicId} and is_del = 0")
     public void upload(TopicDO topicDO);
 

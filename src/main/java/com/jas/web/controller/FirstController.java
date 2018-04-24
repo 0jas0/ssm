@@ -5,11 +5,14 @@ import com.jas.web.service.IAdminService;
 import com.jas.web.service.IUsernameService;
 import com.jas.web.utils.StringUtil;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,9 +37,9 @@ public class FirstController {
 
     @RequestMapping("/ajaxLogin")
     @ResponseBody
-    public Object ajaxLogin(@RequestParam String username, @RequestParam String password, @RequestParam int type){
+    public Object ajaxLogin(@RequestParam String username, @RequestParam String password, @RequestParam int type, HttpServletRequest request){
         Map<String,String> map = new HashMap<>();
-       /* String pass = null;
+        String pass = null;
         if (type == 2){
             //admin
             pass = adminService.getPasswordByAdmin(username);
@@ -51,7 +54,11 @@ public class FirstController {
         }else if (!password.equals(pass)){
             //密码错误
             map.put("msg", "password_error");
-        }*/
+        }
+        if (CollectionUtils.isEmpty(map)){
+            HttpSession session = request.getSession();
+            session.setAttribute("userId",username+","+type);
+        }
         return map;
     }
 }

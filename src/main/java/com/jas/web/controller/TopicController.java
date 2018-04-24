@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/topic")
@@ -47,8 +49,14 @@ public class TopicController {
 
     @RequestMapping(value = "/addTopic")
     @ResponseBody
-    public Object addUserName(TopicParam topicParam){
+    public Object addUserName(TopicParam topicParam, HttpServletRequest request){
         try {
+            HttpSession session = request.getSession();
+            String userId = (String)session.getAttribute("userId");
+            String[] split = userId.split(",");
+            if (split[1].equals("1")){
+                topicParam.setUserId(Integer.valueOf(split[0]));
+            }
             topicService.insert(topicParam.getTopicModel());
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS, "添加数据成功",null);
         }catch (ParamNotValidException e){

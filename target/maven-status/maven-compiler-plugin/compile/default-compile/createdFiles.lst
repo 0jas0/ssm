@@ -19,6 +19,7 @@ com/jas/web/controller/TopicController.class
 com/jas/web/dao/ITopicPhaseTimeDAO.class
 com/jas/web/bean/model/UsernameModel.class
 com/jas/web/controller/StudentController.class
+com/jas/web/filter/LoginFilter.class
 com/jas/web/dao/ITopicDAO.class
 com/jas/web/enums/ERole.class
 com/jas/web/bean/domain/TopicPhaseTimeDO.class

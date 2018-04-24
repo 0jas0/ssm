@@ -53,7 +53,7 @@
 			return ;
 		}
 		//同步文本框中的备注
-        customAddEditor.sync();
+        toppicEditEditor.sync();
 		$.post("topic/editTopic",$("#customEditForm").serialize(), function(data){
 			if(data.status == 200){
 				$.messager.alert('提示','修改课题成功!','info',function(){

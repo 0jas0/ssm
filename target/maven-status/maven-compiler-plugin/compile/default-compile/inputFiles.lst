@@ -33,4 +33,5 @@
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/param/TopicParam.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/dao/IAdminDAO.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/controller/StudentController.java
+/Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/interceptor/LoginCheckInterceptor.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/dao/ITopicPhaseTimeDAO.java

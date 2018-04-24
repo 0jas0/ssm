@@ -1,15 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ include file="/WEB-INF/jsp/commons/common_js.jsp"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="copyright" content="Copyright 2016" />
-<meta name="Author" content="华侨大学计算机科学与技术学院" />
-<meta name="keywords" content="生产管理系统--生产进度,设备管理,工艺监控,物料监控,人员监控,质量监控" />
-<meta name="description" content="制造装备物联及生产管理中间件/系统登陆页面" />
-<title>毕业论文管理系统登录页面</title>
+<title>毕业论文管理系统</title>
 <link rel="stylesheet" type="text/css" href="css/login/style.css" />
 <style type="text/css">
 	.download{margin:20px 33px 10px;*margin-bottom:30px;padding:5px;border-radius:3px;-webkit-border-radius:3px;
@@ -28,7 +24,6 @@
 			<div class="title hide">管理系统登录</div>
 			<form name="login" action="#" method="post">
 				<fieldset>
-				
 					<!--USERNAME -->
 					<div>
 						<div class="input">
@@ -39,7 +34,6 @@
 						<div id="username_span"style="display:none;padding-bottom:7px;">
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="userspan"></span>
 						</div>
-							
 					</div>
 					
 					<!-- PASSWORD -->
@@ -56,8 +50,7 @@
 	
 						<div style="margin-bottom:12px">
 							<div id="randiv" style="margin-left:98px;">
-							
-								登陆角色：<select id="type"><option value="0">学生</option><option value="1">教师</option><option value="2">管理员</option></select>
+								登陆类型：<select id="type"><option value="0">学生</option><option value="1">教师</option><option value="2">管理员</option></select>
 							</div>
 							<div style="margin-left:98px;">
 								<span id="randomcode_span"></span>
@@ -87,77 +80,76 @@
 				</fieldset>
 			</form>
 		</div>
-	</div>
+</div>
 <script type="text/javascript" src="js/login/placeholder.js"></script>
 <script type="text/javascript">
-		$("#login")
-				.click(
-						function() {
+	$("#login").click(
+		function() {
 
-							var uname = $("#username");
-							var pwd = $("#password");
-							var type = $("#type");
-							if ($.trim(uname.val()) == "") {
-								$('#username_span').css('display','block');
-								$("#passwordspan").html("");
-								$("#userspan")
-										.html(
-												"<font color='red'>用户名不能为空！</font>");
-								uname.focus();
-							} else if ($.trim(pwd.val()) == "") {
-								$('#username_span').css('display','none');
-								$('#password_span').css('display','block');
-								$("#userspan").html("");
-								$("#passwordspan").html(
-										"<font color='red'>密码不能为空！</font>");
-								pwd.focus();
-							} else {
-								$('#password_span').css('display','none');
-								$("#userspan").html("");
-								$("#passwordspan").html("");
-								$
-										.ajax({
-											url : '${baseurl}ajaxLogin',// 跳转到 action
-											data : {
-												username : uname.val(),
-												password : pwd.val(),
-												type : type.val()
-											},
-											type : 'post',
-											cache : false,
-											dataType : 'json',
-											success : function(data) {
-												if (data.msg == 'account_error') {
-											console.log("account_erroe.");
-													$("#errorspan")
-															.html(
-																	"<font color='red'> 用户不存在！</font>");
-													rcode_flag = 1;
-													$("#randiv").show();
-												} else if (data.msg == 'password_error') {
-													$("#errorspan")
-															.html(
-																	"<font color='red'> 密码错误！</font>");
-													rcode_flag = 1;
-													$("#randiv").show();
-												} else if (data.msg == 'authentication_error') {
-													$("#errorspan")
-															.html(
-																	"<font color='red'> 您没有授权！</font>");
-													rcode_flag = 1;
-													$("#randiv").show();
-												} else {
-													location.href = "${baseurl}home";
-												}
-											},
-											error : function() {
-												// view("异常！");
-												alert("异常！");
-											}
-										});
-							}
-						});
-	</script>
+			var uname = $("#username");
+			var pwd = $("#password");
+			var type = $("#type");
+
+			if ($.trim(uname.val()) == "") {
+				$('#username_span').css('display','block');
+				$("#passwordspan").html("");
+				$("#userspan")
+					.html(
+						"<font color='red'>用户名不能为空！</font>");
+				uname.focus();
+			} else if ($.trim(pwd.val()) == "") {
+				$('#username_span').css('display','none');
+				$('#password_span').css('display','block');
+				$("#userspan").html("");
+				$("#passwordspan").html(
+					"<font color='red'>密码不能为空！</font>");
+				pwd.focus();
+			} else {
+				$('#password_span').css('display','none');
+				$("#userspan").html("");
+				$("#passwordspan").html("");
+				$.ajax({
+					url : '${baseurl}ajaxLogin',// 跳转到 action
+					data : {
+						username : uname.val(),
+						password : pwd.val(),
+						type : type.val()
+					},
+					type : 'post',
+					cache : false,
+					dataType : 'json',
+					success : function(data) {
+						if (data.msg == 'account_error') {
+							console.log("account_erroe.");
+							$("#errorspan")
+								.html(
+									"<font color='red'> 用户不存在！</font>");
+							rcode_flag = 1;
+							$("#randiv").show();
+						} else if (data.msg == 'password_error') {
+							$("#errorspan")
+								.html(
+									"<font color='red'> 密码错误！</font>");
+							rcode_flag = 1;
+							$("#randiv").show();
+						} else if (data.msg == 'authentication_error') {
+							$("#errorspan")
+								.html(
+									"<font color='red'> 您没有授权！</font>");
+							rcode_flag = 1;
+							$("#randiv").show();
+						} else {
+							location.href = "${baseurl}home";
+						}
+					},
+					error : function() {
+						// view("异常！");
+						alert("异常！");
+					}
+				});
+			}
+		});
+</script>
 <!--[if IE 6]>
 <script type="text/javascript" src="js/login/belatedpng.js" ></script>
 <script type="text/javascript">
