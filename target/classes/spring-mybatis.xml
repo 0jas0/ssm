@@ -74,5 +74,6 @@
     </bean>
 
     <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+
     <tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>

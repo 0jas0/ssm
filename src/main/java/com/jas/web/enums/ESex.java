@@ -23,6 +23,17 @@ public enum ESex {
         }
     }
 
+    public static Integer getValueByDesc(String desc){
+        switch (desc){
+            case "男":
+                return MAN.value;
+            case "女":
+                return WOMAN.value;
+            default:
+                return null;
+        }
+    }
+
     public static String getDescByValue(Integer value){
         ESex eSex = findByValue(value);
         if (eSex == null){

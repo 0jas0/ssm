@@ -11,7 +11,7 @@ public class ResponseUtil {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ResponseUtil.class);
 
-    public static final int RETURN_STATUS_SUCCESS = 0;
+    public static final int RETURN_STATUS_SUCCESS = 200;
     public static final int RETURN_STATUS_FAILED = 1;
 
     public static JSONObject constructResponse(int status, String msg, Object data) {

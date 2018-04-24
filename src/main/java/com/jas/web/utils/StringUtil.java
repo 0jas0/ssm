@@ -10,6 +10,7 @@ import java.net.URLEncoder;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -604,5 +605,8 @@ public class StringUtil extends StringUtils{
         return result;
     }
 
+    public static String getPrimaryKeyId(){
+        return UUID.randomUUID().toString().toLowerCase().replace("-", "");
+    }
 
 }
