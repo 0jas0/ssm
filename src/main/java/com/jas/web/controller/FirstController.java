@@ -39,13 +39,14 @@ public class FirstController {
     @ResponseBody
     public Object ajaxLogin(@RequestParam String username, @RequestParam String password, @RequestParam int type, HttpServletRequest request){
         Map<String,String> map = new HashMap<>();
+        UsernameModel usernameModel = null;
         String pass = null;
         if (type == 2){
             //admin
             pass = adminService.getPasswordByAdmin(username);
         }else {
             //stu or teacher
-            UsernameModel usernameModel = usernameService.getBySerialNumber(username, type);
+            usernameModel = usernameService.getBySerialNumber(username, type);
             pass = usernameModel.getPassword();
         }
         if (StringUtil.isEmpty(pass)){
@@ -57,7 +58,8 @@ public class FirstController {
         }
         if (CollectionUtils.isEmpty(map)){
             HttpSession session = request.getSession();
-            session.setAttribute("userId",username+","+type);
+            String str = type != 2 ? usernameModel.getId()+"" : username;
+            session.setAttribute("userId",str +","+type);
         }
         return map;
     }

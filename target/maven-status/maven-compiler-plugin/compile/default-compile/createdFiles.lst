@@ -8,6 +8,7 @@ com/jas/web/bean/domain/StudentTopicDO.class
 com/jas/web/service/impl/TopicServiceImpl.class
 com/jas/web/bean/model/TopicModel.class
 com/jas/web/utils/EUDataGridResult.class
+com/jas/web/bean/model/ElectiveCourseModle.class
 com/jas/web/bean/domain/StudentUploadDO.class
 com/jas/web/service/impl/IAdminServiceImpl.class
 com/jas/web/service/impl/UsernameServiceImpl.class
