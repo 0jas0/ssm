@@ -22,8 +22,8 @@ public interface ITopicPhaseTimeDAO {
     public void delete(@Param("topicId") String topicId, @Param("status") Integer status);
 
     @Select("select * from `topic_phase_time` where topic_id = #{topicId} and is_del = 0")
-    public UsernameDO getById(@Param("topicId") String topicId);
+    public TopicPhaseTimeDO getById(@Param("topicId") String topicId);
 
     @Select("select * from `topic_phase_time` where  is_del = 0")
-    public List<UsernameDO> getAll();
+    public List<TopicPhaseTimeDO> getAll();
 }
