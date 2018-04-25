@@ -4,6 +4,7 @@ import com.jas.web.bean.domain.StudentUploadDO;
 import org.apache.ibatis.annotations.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Resource
 public interface StudentUploadDAO {
@@ -17,4 +18,7 @@ public interface StudentUploadDAO {
 
     @Select("select * from `student_upload` where student_topic_id = #{studentTopicId}")
     public StudentUploadDO getById(@Param("studentTopicId") Integer studentTopicId);
+
+    @Select("select su.* from `student_upload` su left join `student_topic` st on su.student_topic_id = su.id where st.student_id = #{id} order by su.status asc")
+    public List<StudentUploadDO> getByStudentId(@Param("id") String id);
 }

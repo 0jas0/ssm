@@ -102,7 +102,7 @@
 			<ul id="materialMonitor" class="easyui-tree" data-options="animate:true,lines:true">
 				<li><span>论文管理 </span>
 					<ul>
-						<li id=41 data-options="attributes:{'url':'material/find'}">物料信息</li>
+						<li id=41 data-options="attributes:{'url':'paper/paperStudentList'}">我的论文</li>
 					</ul>
 				</li>
 			</ul>

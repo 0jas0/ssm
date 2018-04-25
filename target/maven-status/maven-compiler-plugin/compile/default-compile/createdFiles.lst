@@ -4,7 +4,9 @@ com/jas/web/service/IAdminService.class
 com/jas/web/bean/param/TopicParam.class
 com/jas/web/bean/domain/UsernameDO.class
 com/jas/web/bean/param/UsernameParam.class
+com/jas/web/service/IStudentUploadService.class
 com/jas/web/bean/domain/StudentTopicDO.class
+com/jas/web/service/impl/StudentUploadServiceImpl.class
 com/jas/web/service/impl/TopicServiceImpl.class
 com/jas/web/bean/model/TopicModel.class
 com/jas/web/utils/EUDataGridResult.class
@@ -23,5 +25,6 @@ com/jas/web/controller/StudentController.class
 com/jas/web/filter/LoginFilter.class
 com/jas/web/dao/ITopicDAO.class
 com/jas/web/enums/ERole.class
+com/jas/web/bean/model/StudentUploadModel.class
 com/jas/web/bean/domain/TopicPhaseTimeDO.class
 com/jas/web/dao/IUsernameDAO.class
