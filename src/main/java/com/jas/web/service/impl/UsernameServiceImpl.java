@@ -103,4 +103,10 @@ public class UsernameServiceImpl implements IUsernameService{
             usernameDAO.deleteById(Integer.valueOf(id));
         }
     }
+
+    @Override
+    public UsernameModel getById(Integer integer) {
+        UsernameDO usernameDO = usernameDAO.getByUserId(integer);
+        return new UsernameModel(usernameDO);
+    }
 }

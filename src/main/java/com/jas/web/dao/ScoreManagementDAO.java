@@ -55,6 +55,8 @@ public interface ScoreManagementDAO {
     @Select("select * from `username` where id = #{studentId} and status = 0 and is_del = 0 order by id desc")
     public UsernameDO getByStudentOwnId(@Param("studentId") Integer studentId);
 
+    List<UsernameDO> selectStudent(@Param("name") String name,@Param("serialNumber") String serialNumber,@Param("major") String major);
+
 
 
 

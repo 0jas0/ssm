@@ -29,6 +29,9 @@ public interface IUsernameDAO {
     @Select("select * from `username` where serial_number = #{serialNumber} and status = #{status}")
     public UsernameDO getById(@Param("serialNumber") String serialNumber, @Param("status") Integer status);
 
+    @Select("select * from `username` where id = #{id} and is_del = 0")
+    public UsernameDO getByUserId(@Param("id") Integer id);
+
     @Select("select * from `username` where status = #{status} and is_del = 0 order by id desc")
     public List<UsernameDO> getByStatus(@Param("status") Integer status);
 

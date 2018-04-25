@@ -17,4 +17,6 @@ public interface IUsernameService {
     void update(UsernameParam usernameParam);
 
     void delete(String ids);
+
+    UsernameModel getById(Integer integer);
 }

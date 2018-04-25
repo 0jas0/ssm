@@ -82,45 +82,40 @@
 				<li><span>课题管理</span>
 					<ul>
 						<li id=21 data-options="attributes:{'url':'topic/list'}">课题列表</li>
-						<li id=22 data-options="attributes:{'url':'device/deviceType'}">选择课题</li>
 					</ul></li>
 			</ul>
 		</div>
 
-		<div title="工艺监控" data-options="selected:true" style="padding:10px">
+		<div title="选课管理" data-options="selected:true" style="padding:10px">
 			<ul id="technologyMonitor" class="easyui-tree" data-options="animate:true,lines:true">
-				<li><span>工艺监控</span>
+				<li><span>选择课题</span>
 					<ul>
-						<li id=31 data-options="attributes:{'url':'technology/find'}">工艺管理</li>
-						<li id=32 data-options="attributes:{'url':'technologyRequirement/find'}">工艺要求</li>
-						<li id=33 data-options="attributes:{'url':'technologyPlan/find'}">工艺计划</li>
-						<li id=34 data-options="attributes:{'url':'process/find'}">工序管理</li>
+						<li id=31 data-options="attributes:{'url':'topic/electiveList'}">选课列表</li>
+						<li id=32 data-options="attributes:{'url':'topic/selfTopic'}">通过课程</li>
 					</ul>
 				</li>
 			</ul>
 		</div>
 		
-		<div title="物料监控" data-options="selected:true" style="padding:10px">
+		<div title="论文管理" data-options="selected:true" style="padding:10px">
 		
 			<ul id="materialMonitor" class="easyui-tree" data-options="animate:true,lines:true">
-				<li><span>物料监控 </span>
+				<li><span>论文管理 </span>
 					<ul>
 						<li id=41 data-options="attributes:{'url':'material/find'}">物料信息</li>
-						<li id=42 data-options="attributes:{'url':'materialReceive/find'}">物料收入</li>
-				    	<li id=43 data-options="attributes:{'url':'materialConsume/find'}">物料消耗</li>	 					
 					</ul>
 				</li>
 			</ul>
 		</div>
 		
-		<div title="质量监控" data-options="selected:true" style="padding:10px;">
+		<div title="成绩管理" data-options="selected:true" style="padding:10px;">
 			<ul id="qualifyMonitor" class="easyui-tree"
 				data-options="animate:true,lines:true">
-				<li><span>质量监控</span>
+				<li><span>成绩管理</span>
 					<ul>
-						<li id=51 data-options="attributes:{'url':'unqualify/find'}">不合格品管理</li>
-						<li id=52 data-options="attributes:{'url':'measure/find'}">成品计量质检</li>
-						<li id=53 data-options="attributes:{'url':'f_count_check/find'}">成品计数质检</li>
+						<li id=51 data-options="attributes:{'url':'scoreManagement/teacher_score'}">教师成绩管理</li>
+						<li id=52 data-options="attributes:{'url':'scoreManagement/student_score'}">学生成绩管理</li>
+						<li id=53 data-options="attributes:{'url':'scoreManagement/admin_score'}">管理员成绩管理</li>
 						<li id=54 data-options="attributes:{'url':'p_measure_check/find'}">工序计量质检</li>
 						<li id=55 data-options="attributes:{'url':'p_count_check/find'}">工序计数质检</li>
 					</ul>

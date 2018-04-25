@@ -15,7 +15,7 @@ public interface ITopicDAO {
     @Options(useGeneratedKeys=true, keyProperty="id")
     public int insert(TopicDO topicDO);
 
-    @Update("update `topic` set title = #{title}, major = #{major}, limit_student = #{limitStudent}, teacher_id = #{teacherId}, status = #{status}, remark = #{remark} modtime = unix_timestamp()" +
+    @Update("update `topic` set title = #{title}, major = #{major}, limit_student = #{limitStudent}, teacher_id = #{teacherId}, status = #{status}, remark = #{remark}, modtime = unix_timestamp()" +
             " where topic_id = #{topicId} and is_del = 0")
     public void upload(TopicDO topicDO);
 
@@ -40,4 +40,9 @@ public interface ITopicDAO {
     @Select("select student_id from `student_topic` where topic_id = #{topicId} and is_del = 0")
     public List<String> getStudentByTopicId(@Param("topicId") String topicId);
 
+    @Select("select * from `topic` where `major` = #{major} and `status` = 1")
+    public List<TopicDO> selectByMajor(String major);
+
+    @Select("select * from `topic` where teacher_id = #{id} and status = 1")
+    public List<TopicDO> selectByTeacher(@Param("id") Integer id);
 }

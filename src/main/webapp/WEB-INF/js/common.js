@@ -75,7 +75,10 @@ var TT = TAOTAO = {
         	return '<span style="color:#ff0000;">未知</span>'
         }
     },
-    
+    formatLookStudent : function formatStatus(val,row) {
+		return "<button onclick='lookStudent(this)'>查看学生信息</button>";
+    },
+
 	// 格式化连接
 	formatUrl : function(val,row){
 		if(val){
@@ -97,6 +100,14 @@ var TT = TAOTAO = {
             return '<span style="color:green;">审核通过</span>';
         } else if(val == 2){
             return '<span style="color:red;">审核不通过</span>';
+        }
+    },
+    // 格式化订单的状态
+    formatCourseStatus : function formatStatus(val,row){
+        if(val == 0){
+            return '<span style="color:green;"><a href="javascript:void(0)" onclick="selectCourse(this)">可选</a></span>';
+        } else if(val == 1){
+            return '<span style="color:red;">已满</span>';
         }
     },
     // 格式化客户的状态

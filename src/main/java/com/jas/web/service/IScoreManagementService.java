@@ -12,5 +12,8 @@ public interface IScoreManagementService {
 
     public EUDataGridResult getByTeacher(HttpServletRequest request, Integer page, Integer rows);
 
+    public EUDataGridResult getStudentScore(HttpServletRequest request,Integer page, Integer rows,String name,String serialNumber,String major);
 
-}
+
+
+    }
