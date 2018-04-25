@@ -29,19 +29,19 @@ public class PaperController {
     IStudentUploadService studentUploadService;
 
     @RequestMapping(value = "/paperStudentList")
-    public String StudentList(){
+    public String StudentList() {
         return "paper_list";
     }
 
     @RequestMapping(value = "/paperStdudentEdit")
-    public String edit(){
+    public String edit() {
         return "paper_add";
     }
 
     @RequestMapping(value = "/paperList")
-    public Object getData(HttpServletRequest request){
+    public Object getData(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        String userId = (String)session.getAttribute("userId");
+        String userId = (String) session.getAttribute("userId");
         String[] split = userId.split(",");
         List<StudentUploadModel> studentUploadModelList = studentUploadService.getUploadFileByStudentId(split[0]);
         EUDataGridResult result = new EUDataGridResult();
@@ -50,69 +50,73 @@ public class PaperController {
         return result;
     }
 
-    @RequestMapping(value="/file/upload", method= RequestMethod.POST)
+    @RequestMapping(value = "/file/upload", method = RequestMethod.POST)
     @ResponseBody
-    public String handleFileUpload(MultipartHttpServletRequest request) throws Exception{
+    public String handleFileUpload(MultipartHttpServletRequest request) throws Exception {
         Iterator<String> iterator = request.getFileNames();
         String json = null;
         while (iterator.hasNext()) {
             String fileName = iterator.next();
             MultipartFile multipartFile = request.getFile(fileName);
-            Map<String,Object> result = fileService.uploadFile(multipartFile);
+            Map<String, Object> result = fileService.uploadFile(multipartFile);
+            json = JSON.toJSONString(result);
+        }
+        return json;
+    }
+
+    @RequestMapping(value = "/file1/upload", method = RequestMethod.POST)
+    @ResponseBody
+    public String handleFileUpload1(MultipartHttpServletRequest request) throws Exception {
+        Iterator<String> iterator = request.getFileNames();
+        String json = null;
+        while (iterator.hasNext()) {
+            String fileName = iterator.next();
+            MultipartFile multipartFile = request.getFile(fileName);
+            Map<String, Object> result = fileService.uploadFile(multipartFile);
+            json = JSON.toJSONString(result);
+        }
+        return json;
+    }
+
+    @RequestMapping(value = "/file2/upload", method = RequestMethod.POST)
+    @ResponseBody
+    public String handleFileUpload2(MultipartHttpServletRequest request) throws Exception {
+        Iterator<String> iterator = request.getFileNames();
+        String json = null;
+        while (iterator.hasNext()) {
+            String fileName = iterator.next();
+            MultipartFile multipartFile = request.getFile(fileName);
+            Map<String, Object> result = fileService.uploadFile(multipartFile);
+            json = JSON.toJSONString(result);
+        }
+        return json;
+    }
+
+    @RequestMapping(value = "/file3/upload", method = RequestMethod.POST)
+    @ResponseBody
+    public String handleFileUpload3(MultipartHttpServletRequest request) throws Exception {
+        Iterator<String> iterator = request.getFileNames();
+        String json = null;
+        while (iterator.hasNext()) {
+            String fileName = iterator.next();
+            MultipartFile multipartFile = request.getFile(fileName);
+            Map<String, Object> result = fileService.uploadFile(multipartFile);
+            json = JSON.toJSONString(result);
+        }
+        return json;
+    }
+
+    @RequestMapping(value = "/file4/upload", method = RequestMethod.POST)
+    @ResponseBody
+    public String handleFileUpload4(MultipartHttpServletRequest request) throws Exception {
+        Iterator<String> iterator = request.getFileNames();
+        String json = null;
+        while (iterator.hasNext()) {
+            String fileName = iterator.next();
+            MultipartFile multipartFile = request.getFile(fileName);
+            Map<String, Object> result = fileService.uploadFile(multipartFile);
             json = JSON.toJSONString(result);
         }
         return json;
     }
 }
-    @RequestMapping(value="/file1/upload", method= RequestMethod.POST)
-    @ResponseBody
-    public String handleFileUpload1(MultipartHttpServletRequest request) throws Exception{
-        Iterator<String> iterator = request.getFileNames();
-        String json = null;
-        while (iterator.hasNext()) {
-            String fileName = iterator.next();
-            MultipartFile multipartFile = request.getFile(fileName);
-            Map<String,Object> result = fileService.uploadFile(multipartFile);
-            json = JSON.toJSONString(result);
-        }
-        return json;
-    }
-    @RequestMapping(value="/file2/upload", method= RequestMethod.POST)
-    @ResponseBody
-    public String handleFileUpload2(MultipartHttpServletRequest request) throws Exception{
-        Iterator<String> iterator = request.getFileNames();
-        String json = null;
-        while (iterator.hasNext()) {
-            String fileName = iterator.next();
-            MultipartFile multipartFile = request.getFile(fileName);
-            Map<String,Object> result = fileService.uploadFile(multipartFile);
-            json = JSON.toJSONString(result);
-        }
-        return json;
-    }
-    @RequestMapping(value="/file3/upload", method= RequestMethod.POST)
-    @ResponseBody
-    public String handleFileUpload3(MultipartHttpServletRequest request) throws Exception{
-        Iterator<String> iterator = request.getFileNames();
-        String json = null;
-        while (iterator.hasNext()) {
-            String fileName = iterator.next();
-            MultipartFile multipartFile = request.getFile(fileName);
-            Map<String,Object> result = fileService.uploadFile(multipartFile);
-            json = JSON.toJSONString(result);
-        }
-        return json;
-    }
-    @RequestMapping(value="/file4/upload", method= RequestMethod.POST)
-    @ResponseBody
-    public String handleFileUpload4(MultipartHttpServletRequest request) throws Exception{
-        Iterator<String> iterator = request.getFileNames();
-        String json = null;
-        while (iterator.hasNext()) {
-            String fileName = iterator.next();
-            MultipartFile multipartFile = request.getFile(fileName);
-            Map<String,Object> result = fileService.uploadFile(multipartFile);
-            json = JSON.toJSONString(result);
-        }
-        return json;
-    }
