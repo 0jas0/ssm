@@ -116,44 +116,12 @@
 						<li id=51 data-options="attributes:{'url':'scoreManagement/teacher_score'}">教师成绩管理</li>
 						<li id=52 data-options="attributes:{'url':'scoreManagement/student_score'}">学生成绩管理</li>
 						<li id=53 data-options="attributes:{'url':'scoreManagement/admin_score'}">管理员成绩管理</li>
-						<li id=54 data-options="attributes:{'url':'p_measure_check/find'}">工序计量质检</li>
-						<li id=55 data-options="attributes:{'url':'p_count_check/find'}">工序计数质检</li>
 					</ul>
 				</li>
 			</ul>
 
 		</div>
 		
-		<div title="人员监控" data-options="selected:true" style="padding:10px">
-			<ul id="employeeMonitor" class="easyui-tree"
-				data-options="animate:true,lines:true">
-				<li><span>人员监控</span>
-					<ul>
-						<li id=61 data-options="attributes:{'url':'department/find'}">部门管理</li>
-					</ul>
-					<ul>
-						<li id=62 data-options="attributes:{'url':'employee/find'}">员工管理</li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-		
-		<c:if test="${activeUser.rolename == '超级管理员' }">
-			<div title="系统管理" style="padding:10px;">
-	
-				<ul id="sysManager" class="easyui-tree"
-					data-options="animate:true,lines:true">
-					<li><span>系统管理</span>
-						<ul>
-							<li data-options="attributes:{'url':'user/find'}">用户管理</li>
-						</ul>
-						<ul>
-							<li data-options="attributes:{'url':'role/find'}">角色管理</li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-		</c:if>
 	</div>
 
 	<!-- </div> -->
