@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jas.web.dao.ScoreManagementDAO">
+    <resultMap id="BaseResultMap" type="com.jas.web.bean.domain.UsernameDO">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="serial_number" property="serial_number" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="INTEGER"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="major" property="major" jdbcType="VARCHAR"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="is_del" property="is_del" jdbcType="INTEGER"/>
+        <result column="addtime" property="addtime" jdbcType="INTEGER"/>
+        <result column="modtime" property="modtime" jdbcType="INTEGER"/>
+
+
+    </resultMap>
+
+    <select id="selectStudent" resultMap="BaseResultMap" parameterType="com.jas.web.bean.domain.UsernameDO">
+        SELECT * FROM username
+        WHERE 1=1
+        and status = 1
+        AND is_del = 0
+        <if test="name!=null and groupId !=''">
+            and name  like CONCAT(CONCAT('%', #{name}), '%')
+        </if>
+        <if test="serialNumber!=null and serialNumber!='' ">
+            and serial_number like CONCAT(CONCAT('%', #{serialNumber}), '%')
+        </if>
+        <if test="major!=null and major !=''">
+            and major like CONCAT(CONCAT('%', #{major}), '%')
+        </if>
+    </select>
+</mapper>
