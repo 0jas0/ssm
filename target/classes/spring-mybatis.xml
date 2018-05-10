@@ -13,10 +13,11 @@
     <context:component-scan base-package="com.jas.web.**"/>
 
     <!-- 第一种方式：加载一个properties文件 -->
-    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+   <!-- <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location" value="classpath:jdbc.properties"/>
-    </bean>
-
+    </bean>-->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+    <context:property-placeholder location="classpath:fastdfs-client.properties"/>
 
     <!-- 第二种方式：加载多个properties文件
     <bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
@@ -54,6 +55,7 @@
 
     <!-- mybatis和spring完美整合，不需要mybatis的配置映射文件 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
         <property name="dataSource" ref="dataSource"/>
         <!-- 自动扫描mapping.xml文件 -->
         <property name="mapperLocations" value="classpath:mapping/*.xml"></property>

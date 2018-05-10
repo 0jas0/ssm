@@ -22,4 +22,6 @@ public interface IFileDAO {
     @Select("select * from ability.file where student_id = #{studentId} and is_del = 0")
     public List<FileDO> getFileByStudentId(@Param("studentId") String studentId);
 
+    @Select("select * from ability.file where id = #{id} and is_del = 0")
+    public FileDO getFileById(@Param("id") Integer id);
 }

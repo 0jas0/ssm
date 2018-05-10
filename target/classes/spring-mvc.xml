@@ -31,6 +31,10 @@
         </property>
     </bean>
 
+    <mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>
+    <mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
+    <mvc:resources location="/WEB-INF/image/" mapping="/image/**"/>
+
 
     <!-- 定义跳转的文件的前后缀 ，视图模式配置 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
