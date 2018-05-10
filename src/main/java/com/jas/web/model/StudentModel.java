@@ -1,8 +1,9 @@
-package com.jas.web.bean;
+package com.jas.web.model;
 
-import com.jas.web.model.StudentModel;
+import com.jas.web.bean.StudentDO;
 
-public class StudentDO extends BaseDO {
+public class StudentModel {
+    private Integer id;
     private String studentId;
     private String password;
     private String realName;
@@ -11,21 +12,30 @@ public class StudentDO extends BaseDO {
     private String mobile;
     private String identityCardNumber;
     private Integer evaluate;
+    private String evaluateName;
 
-    public StudentDO() {
+    public StudentModel() {
     }
 
-    public StudentDO(StudentModel studentModel) {
-        if (studentModel != null){
-            this.studentId = studentModel.getStudentId();
-            this.password = studentModel.getPassword();
-            this.realName = studentModel.getRealName();
-            this.major = studentModel.getMajor();
-            this.email = studentModel.getEmail();
-            this.mobile = studentModel.getMobile();
-            this.identityCardNumber = studentModel.getIdentityCardNumber();
-            this.evaluate = studentModel.getEvaluate();
+    public StudentModel(StudentDO studentDO) {
+        if (studentDO != null){
+            this.studentId = studentDO.getStudentId();
+            this.password = studentDO.getPassword();
+            this.realName = studentDO.getRealName();
+            this.major = studentDO.getMajor();
+            this.email = studentDO.getEmail();
+            this.mobile = studentDO.getMobile();
+            this.identityCardNumber = studentDO.getIdentityCardNumber();
+            this.evaluate = studentDO.getEvaluate();
         }
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getStudentId() {
@@ -90,5 +100,13 @@ public class StudentDO extends BaseDO {
 
     public void setEvaluate(Integer evaluate) {
         this.evaluate = evaluate;
+    }
+
+    public String getEvaluateName() {
+        return evaluateName;
+    }
+
+    public void setEvaluateName(String evaluateName) {
+        this.evaluateName = evaluateName;
     }
 }
