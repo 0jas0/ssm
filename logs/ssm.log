@@ -459,3 +459,18 @@ Caused by: java.lang.IllegalArgumentException: Could not resolve resource locati
 [INFO][main][2018-04-08 20:46:43][org.springframework.web.servlet.handler.AbstractUrlHandlerMapping] - Mapped URL path [/user/ajax/list_user.*] onto handler 'userController'
 [INFO][main][2018-04-08 20:46:43][org.springframework.web.servlet.handler.AbstractUrlHandlerMapping] - Mapped URL path [/user/ajax/list_user/] onto handler 'userController'
 [INFO][main][2018-04-08 20:46:43][org.springframework.web.servlet.FrameworkServlet] - FrameworkServlet 'SpringMVC': initialization completed in 651 ms
+[INFO][main][2018-05-10 20:37:19][org.springframework.web.context.ContextLoader] - Root WebApplicationContext: initialization started
+[INFO][main][2018-05-10 20:37:19][org.springframework.context.support.AbstractApplicationContext] - Refreshing Root WebApplicationContext: startup date [Thu May 10 20:37:19 CST 2018]; root of context hierarchy
+[INFO][main][2018-05-10 20:37:19][org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO][main][2018-05-10 20:37:19][org.springframework.core.io.support.PropertiesLoaderSupport] - Loading properties file from class path resource [jdbc.properties]
+[INFO][main][2018-05-10 20:37:19][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor] - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO][main][2018-05-10 20:37:20][org.springframework.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 820 ms
+[INFO][main][2018-05-10 20:37:20][org.springframework.web.servlet.FrameworkServlet] - FrameworkServlet 'SpringMVC': initialization started
+[INFO][main][2018-05-10 20:37:20][org.springframework.context.support.AbstractApplicationContext] - Refreshing WebApplicationContext for namespace 'SpringMVC-servlet': startup date [Thu May 10 20:37:20 CST 2018]; parent: Root WebApplicationContext
+[INFO][main][2018-05-10 20:37:20][org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from class path resource [spring-mvc.xml]
+[INFO][main][2018-05-10 20:37:20][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor] - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO][main][2018-05-10 20:37:20][org.springframework.web.servlet.handler.AbstractUrlHandlerMapping] - Mapped URL path [/user/ajax/list_user] onto handler 'userController'
+[INFO][main][2018-05-10 20:37:20][org.springframework.web.servlet.handler.AbstractUrlHandlerMapping] - Mapped URL path [/user/ajax/list_user.*] onto handler 'userController'
+[INFO][main][2018-05-10 20:37:20][org.springframework.web.servlet.handler.AbstractUrlHandlerMapping] - Mapped URL path [/user/ajax/list_user/] onto handler 'userController'
+[INFO][main][2018-05-10 20:37:21][org.springframework.web.servlet.FrameworkServlet] - FrameworkServlet 'SpringMVC': initialization completed in 673 ms
+[WARN][1838342806@qtp-616872979-0][2018-05-10 20:38:06][org.springframework.web.servlet.DispatcherServlet] - No mapping found for HTTP request with URI [/user/ajax/list_user1] in DispatcherServlet with name 'SpringMVC'
