@@ -1,0 +1,4 @@
+com/jas/web/dao/StudentDAO.class
+com/jas/web/bean/model/StudentModel.class
+com/jas/web/bean/domain/StudentDO.class
+com/jas/web/bean/param/StudentParam.class

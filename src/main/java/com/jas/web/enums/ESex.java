@@ -12,6 +12,8 @@ public enum ESex {
     private Integer value;
     private String desc;
 
+
+
     public static ESex findByValue(Integer value){
         switch (value){
             case 0:
@@ -29,6 +31,15 @@ public enum ESex {
             return "";
         }
         return eSex.getDesc();
+    }
+
+    public static Integer getValueByDesc(String desc){
+        switch (desc){
+            case "女":
+                return WOMAN.getValue();
+            default:
+                return MAN.getValue();
+        }
     }
 
     public Integer getValue() {

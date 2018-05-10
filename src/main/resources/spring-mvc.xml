@@ -54,4 +54,25 @@
         <!-- 内存中的最大值 -->
         <property name="maxInMemorySize" value="4096"/>
     </bean>
+    <!-- 校验器 -->
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <!-- 校验器 -->
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
+        <!-- 指定校验使用的资源文件，如果不指定则默认使用classpath下的ValidationMessages.properties -->
+        <property name="validationMessageSource" ref="messageSource" />
+    </bean>
+    <!-- 校验错误信息配置文件 -->
+    <bean id="messageSource"
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <!-- 资源文件名 -->
+        <property name="basenames">
+            <list>
+                <value>CustomValidationMessages.properties</value>
+            </list>
+        </property>
+        <!-- 资源文件编码格式 -->
+        <property name="fileEncodings" value="utf-8" />
+        <!-- 对资源文件内容缓存时间，单位秒 -->
+        <property name="cacheSeconds" value="120" />
+    </bean>
 </beans>

@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="./css/aa.css">
 </head>
 <body>
 <marquee width="100%" hight="200px" bgcolor="red" behavior="" direction="">

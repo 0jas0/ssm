@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface ITeacherDAO {
 
-    @Insert("insert into beihua.teacher (`teacher_id`,`password`,`name`,`born_date`,`sex`,`education`,`position`,`nation`,`address`,`postalcode`,`mobile`,`addtime`,`addtime`)" +
+    @Insert("insert into beihua.teacher (`teacher_id`,`password`,`name`,`born_date`,`sex`,`education`,`position`,`nation`,`address`,`postalcode`,`mobile`,`addtime`,`modtime`)" +
             " values (#{teacherId},#{password},#{name},#{bornDate},#{sex},#{education},#{position},#{nation},#{address},#{postalcode},#{mobile},unix_timestamp(),unix_timestamp())")
     @Options(useGeneratedKeys=true, keyProperty="id")
     public int addTeacher(TeacherDO teacherDO);

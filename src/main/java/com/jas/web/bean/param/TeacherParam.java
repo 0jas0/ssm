@@ -1,43 +1,46 @@
-package com.jas.web.bean.domain;
+package com.jas.web.bean.param;
 
 import com.jas.web.bean.model.TeacherModel;
-import com.jas.web.enums.ESex;
-import com.jas.web.utils.DateUtil;
 
-import java.util.Date;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-public class TeacherDO extends BaseDO{
-
+public class TeacherParam {
     private String teacherId;
+    @NotNull(message = "密码不能为空")
+    @Size(min = 6,message = "密码至少6位")
     private String password;
+    @NotNull(message = "名称不能为空")
     private String name;
-    private Date bornDate;
-    private Integer sex;
+    private String bornDate;
+    private String sex;
+    @NotNull(message = "学历不能为空")
     private String education;
+    @NotNull(message = "职称不能为空")
     private String position;
     private String nation;
     private String address;
     private String postalcode;
+    @NotNull
     private String mobile;
+    @NotNull(message = "身份证号不能为空")
     private String identityCardNumber;
 
-    public TeacherDO(){}
-
-    public TeacherDO(TeacherModel teacherModel){
-        if (teacherModel != null){
-            this.teacherId = teacherModel.getTeacherId();
-            this.password = teacherModel.getPassword();
-            this.name = teacherModel.getName();
-            this.bornDate = DateUtil.getDateByFormatFromString(teacherModel.getBornDate(), "yyyy-MM-dd");
-            this.sex = ESex.getValueByDesc(teacherModel.getSex());
-            this.education = teacherModel.getEducation();
-            this.position = teacherModel.getPosition();
-            this.nation = teacherModel.getNation();
-            this.address = teacherModel.getAddress();
-            this.postalcode = teacherModel.getPostalcode();
-            this.mobile = teacherModel.getMobile();
-            this.identityCardNumber = teacherModel.getIdentityCardNumber();
-        }
+    public TeacherModel getModel(){
+        TeacherModel teacherModel = new TeacherModel();
+        teacherModel.setTeacherId(teacherId);
+        teacherModel.setPassword(password);
+        teacherModel.setName(name);
+        teacherModel.setBornDate(bornDate);
+        teacherModel.setSex(sex);
+        teacherModel.setEducation(education);
+        teacherModel.setPosition(position);
+        teacherModel.setNation(nation);
+        teacherModel.setAddress(address);
+        teacherModel.setPostalcode(postalcode);
+        teacherModel.setMobile(mobile);
+        teacherModel.setIdentityCardNumber(identityCardNumber);
+        return teacherModel;
     }
 
     public String getTeacherId() {
@@ -64,19 +67,19 @@ public class TeacherDO extends BaseDO{
         this.name = name;
     }
 
-    public Date getBornDate() {
+    public String getBornDate() {
         return bornDate;
     }
 
-    public void setBornDate(Date bornDate) {
+    public void setBornDate(String bornDate) {
         this.bornDate = bornDate;
     }
 
-    public Integer getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(Integer sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 
@@ -135,5 +138,4 @@ public class TeacherDO extends BaseDO{
     public void setIdentityCardNumber(String identityCardNumber) {
         this.identityCardNumber = identityCardNumber;
     }
-
 }
