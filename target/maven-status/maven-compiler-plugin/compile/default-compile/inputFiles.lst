@@ -1,3 +1,4 @@
+/Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/test/FastDFSClientTest.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/model/StudentModel.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/enums/ErrorCode.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/model/PaperModel.java
@@ -17,12 +18,10 @@
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/service/impl/IFileServiceImpl.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/enums/EEvaluateType.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/StudentDO.java
-/Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/helper/FileCheck.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/service/IStudentService.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/service/IAdminService.java
-/Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/helper/FileResponseData.java
-/Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/dao/IAdminDAO.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/FileDO.java
+/Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/dao/IAdminDAO.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/controller/StudentController.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/controller/FileController.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/helper/FastDFSClient.java

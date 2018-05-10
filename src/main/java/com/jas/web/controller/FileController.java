@@ -1,6 +1,8 @@
 package com.jas.web.controller;
 
 import com.jas.web.bean.FileDO;
+import com.jas.web.exception.FastDFSException;
+import com.jas.web.helper.FastDFSClient;
 import com.jas.web.model.StudentModel;
 import com.jas.web.service.IFileService;
 import com.jas.web.utils.ResponseUtil;
@@ -11,6 +13,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -67,6 +73,18 @@ public class FileController {
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS,"删除图片成功" , null);
         }catch (Exception e){
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"系统异常请稍后重试" , null);
+        }
+    }
+
+    @RequestMapping("/ajax/test")
+    public void ajaxTest(){
+        try {
+            FastDFSClient fastDFSClient = new FastDFSClient();
+            File file = new File("/Users/jas/Downloads/bb.jpg");
+            InputStream inputStream = new FileInputStream(file);
+            String upload = fastDFSClient.upload(inputStream, "bb.jpg", null);
+            System.out.println(upload);
+        }catch (Exception e){
         }
     }
 }
