@@ -24,6 +24,6 @@ public interface IAdministrativeClassDAO {
     @Select("select * from beihua.administrative_class where class_id = #{classId} and is_del = 0")
     public AdministrativeClassDO getAdminstrativeClassByClassId(@Param("classId") String classId);
 
-    @Select("")
+    @Select("select * from beihua.administrative_class where is_del = 0")
     public List<AdministrativeClassDO> getAdminstrativeClassAll();
 }

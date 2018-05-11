@@ -3,7 +3,7 @@ package com.jas.web.bean.model;
 import com.jas.web.bean.domain.AdministrativeClassDO;
 import com.jas.web.bean.domain.BaseDO;
 
-public class AdministrativeClassModel extends BaseDO{
+public class AdministrativeClassModel{
 
     private String classId;
 

@@ -1,11 +1,12 @@
 package com.jas.web.bean.model;
 
+import com.jas.web.bean.domain.BaseDO;
 import com.jas.web.bean.domain.StudentDO;
 import com.jas.web.bean.domain.TeacherDO;
 import com.jas.web.enums.ESex;
 import com.jas.web.utils.DateUtil;
 
-public class StudentModel {
+public class StudentModel{
     private String studentId;
     private String password;
     private String name;

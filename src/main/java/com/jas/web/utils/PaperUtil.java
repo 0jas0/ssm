@@ -22,11 +22,7 @@ public class PaperUtil<E> {
     }
 
     public Integer getTotalPage() {
-        return totalPage;
-    }
-
-    public void setTotalPage(Integer totalPage) {
-        this.totalPage = totalPage;
+        return (totalRecord + pageSize - 1)/pageSize;
     }
 
     public Integer getTotalRecord() {

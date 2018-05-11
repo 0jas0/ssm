@@ -3,7 +3,7 @@ package com.jas.web.bean.model;
 import com.jas.web.bean.domain.AdminDO;
 import com.jas.web.bean.domain.BaseDO;
 
-public class AdminModel extends BaseDO{
+public class AdminModel{
 
     private String name;
     private String password;
