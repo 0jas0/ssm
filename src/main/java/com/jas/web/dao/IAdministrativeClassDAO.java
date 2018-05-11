@@ -1,24 +1,29 @@
 package com.jas.web.dao;
 
 import com.jas.web.bean.domain.AdminDO;
+import com.jas.web.bean.domain.AdministrativeClassDO;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface IAdministrativeClassDAO {
 
-    @Insert("insert into beihua.administrative_class (`name`,`password`,`addtime`,`modtime`)" +
-            " values (#{name},#{password},unix_timestamp(),unix_timestamp())")
+    @Insert("insert into beihua.administrative_class (`class_id`,`name`,`class_number`,`instructor`,`major`,`college`,`addtime`,`modtime`)" +
+            " values (#{classId},#{name},#{classNumber},#{instructor},#{major},#{college},unix_timestamp(),unix_timestamp())")
     @Options(useGeneratedKeys=true, keyProperty="id")
-    public int addAdmin(AdminDO adminDO);
+    public int addAdministrativeClass(AdministrativeClassDO administrativeClassDO);
 
-    @Update("update beihua.administrative_class set password = #{password}, name = #{name} where id = #{id} and is_del = 0")
-    public void updateAdmin(AdminDO adminDO);
+    @Update("update beihua.administrative_class set name = #{name}, class_number = #{classNumber}, instructor = #{instructor}, major = #{major}, college = #{college} where class_id = #{classId} and is_del = 0")
+    public void updateAdministrativeClass(AdministrativeClassDO administrativeClassDO);
 
-    @Update("update beihua.administrative_class set is_del = 1 where id = #{id}")
-    public void deleteAdmin(@Param("id") String id);
+    @Update("update beihua.administrative_class set is_del = 1 where class_id = #{classId}")
+    public void deleteAdministrativeClass(@Param("classId") String classId);
 
-    @Select("select * from beihua.administrative_class where name = #{name} and is_del = 0")
-    public AdminDO getByName(@Param("name") String name);
+    @Select("select * from beihua.administrative_class where class_id = #{classId} and is_del = 0")
+    public AdministrativeClassDO getAdminstrativeClassByClassId(@Param("classId") String classId);
 
+    @Select("")
+    public List<AdministrativeClassDO> getAdminstrativeClassAll();
 }

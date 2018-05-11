@@ -27,7 +27,4 @@ public interface ITeacherDAO {
     @Select("select * from beihua.teacher where is_del = 0 order by #{sort} #{lift} limit ${start},${size}")
     public List<TeacherDO> listTeacherByPage(@Param("start") Integer start, @Param("size") Integer size, @Param("sort") String sort, @Param("lift") String lift);
 
-    @Select("select * from beihua.teacher where is_del = 0")
-    public List<TeacherDO> listTeacherAll();
-
 }
