@@ -1,11 +1,12 @@
 package com.jas.web.controller;
 
+import com.github.tobato.fastdfs.domain.StorePath;
+import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import com.jas.web.bean.FileDO;
-import com.jas.web.exception.FastDFSException;
-import com.jas.web.helper.FastDFSClient;
-import com.jas.web.model.StudentModel;
+import com.jas.web.exception.ParamNotValidException;
 import com.jas.web.service.IFileService;
 import com.jas.web.utils.ResponseUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,8 +16,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -30,7 +29,7 @@ public class FileController {
     IFileService fileService;
 
     @RequestMapping("ajax/upload-file")
-    public Object ajaxUploadFile(@RequestParam(value = "image", required = false) MultipartFile image, Integer type, HttpSession session){
+    public Object ajaxUploadFile(@RequestParam(value = "image", required = false) MultipartFile image,@RequestParam("type") Integer type, HttpSession session){
         try {
             String userName = (String) session.getAttribute("username");
             Integer userRole = (Integer) session.getAttribute("type");
@@ -38,8 +37,10 @@ public class FileController {
                 return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED, "无权限", null);
             }
             fileService.uploadFile(image, type, userName);
-            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"上传图片成功" , null);
-        }catch (Exception e){
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS,"上传图片成功" , null);
+        }catch (ParamNotValidException e){
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,e.getMessage() , null);
+        } catch (Exception e){
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"系统异常请稍后重试" , null);
         }
     }
@@ -73,18 +74,6 @@ public class FileController {
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS,"删除图片成功" , null);
         }catch (Exception e){
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"系统异常请稍后重试" , null);
-        }
-    }
-
-    @RequestMapping("/ajax/test")
-    public void ajaxTest(){
-        try {
-            FastDFSClient fastDFSClient = new FastDFSClient();
-            File file = new File("/Users/jas/Downloads/bb.jpg");
-            InputStream inputStream = new FileInputStream(file);
-            String upload = fastDFSClient.upload(inputStream, "bb.jpg", null);
-            System.out.println(upload);
-        }catch (Exception e){
         }
     }
 }

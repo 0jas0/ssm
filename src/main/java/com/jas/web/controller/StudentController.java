@@ -78,5 +78,15 @@ public class StudentController {
         }
     }
 
+    @RequestMapping("ajax/delete-student-by-studentId")
+    @ResponseBody
+    public Object deleteStudentByStudentid(@RequestParam(value = "studentId") String studentIde){
+        try {
+            studentService.deleteSutdentById(studentIde);
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS,"删除学生成功" , null);
+        }catch (Exception e){
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"系统异常请稍后重试" , null);
+        }
+    }
 
 }

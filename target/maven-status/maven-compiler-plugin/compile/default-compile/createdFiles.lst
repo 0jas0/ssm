@@ -1,5 +1,2 @@
-com/jas/web/helper/FastDFSClient.class
-com/jas/web/helper/TrackerServerPool.class
+com/jas/web/utils/FastDFSUtil.class
 com/jas/web/enums/ErrorCode.class
-com/jas/web/helper/TrackerServerFactory.class
-com/jas/web/exception/FastDFSException.class

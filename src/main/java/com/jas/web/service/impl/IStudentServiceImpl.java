@@ -71,4 +71,9 @@ public class IStudentServiceImpl implements IStudentService {
         studentDO.setEvaluate(rank);
         studentDAO.updateStudent(studentDO);
     }
+
+    @Override
+    public void deleteSutdentById(String studentId) {
+        studentDAO.deleteStudent(studentId);
+    }
 }

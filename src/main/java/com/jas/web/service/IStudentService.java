@@ -16,4 +16,6 @@ public interface IStudentService {
     public void updateStudent(StudentModel studentModel);
 
     public void evaluateStudent(String studentId,Integer rank);
+
+    void deleteSutdentById(String studentId);
 }
