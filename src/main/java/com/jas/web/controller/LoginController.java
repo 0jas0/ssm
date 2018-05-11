@@ -51,6 +51,7 @@ public class LoginController {
                 return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"用户名或密码错误" , null);
             }
         }catch (Exception e){
+            e.printStackTrace();
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"系统异常请稍后重试" , null);
         }
     }

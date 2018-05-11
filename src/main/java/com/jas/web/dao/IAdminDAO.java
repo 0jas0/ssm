@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface IAdminDAO {
 
-    @Select("select * from ability.admin where name = #{name} is_del = 0")
+    @Select("select * from ability.admin where name = #{name} and is_del = 0")
     public AdminDO getAdminByName(@Param("name") String name);
 
 }
