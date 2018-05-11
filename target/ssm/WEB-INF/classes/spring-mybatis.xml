@@ -13,17 +13,19 @@
     <context:component-scan base-package="com.jas.web.**"/>
 
     <!-- 第一种方式：加载一个properties文件 -->
-    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+   <!-- <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location" value="classpath:jdbc.properties"/>
-    </bean>
+    </bean>-->
+<!--
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+-->
 
-
-    <!-- 第二种方式：加载多个properties文件
+     <!--第二种方式：加载多个properties文件-->
     <bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="locations">
             <list>
                 <value>classpath:jdbc.properties</value>
-                <value>classpath:common.properties</value>
+                <value>classpath:fastdfs-client.properties</value>
             </list>
         </property>
         <property name="fileEncoding" value="UTF-8"/>
@@ -31,7 +33,6 @@
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
         <property name="properties" ref="configProperties"/>
     </bean>
-    -->
 
     <!-- 配置数据源 -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
@@ -54,6 +55,7 @@
 
     <!-- mybatis和spring完美整合，不需要mybatis的配置映射文件 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
         <property name="dataSource" ref="dataSource"/>
         <!-- 自动扫描mapping.xml文件 -->
         <property name="mapperLocations" value="classpath:mapping/*.xml"></property>
@@ -65,7 +67,6 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
     </bean>
 
-
     <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
@@ -73,4 +74,30 @@
 
     <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!--配置扫描包-->
+    <context:component-scan base-package="com.github.tobato.fastdfs.service,com.github.tobato.fastdfs.domain"/>
+    <!--配置连接管理器-->
+    <bean id="trackerConnectionManager" class="com.github.tobato.fastdfs.conn.TrackerConnectionManager">
+        <constructor-arg name="pool" ref="fdfsConnectionPool">
+        </constructor-arg>
+        <!--配置fastDFS tracker 服务器 ip:port 地址-->
+        <property name="trackerList">
+            <list>
+                <value>${fastdfs.tracker_servers}</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--配置连接池-->
+    <bean id="fdfsConnectionPool" class="com.github.tobato.fastdfs.conn.FdfsConnectionPool">
+        <!--注入连接池配置-->
+        <constructor-arg name="config" >
+            <bean class="com.github.tobato.fastdfs.conn.ConnectionPoolConfig"/>
+        </constructor-arg>
+        <!--注入连接池工厂-->
+        <constructor-arg name="factory" >
+            <bean class="com.github.tobato.fastdfs.conn.PooledConnectionFactory"/>
+        </constructor-arg>
+    </bean>
 </beans>
