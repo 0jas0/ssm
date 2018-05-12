@@ -16,7 +16,7 @@ public class LoginFilter implements Filter{
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        /*HttpServletRequest request = (HttpServletRequest) servletRequest;
         String requestURI = request.getRequestURI();
         HttpSession session = request.getSession();
         String userId =  (String) session.getAttribute("userId");
@@ -29,7 +29,7 @@ public class LoginFilter implements Filter{
             HttpServletResponse response = (HttpServletResponse) servletResponse;
             response.sendRedirect("/login");
             return;
-        }
+        }*/
         filterChain.doFilter(servletRequest,servletResponse);
     }
 
