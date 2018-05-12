@@ -1,6 +1,7 @@
 package com.jas.web.model;
 
 import com.jas.web.bean.StudentDO;
+import com.jas.web.enums.EEvaluateType;
 
 public class StudentModel {
     private Integer id;
@@ -19,6 +20,7 @@ public class StudentModel {
 
     public StudentModel(StudentDO studentDO) {
         if (studentDO != null){
+            this.id = studentDO.getId();
             this.studentId = studentDO.getStudentId();
             this.password = studentDO.getPassword();
             this.realName = studentDO.getRealName();
@@ -27,6 +29,7 @@ public class StudentModel {
             this.mobile = studentDO.getMobile();
             this.identityCardNumber = studentDO.getIdentityCardNumber();
             this.evaluate = studentDO.getEvaluate();
+            this.evaluateName = EEvaluateType.getDescByValue(studentDO.getEvaluate());
         }
     }
 
