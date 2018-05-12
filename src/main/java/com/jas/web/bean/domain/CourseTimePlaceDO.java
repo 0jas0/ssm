@@ -1,7 +1,7 @@
 package com.jas.web.bean.domain;
 
 public class CourseTimePlaceDO {
-    private String courseId;
+    private Integer courseId;
 
     private String name;
 
@@ -11,11 +11,11 @@ public class CourseTimePlaceDO {
 
     private String coursePlace;
 
-    public String getCourseId() {
+    public Integer getCourseId() {
         return courseId;
     }
 
-    public void setCourseId(String courseId) {
+    public void setCourseId(Integer courseId) {
         this.courseId = courseId;
     }
 

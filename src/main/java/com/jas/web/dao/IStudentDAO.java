@@ -19,7 +19,7 @@ public interface IStudentDAO {
             " major = #{major}, native_place #{nativePlace}, nation = #{nation}, address = #{address}, postalcode = #{postalcode},identity_card_number = #{identityCardNumber}, mobile = #{mobile}, modtime = unix_timestamp() where student_id = #{studentId} and is_del = 0")
     public void updateStudent(TeacherDO teacherDO);
 
-    @Update("update beihua.student set is_del = 1 where student_id = #{studentId}")
+    @Update("update beihua.student set is_del = 1, modtime = unix_timestamp() where student_id = #{studentId}")
     public void deleteStudent(@Param("studentId") String studentId);
 
     @Select("select * from beihua.student where student_id = #{studentId} and is_del = 0")

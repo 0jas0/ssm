@@ -5,7 +5,9 @@ public class TeachingEvaluationDO extends BaseDO{
 
     private Integer evaluationGrade;
 
-    private Integer teacherId;
+    private String teacherId;
+
+    private String studentId;
 
     public Integer getCourseId() {
         return courseId;
@@ -23,11 +25,19 @@ public class TeachingEvaluationDO extends BaseDO{
         this.evaluationGrade = evaluationGrade;
     }
 
-    public Integer getTeacherId() {
+    public String getTeacherId() {
         return teacherId;
     }
 
-    public void setTeacherId(Integer teacherId) {
+    public void setTeacherId(String teacherId) {
         this.teacherId = teacherId;
+    }
+
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 }

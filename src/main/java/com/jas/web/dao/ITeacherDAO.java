@@ -15,10 +15,10 @@ public interface ITeacherDAO {
     public int addTeacher(TeacherDO teacherDO);
 
     @Update("update beihua.teacher set password = #{password}, name = #{name}, born_date = #{bornDate}, sex = #{sex}, education = #{education}, position = #{position}," +
-            " nation = #{nation}, address #{address}, postalcode = #{postalcode}, mobile = #{mobile} where teacher_id = #{teacherId} and is_del = 0")
+            " nation = #{nation}, address #{address}, postalcode = #{postalcode}, mobile = #{mobile}, modtime = unix_timestamp() where teacher_id = #{teacherId} and is_del = 0")
     public void updateTeacher(TeacherDO teacherDO);
 
-    @Update("update beihua.teacher set is_del = 1 where teacher_id = #{teacherId}")
+    @Update("update beihua.teacher set is_del = 1, modtime = unix_timestamp() where teacher_id = #{teacherId}")
     public void deleteTeacher(@Param("teacherId") String teacherId);
 
     @Select("select * from beihua.teacher where teacher_id = #{teacherId} and is_del = 0")
@@ -29,4 +29,7 @@ public interface ITeacherDAO {
 
     @Select("select count(*) from beihua.teacher where is_del = 0")
     public Integer getTotalNum();
+
+    @Select("select * from beihua.teachear where is_del = 0")
+    public List<TeacherDO> listTeacherAll();
 }

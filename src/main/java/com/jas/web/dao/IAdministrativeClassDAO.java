@@ -1,6 +1,5 @@
 package com.jas.web.dao;
 
-import com.jas.web.bean.domain.AdminDO;
 import com.jas.web.bean.domain.AdministrativeClassDO;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
@@ -15,10 +14,11 @@ public interface IAdministrativeClassDAO {
     @Options(useGeneratedKeys=true, keyProperty="id")
     public int addAdministrativeClass(AdministrativeClassDO administrativeClassDO);
 
-    @Update("update beihua.administrative_class set name = #{name}, class_number = #{classNumber}, instructor = #{instructor}, major = #{major}, college = #{college} where class_id = #{classId} and is_del = 0")
+    @Update("update beihua.administrative_class set name = #{name}, class_number = #{classNumber}, instructor = #{instructor}, major = #{major}," +
+            " college = #{college}, modtime = unix_timestamp() where class_id = #{classId} and is_del = 0")
     public void updateAdministrativeClass(AdministrativeClassDO administrativeClassDO);
 
-    @Update("update beihua.administrative_class set is_del = 1 where class_id = #{classId}")
+    @Update("update beihua.administrative_class set is_del = 1, modtime = unix_timestamp() where class_id = #{classId}")
     public void deleteAdministrativeClass(@Param("classId") String classId);
 
     @Select("select * from beihua.administrative_class where class_id = #{classId} and is_del = 0")

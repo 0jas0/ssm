@@ -15,10 +15,10 @@ public interface IAdminDAO {
     @Options(useGeneratedKeys=true, keyProperty="id")
     public int addAdmin(AdminDO adminDO);
 
-    @Update("update beihua.admin set password = #{password}, name = #{name} where id = #{id} and is_del = 0")
+    @Update("update beihua.admin set password = #{password}, name = #{name}, modtime = unix_timestamp() where id = #{id} and is_del = 0")
     public void updateAdmin(AdminDO adminDO);
 
-    @Update("update beihua.admin set is_del = 1 where id = #{id}")
+    @Update("update beihua.admin set is_del = 1, modtime = unix_timestamp() where id = #{id}")
     public void deleteAdmin(@Param("id") String id);
 
     @Select("select * from beihua.admin where name = #{name} and is_del = 0")
