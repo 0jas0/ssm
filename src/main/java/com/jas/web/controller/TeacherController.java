@@ -1,6 +1,7 @@
 package com.jas.web.controller;
 
 import com.jas.web.bean.model.TeacherModel;
+import com.jas.web.service.ITeacherEvaluationService;
 import com.jas.web.service.ITeacherService;
 import com.jas.web.utils.PaperUtil;
 import com.jas.web.utils.ResponseUtil;
@@ -17,6 +18,9 @@ public class TeacherController {
 
     @Resource
     private ITeacherService teacherService;
+
+    @Resource
+    private ITeacherEvaluationService teacherEvaluationService;
 
     @RequestMapping(value = "/ajax-get-teacher-by-page")
     @ResponseBody
@@ -51,5 +55,18 @@ public class TeacherController {
     public Object getByTeacherId(@RequestParam(value = "teacherId",required = true) String teacherId){
         TeacherModel teacherModel = teacherService.getByTeacherId(teacherId);
         return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS, "获取教师信息成功", teacherModel);
+    }
+
+    @RequestMapping(value = "ajax/teacher-evaluation")
+    @ResponseBody
+    public Object evaluationTeacher(@RequestParam("StudentId")String studentId, @RequestParam("teacherId") String teacherId,
+                                    @RequestParam("courseId") Integer courseId, @RequestParam("evaluationGrade") Integer evaluationGrade){
+        try {
+            teacherEvaluationService.evaluationTeacher(studentId, teacherId, courseId, evaluationGrade);
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS, "评价教师成功", null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"评价教师失败",null);
+        }
     }
 }

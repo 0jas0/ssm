@@ -9,13 +9,14 @@ import com.jas.web.utils.DateUtil;
 public class StudentModel{
     private String studentId;
     private String password;
+    private String photo;
     private String name;
     private String bornDate;
     private String sex;
     private String politicalOutlook;
     private Integer classId;
-    private String college;
-    private String major;
+    private Integer college;
+    private Integer major;
     private String nativePlace;
     private String nation;
     private String address;
@@ -31,6 +32,7 @@ public class StudentModel{
         if (studentDO != null){
             this.studentId = studentDO.getStudentId();
             this.password = studentDO.getPassword();
+            this.photo = studentDO.getPhoto();
             this.name = studentDO.getName();
             this.bornDate = DateUtil.getStringDateByFormat(studentDO.getBornDate(), "yyyy-MM-dd");
             this.sex = ESex.getDescByValue(studentDO.getSex());
@@ -42,6 +44,14 @@ public class StudentModel{
             this.mobile = studentDO.getMobile();
             this.identityCardNumber = studentDO.getIdentityCardNumber();
         }
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public String getStudentId() {
@@ -100,19 +110,19 @@ public class StudentModel{
         this.classId = classId;
     }
 
-    public String getCollege() {
+    public Integer getCollege() {
         return college;
     }
 
-    public void setCollege(String college) {
+    public void setCollege(Integer college) {
         this.college = college;
     }
 
-    public String getMajor() {
+    public Integer getMajor() {
         return major;
     }
 
-    public void setMajor(String major) {
+    public void setMajor(Integer major) {
         this.major = major;
     }
 

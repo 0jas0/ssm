@@ -22,8 +22,11 @@ public interface ICourseTimePlaceDAO {
     public void deleteCourseTimePlace(@Param("id") Integer id);
 
     @Select("select * from beihua.course_time_place where id = #{id} and is_del = 0")
-    public CourseTimePlaceDO getCourseById(@Param("id") Integer id);
+    public CourseTimePlaceDO getCourseTimePlaceById(@Param("id") Integer id);
 
     @Select("select * from beihua.course_time_place where is_del = 0")
-    public List<CourseTimePlaceDO> getCourseAll();
+    public List<CourseTimePlaceDO> getCourseTimePlaceAll();
+
+    @Select("select * from beihua.course_time_place where course_id = #{courseId} and is_del = 0")
+    public List<CourseTimePlaceDO> getCourseTimePlaceByCourseId(@Param("courseId") Integer courseId);
 }

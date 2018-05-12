@@ -5,7 +5,9 @@ public enum ECourseWeek {
     TUESDAY(2,"周二"),
     WEDNESDAY(3,"周三"),
     THURSDAY(4,"周四"),
-    FRIDAY(5,"周五");
+    FRIDAY(5,"周五"),
+    SATURDAY(6,"周六"),
+    SUNDAY(7,"周日");
 
     ECourseWeek(Integer value, String desc) {
         this.value = value;
@@ -29,6 +31,10 @@ public enum ECourseWeek {
                 return THURSDAY;
             case 5:
                 return FRIDAY;
+            case 6:
+                return SATURDAY;
+            case 7:
+                return SUNDAY;
             default:
                 return null;
         }

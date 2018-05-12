@@ -11,13 +11,14 @@ public class StudentDO extends BaseDO{
 
     private String studentId;
     private String password;
+    private String photo;
     private String name;
     private Date bornDate;
     private Integer sex;
     private String politicalOutlook;
     private Integer classId;
-    private String college;
-    private String major;
+    private Integer college;
+    private Integer major;
     private String nativePlace;
     private String nation;
     private String address;
@@ -30,6 +31,7 @@ public class StudentDO extends BaseDO{
     public StudentDO(StudentModel studentModel){
         if (studentModel != null){
             this.studentId = studentModel.getStudentId();
+            this.photo = studentModel.getPhoto();
             this.password = studentModel.getPassword();
             this.name = studentModel.getName();
             this.bornDate = DateUtil.getDateByFormatFromString(studentModel.getBornDate(), "yyyy-MM-dd");
@@ -47,6 +49,13 @@ public class StudentDO extends BaseDO{
         }
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
 
     public String getStudentId() {
         return studentId;
@@ -104,19 +113,19 @@ public class StudentDO extends BaseDO{
         this.classId = classId;
     }
 
-    public String getCollege() {
+    public Integer getCollege() {
         return college;
     }
 
-    public void setCollege(String college) {
+    public void setCollege(Integer college) {
         this.college = college;
     }
 
-    public String getMajor() {
+    public Integer getMajor() {
         return major;
     }
 
-    public void setMajor(String major) {
+    public void setMajor(Integer major) {
         this.major = major;
     }
 

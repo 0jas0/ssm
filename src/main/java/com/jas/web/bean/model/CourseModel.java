@@ -1,17 +1,18 @@
-package com.jas.web.bean.domain;
+package com.jas.web.bean.model;
 
-import com.jas.web.bean.model.CourseModel;
+import com.jas.web.bean.domain.BaseDO;
+import com.jas.web.bean.domain.CourseDO;
 import com.jas.web.enums.ECourseType;
 import com.jas.web.utils.DateUtil;
 
-public class CourseDO extends BaseDO{
+public class CourseModel{
     private String teacherId;
 
     private String name;
 
-    private Integer courseStart;
+    private String courseStart;
 
-    private Integer courseEnd;
+    private String courseEnd;
 
     private String semester;
 
@@ -23,22 +24,26 @@ public class CourseDO extends BaseDO{
 
     private Integer type;
 
-    public CourseDO() {
+    private String typeName;
+
+    public CourseModel() {
     }
 
-    public CourseDO(CourseModel courseModel) {
-        if (courseModel != null){
-            this.teacherId = courseModel.getTeacherId();
-            this.name = courseModel.getName();
-            this.courseStart = (int)DateUtil.getMillisFromStringByFormat(courseModel.getCourseStart(), "yyyy-MM-dd")/1000;
-            this.courseEnd = (int)DateUtil.getMillisFromStringByFormat(courseModel.getCourseEnd(), "yyyy-MM-dd")/1000;
-            this.semester = courseModel.getSemester();
-            this.college = courseModel.getCollege();
-            this.period = courseModel.getPeriod();
-            this.credit = courseModel.getCredit();
-            this.type = courseModel.getType();
+    public CourseModel(CourseDO courseDO) {
+        if (courseDO != null){
+            this.teacherId = courseDO.getTeacherId();
+            this.name = courseDO.getName();
+            this.courseStart = DateUtil.getStringFromLongByFormat(courseDO.getCourseStart(), "yyyy-MM-dd");
+            this.courseEnd = DateUtil.getStringFromLongByFormat(courseDO.getCourseEnd(), "yyyy-MM-dd");
+            this.semester = courseDO.getSemester();
+            this.college = courseDO.getCollege();
+            this.period = courseDO.getPeriod();
+            this.credit = courseDO.getCredit();
+            this.type = courseDO.getType();
+            this.typeName = ECourseType.getDescByValue(type);
         }
     }
+
 
     public String getTeacherId() {
         return teacherId;
@@ -56,19 +61,19 @@ public class CourseDO extends BaseDO{
         this.name = name;
     }
 
-    public Integer getCourseStart() {
+    public String getCourseStart() {
         return courseStart;
     }
 
-    public void setCourseStart(Integer courseStart) {
+    public void setCourseStart(String courseStart) {
         this.courseStart = courseStart;
     }
 
-    public Integer getCourseEnd() {
+    public String getCourseEnd() {
         return courseEnd;
     }
 
-    public void setCourseEnd(Integer courseEnd) {
+    public void setCourseEnd(String courseEnd) {
         this.courseEnd = courseEnd;
     }
 
@@ -110,5 +115,13 @@ public class CourseDO extends BaseDO{
 
     public void setType(Integer type) {
         this.type = type;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 }

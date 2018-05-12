@@ -10,12 +10,12 @@ import java.util.List;
 @Repository
 public interface ICourseDAO {
 
-    @Insert("insert into beihua.course (`teacher_id`,`name`,`course_start`,`course_end`,`class_id`,`semester`,`college`,`period`,`credit`,`type`,`addtime`,`modtime`)" +
-            " values (#{teacherId},#{name},#{courseStart},#{courseEnd},#{classId},#{semester},#{college},#{period},#{credit},#{type},unix_timestamp(),unix_timestamp())")
+    @Insert("insert into beihua.course (`teacher_id`,`name`,`course_start`,`course_end`,`semester`,`college`,`period`,`credit`,`type`,`addtime`,`modtime`)" +
+            " values (#{teacherId},#{name},#{courseStart},#{courseEnd},#{semester},#{college},#{period},#{credit},#{type},unix_timestamp(),unix_timestamp())")
     @Options(useGeneratedKeys=true, keyProperty="id")
     public int addCourse(CourseDO courseDO);
 
-    @Update("update beihua.course set teacher_id = #{teacherId}, name = #{name}, course_start = #{courseStart}, course_end = #{courseEnd}, class_id = #{classId}," +
+    @Update("update beihua.course set teacher_id = #{teacherId}, name = #{name}, course_start = #{courseStart}, course_end = #{courseEnd}," +
             " semester = #{semester}, college = #{college}, period = #{period}, credit = #{credit}, type = #{type}, modtime = unix_timestamp() where id = #{id} and is_del = 0")
     public void updateCourse(CourseDO courseDO);
 

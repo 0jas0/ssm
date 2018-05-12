@@ -12,9 +12,9 @@ public class AdministrativeClassDO extends BaseDO{
 
     private String instructor;
 
-    private String major;
+    private Integer major;
 
-    private String college;
+    private Integer college;
 
     public AdministrativeClassDO() {
     }
@@ -62,19 +62,19 @@ public class AdministrativeClassDO extends BaseDO{
         this.instructor = instructor;
     }
 
-    public String getMajor() {
+    public Integer getMajor() {
         return major;
     }
 
-    public void setMajor(String major) {
+    public void setMajor(Integer major) {
         this.major = major;
     }
 
-    public String getCollege() {
+    public Integer getCollege() {
         return college;
     }
 
-    public void setCollege(String college) {
+    public void setCollege(Integer college) {
         this.college = college;
     }
 }
