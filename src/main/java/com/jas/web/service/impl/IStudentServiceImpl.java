@@ -2,6 +2,7 @@ package com.jas.web.service.impl;
 
 import com.jas.web.bean.StudentDO;
 import com.jas.web.dao.IStudentDAO;
+import com.jas.web.enums.EEvaluateType;
 import com.jas.web.exception.ParamNotValidException;
 import com.jas.web.model.PaperModel;
 import com.jas.web.model.StudentModel;
@@ -29,6 +30,7 @@ public class IStudentServiceImpl implements IStudentService {
         }
         //对密码进行md5加密
         studentModel.setPassword(Md5Util.md5Password(studentModel.getPassword()));
+        studentModel.setEvaluate(EEvaluateType.UNASSESS.getValue());
         StudentDO studentDO = new StudentDO(studentModel);
         studentDAO.addStudent(studentDO);
     }

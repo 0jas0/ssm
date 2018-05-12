@@ -21,7 +21,7 @@ public class StudentController {
     @Resource
     IStudentService studentService;
 
-    @RequestMapping(value = "ajax/add-student",method = RequestMethod.POST)
+    @RequestMapping(value = "ajax/add-student")
     @ResponseBody
     public Object ajaxAddStudent(StudentModel studentModel){
         try {
