@@ -8,6 +8,7 @@ import com.jas.web.utils.ResponseUtil;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -20,7 +21,7 @@ public class StudentController {
     @Resource
     IStudentService studentService;
 
-    @RequestMapping("ajax/add-student")
+    @RequestMapping(value = "ajax/add-student",method = RequestMethod.POST)
     @ResponseBody
     public Object ajaxAddStudent(StudentModel studentModel){
         try {
@@ -29,6 +30,7 @@ public class StudentController {
         }catch (ParamNotValidException e){
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,e.getMessage() , null);
         }catch (Exception e){
+            e.printStackTrace();
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"系统异常请稍后重试" , null);
         }
     }
