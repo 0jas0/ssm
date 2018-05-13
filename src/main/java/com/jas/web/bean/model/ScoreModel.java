@@ -1,9 +1,8 @@
-package com.jas.web.bean.domain;
+package com.jas.web.bean.model;
 
-import com.jas.web.bean.model.AdminModel;
-import com.jas.web.bean.model.ScoreModel;
+import com.jas.web.bean.domain.ScoreDO;
 
-public class ScoreDO extends BaseDO{
+public class ScoreModel{
 
     private Integer courseId;
 
@@ -19,17 +18,17 @@ public class ScoreDO extends BaseDO{
 
     private String reworkSituation;
 
-    public ScoreDO(){}
+    public ScoreModel(){}
 
-    public ScoreDO(ScoreModel scoreModel){
-        if (scoreModel != null){
-            this.courseId = scoreModel.getCourseId();
-            this.studentId = scoreModel.getStudentId();
-            this.grade= scoreModel.getGrade();
-            this.accessCredits = scoreModel.getAccessCredits();
-            this.isRework = scoreModel.getIsRework();
-            this.failReason = scoreModel.getFailReason();
-            this.reworkSituation = scoreModel.getReworkSituation();
+    public ScoreModel(ScoreDO scoreDO){
+        if (scoreDO != null){
+            this.courseId = scoreDO.getCourseId();
+            this.studentId = scoreDO.getStudentId();
+            this.grade = scoreDO.getGrade();
+            this.accessCredits = scoreDO.getAccessCredits();
+            this.isRework = scoreDO.getIsRework();
+            this.failReason = scoreDO.getFailReason();
+            this.reworkSituation = scoreDO.getReworkSituation();
         }
     }
 

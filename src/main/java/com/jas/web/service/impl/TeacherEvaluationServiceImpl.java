@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 @Service
-public class ITeacherEvaluationServiceImpl implements ITeacherEvaluationService {
+public class TeacherEvaluationServiceImpl implements ITeacherEvaluationService {
     @Resource
     IteachingEvaluationDAO iteachingEvaluationDAO;
 
