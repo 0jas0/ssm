@@ -38,10 +38,6 @@ public class FileController {
     @ResponseBody
     public Object ajaxOnlyUploadFile(@RequestParam(value = "image", required = false) MultipartFile image, HttpSession session){
         try {
-            Integer userRole = (Integer) session.getAttribute("type");
-            if (userRole == 0) {
-                return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED, "无权限", null);
-            }
             String fullPath = fileService.onlyUploadFile(image);
             session.setAttribute("fullPath", fullPath);
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS,"上传图片成功" , fullPath);
