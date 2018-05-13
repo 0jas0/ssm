@@ -26,4 +26,7 @@ public interface IAdministrativeClassDAO {
 
     @Select("select * from beihua.administrative_class where is_del = 0")
     public List<AdministrativeClassDO> getAdminstrativeClassAll();
+
+    @Select("select * from beihua.administrative_class where college = #{college} and major = #{major} and is_del = 0")
+    public List<AdministrativeClassDO> getAdminstrativeClasssByCollegeMajor(@Param("college") Integer college,@Param("major") Integer major);
 }

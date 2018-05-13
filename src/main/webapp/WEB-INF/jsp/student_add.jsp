@@ -56,20 +56,72 @@
 <script type="text/javascript">
     $(document).ready(function(e) {
         $(".select1").uedSelect({
-            width : 150
+            width : 200
         });
         $(".select2").uedSelect({
-            width : 150
+            width : 200
         });
         $(".select3").uedSelect({
-            width : 150
+            width : 200
         });
         $.ajax({
             type: 'post',
-            url: '/student/ajax-get-student-by-page',
-            success:function () {
-
+            url: '/collegeMajor/ajax/get-college',
+            success:function (res) {
+                if (res.status == 0){
+                    var data = res.data;
+                    var option = "";
+                    data.forEach(function (value, index) {
+                        option += "<option value='"+value.id+"'>"+value.name+"</option>";
+                    })
+                    $(".select1").append(option);
+                }else {
+                    location.href = "/error";
+                }
             }
+        });
+        $(".select1").change(function (){
+            var parentId = $(".select1 option:selected").val();
+            $.ajax({
+                type: 'post',
+                url: '/collegeMajor/ajax/get-major-by-parentId',
+                data:{"parentId":parentId},
+                success:function (res) {
+                    if (res.status == 0){
+                        var data = res.data;
+                        var option = "";
+                        data.forEach(function (value, index) {
+                            option += "<option value='"+value.id+"'>"+value.name+"</option>";
+                        })
+                        $(".select2").empty();
+                        $(".select2").html(option);
+                    }else {
+                        location.href = "/error";
+                    }
+                }
+            });
+        });
+        $(".select2").change(function (){
+            var collegeId = $(".select1 option:selected").val();
+            var majorId = $(".select2 option:selected").val();
+            $.ajax({
+                type: 'post',
+                url: '/class/ajax-get-class-by-collegeMajor',
+                data:{"collegeId":collegeId,"majorId":majorId},
+                success:function (res) {
+                    if (res.status == 0){
+                        var data = res.data;
+                        var option = "";
+                        data.forEach(function (value, index) {
+                            option += "<option value='"+value.id+"'>"+value.name+"</option>";
+                        })
+                        $(".select3").empty();
+                        $(".select3").html(option);
+                    }else {
+                        location.href = "/error";
+                    }
+                }
+            });
         });
     });
 </script>

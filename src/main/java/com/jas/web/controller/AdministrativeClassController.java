@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Controller
 @RequestMapping("/class")
@@ -57,6 +58,18 @@ public class AdministrativeClassController {
         try {
             AdministrativeClassModel administrativeClassModel = administrativeClassService.getByClassId(classId);
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS, "获取班级信息成功", administrativeClassModel);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"获取班级信息失败",null);
+        }
+    }
+
+    @RequestMapping(value = "/ajax-get-class-by-collegeMajor")
+    @ResponseBody
+    public Object getClassByCollegeMajor(@RequestParam("collegeId") Integer college, @RequestParam("majorId") Integer major){
+        try {
+            List<AdministrativeClassModel> administrativeClassModels = administrativeClassService.getByCollegeMajor(college, major);
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS, "获取班级信息成功", administrativeClassModels);
         }catch (Exception e){
             e.printStackTrace();
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"获取班级信息失败",null);

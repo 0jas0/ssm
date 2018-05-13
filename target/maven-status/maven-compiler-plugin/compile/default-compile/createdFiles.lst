@@ -7,6 +7,8 @@ com/jas/web/bean/domain/ScoreDO.class
 com/jas/web/enums/EEvaluationGrade.class
 com/jas/web/bean/domain/SupplementaryDO.class
 com/jas/web/controller/ScoreController.class
+com/jas/web/service/ICollegeMajorService.class
+com/jas/web/controller/CollegeMajorController.class
 com/jas/web/controller/IndexController.class
 com/jas/web/bean/model/AdministrativeClassModel.class
 com/jas/web/dao/ICollegeMajorDAO.class
@@ -18,6 +20,7 @@ com/jas/web/bean/domain/TeachingEvaluationDO.class
 com/jas/web/enums/ECourseType.class
 com/jas/web/dao/IStudentDAO.class
 com/jas/web/service/IScoreService.class
+com/jas/web/service/impl/CollegeMajorServiceImpl.class
 com/jas/web/service/impl/AdministrativeClassServiceImpl.class
 com/jas/web/service/impl/CourseServiceImpl.class
 com/jas/web/enums/ECourseWeek.class
@@ -30,6 +33,7 @@ com/jas/web/dao/IAdminDAO.class
 com/jas/web/bean/model/ScoreModel.class
 com/jas/web/dao/IChoiceCoursesDAO.class
 com/jas/web/dao/IteachingEvaluationDAO.class
+com/jas/web/bean/model/CollegeMajorModel.class
 com/jas/web/service/impl/TeacherEvaluationServiceImpl.class
 com/jas/web/service/impl/ScoreServiceImpl.class
 com/jas/web/service/ICourseService.class

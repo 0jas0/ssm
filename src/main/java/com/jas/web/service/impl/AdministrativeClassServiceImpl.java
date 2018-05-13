@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class AdministrativeClassServiceImpl implements IAdministrativeClassService {
@@ -33,6 +35,16 @@ public class AdministrativeClassServiceImpl implements IAdministrativeClassServi
             return new AdministrativeClassModel(administrativeClassDO);
         }
         return null;
+    }
+
+    @Override
+    public List<AdministrativeClassModel> getByCollegeMajor(Integer college, Integer major) {
+        List<AdministrativeClassDO> administrativeClassDOList =  administrativeClassDAO.getAdminstrativeClasssByCollegeMajor(college, major);
+        List<AdministrativeClassModel> administrativeClassModels = new ArrayList<>();
+        for (AdministrativeClassDO administrativeClassDO : administrativeClassDOList){
+            administrativeClassModels.add(new AdministrativeClassModel(administrativeClassDO));
+        }
+        return administrativeClassModels;
     }
 
 
