@@ -11,15 +11,39 @@
     <title>Title</title>
 </head>
 <body>
-<marquee width="100%" hight="200px" bgcolor="red" behavior="" direction="">
-    浩然小姐姐：
-    外在美是你的资本，
-    内在美是你的涵养，
-    温柔是你的味道，
-    贤惠是你的本质，
-    善良是你的天性，
-    快乐是我给你的祝福，
-    祝你青春常在!
-</marquee>
+    <form id="formDate"  method="post" enctype=”multipart/form-data”>
+        <input name="type" type="radio" value="0"> 0
+        <input name="type" type="radio" value="1"> 1
+        <input name="type" type="radio" value="2"> 2
+
+        <input type="file" name="image">
+        <input type="button" onclick="aa()" value="提交">
+    </form>
 </body>
 </html>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript">
+    function aa() {
+        console.log("aaa");
+        $.ajax({
+            type: 'POST',
+            url: '/file/ajax/only-upload-file',
+            cache: false,
+            data: new FormData($("#formDate")[0]),
+            processData: false,
+            contentType: false,
+            success: function (result) {
+                if (!result.status) {
+                    imageUrl = result.data;
+                    $("#upload_result").text("图片上传成功");
+                    $("#picUrl").text("图片URL：" + imageUrl);
+                } else {
+                    $("#upload_result").text(result.msg);
+                }
+            },
+            error:function(){
+                $("#upload_result").text("图片上传失败");
+            }
+        })
+    }
+</script>

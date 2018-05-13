@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -34,6 +35,7 @@ public class FileController {
     IFileDAO fileDAO;
 
     @RequestMapping("ajax/only-upload-file")
+    @ResponseBody
     public Object ajaxOnlyUploadFile(@RequestParam(value = "image", required = false) MultipartFile image, HttpSession session){
         try {
             Integer userRole = (Integer) session.getAttribute("type");
@@ -43,7 +45,7 @@ public class FileController {
             String fullPath = fileService.onlyUploadFile(image);
             session.setAttribute("fileName",image.getOriginalFilename());
             session.setAttribute("fullPath", fullPath);
-            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS,"上传图片成功" , null);
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS,"上传图片成功" , fullPath);
         }catch (Exception e){
             e.printStackTrace();
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"系统异常请稍后重试" , null);
