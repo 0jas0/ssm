@@ -64,5 +64,12 @@
         $(".select3").uedSelect({
             width : 150
         });
+        $.ajax({
+            type: 'post',
+            url: '/student/ajax-get-student-by-page',
+            success:function () {
+
+            }
+        });
     });
 </script>

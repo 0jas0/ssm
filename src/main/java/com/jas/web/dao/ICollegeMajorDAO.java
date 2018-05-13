@@ -14,4 +14,6 @@ public interface ICollegeMajorDAO {
     @Select("select * from beihua.college_major where is_del = 0")
     public List<CollegeMajorDO> getAllCollegeMajor();
 
+    @Select("select * from beihua.college_major where parent_id = #{parentId} and is_del = 0")
+    public List<CollegeMajorDO> getByParentId(@Param("parentId") Integer parentId);
 }
