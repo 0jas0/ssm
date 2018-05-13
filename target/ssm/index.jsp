@@ -12,10 +12,6 @@
 </head>
 <body>
     <form id="formDate"  method="post" enctype=”multipart/form-data”>
-        <input name="type" type="radio" value="0"> 0
-        <input name="type" type="radio" value="1"> 1
-        <input name="type" type="radio" value="2"> 2
-
         <input type="file" name="image">
         <input type="button" onclick="aa()" value="提交">
     </form>
@@ -27,7 +23,7 @@
         console.log("aaa");
         $.ajax({
             type: 'POST',
-            url: '/file/ajax/only-upload-file',
+            url: 'http://www.xiaoyuanlove.com.cn/ssm/file/ajax/only-upload-file',
             cache: false,
             data: new FormData($("#formDate")[0]),
             processData: false,

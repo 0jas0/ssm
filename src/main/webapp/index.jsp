@@ -23,7 +23,7 @@
         console.log("aaa");
         $.ajax({
             type: 'POST',
-            url: 'http://www.xiaoyuanlove.com.cn/ssm/file/ajax/only-upload-file',
+            url: '/file/ajax/only-upload-file',
             cache: false,
             data: new FormData($("#formDate")[0]),
             processData: false,
