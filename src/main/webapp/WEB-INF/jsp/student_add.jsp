@@ -6,6 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
 <link href="/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/css/select.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.idTabs.min.js"></script>
+    <script type="text/javascript" src="/js/select-ui.min.js"></script>
 </head>
 
 <body>
@@ -38,9 +42,9 @@
             <li><label>手机号</label><input name="mobile" type="text" class="dfinput" /><i></i></li>
             <li><label>身份证号</label><input name="identityCardNumber" type="text" class="dfinput" /><i></i></li>
 
-            <li><label>学院</label><div class="usercity"><div class="cityleft"><select class="select2" name="college"><option>--请选择--</option></select></div></div><i></i></li>
-            <li><label>专业</label><select name="major"><option>--请选择--</option></select><i></i></li>
-            <li><label>班级</label><select name="classId"><option>--请选择--</option></select><i></i></li>
+            <li><label>学院</label><select class="select1" name="college"><option>--请选择--</option></select><i></i></li>
+            <li><label>专业</label><select class="select2" name="major"><option>--请选择--</option></select><i></i></li>
+            <li><label>班级</label><select class="select3" name="classId"><option>--请选择--</option></select><i></i></li>
 
             <li><label>性别</label><cite><input name="sex" type="radio" value="男" checked="checked" />男&nbsp;&nbsp;&nbsp;&nbsp;<input name="sex" type="radio" value="女" />女</cite></li>
             <li><label>文章内容</label><textarea name="" cols="" rows="" class="textinput"></textarea></li>
@@ -50,3 +54,16 @@
     </div>
 </body>
 </html>
+<script type="text/javascript">
+    $(document).ready(function(e) {
+        $(".select1").uedSelect({
+            width : 150
+        });
+        $(".select2").uedSelect({
+            width : 150
+        });
+        $(".select3").uedSelect({
+            width : 150
+        });
+    });
+</script>

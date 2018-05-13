@@ -10,7 +10,7 @@ pageEncoding="UTF-8"%>
 <script type="text/javascript" src="/js/jquery.js"></script>
 <script type="text/javascript" src="/js/jquery.idTabs.min.js"></script>
 <script type="text/javascript" src="/js/select-ui.min.js"></script>
-<script type="text/javascript" src="editor/kindeditor.js"></script>
+<script type="text/javascript" src="/js/editor/kindeditor.js"></script>
 
 <script type="text/javascript">
     KE.show({
