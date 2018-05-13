@@ -70,4 +70,18 @@ public class IFileServiceImpl implements IFileService{
         //删除数据中的记录
         fileDAO.deleteFile(id);
     }
+
+    @Override
+    public String onlyUploadFile(MultipartFile image) throws IOException {
+        String filename = image.getOriginalFilename();
+        String ext = FileUtil.getExt(filename);
+        if(!extList.contains(ext)){
+            throw new ParamNotValidException("文件格式不正确");
+        }
+        if (image.getInputStream().available() > 2*1024*1024){
+            throw new ParamNotValidException("文件过大，最大允许2M");
+        }
+         StorePath storePath = fastFileStorageClient.uploadFile(null, image.getInputStream(), image.getInputStream().available(), ext);;
+         return storePath.getFullPath();
+    }
 }

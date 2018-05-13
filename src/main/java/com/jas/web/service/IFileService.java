@@ -14,4 +14,6 @@ public interface IFileService {
     public List<FileDO> getFilesByStudentId(String studentId);
 
     public void deleteImage(Integer id);
+
+    String onlyUploadFile(MultipartFile image) throws IOException;
 }
