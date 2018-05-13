@@ -48,6 +48,7 @@ public class FileController {
     }
 
     @RequestMapping("ajax/upload-file-info")
+    @ResponseBody
     public Object ajaxFileDO(FileDO fileDO, HttpSession session){
         try {
             String username = (String)session.getAttribute("username");
