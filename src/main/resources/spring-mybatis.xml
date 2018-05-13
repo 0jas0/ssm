@@ -77,6 +77,8 @@
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <!--配置连接管理器-->
+    <!--配置扫描包-->
+    <context:component-scan base-package="com.github.tobato.fastdfs.service,com.github.tobato.fastdfs.domain"/>
     <bean id="trackerConnectionManager" class="com.github.tobato.fastdfs.conn.TrackerConnectionManager">
         <constructor-arg name="pool" ref="fdfsConnectionPool">
         </constructor-arg>

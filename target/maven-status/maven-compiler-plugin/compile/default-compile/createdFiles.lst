@@ -7,6 +7,7 @@ com/jas/web/bean/domain/ScoreDO.class
 com/jas/web/enums/EEvaluationGrade.class
 com/jas/web/bean/domain/SupplementaryDO.class
 com/jas/web/controller/ScoreController.class
+com/jas/web/controller/IndexController.class
 com/jas/web/bean/model/AdministrativeClassModel.class
 com/jas/web/dao/ICollegeMajorDAO.class
 com/jas/web/bean/domain/AdministrativeClassDO.class

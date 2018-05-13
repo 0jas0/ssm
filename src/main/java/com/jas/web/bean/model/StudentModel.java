@@ -24,6 +24,8 @@ public class StudentModel{
     private String mobile;
     private String identityCardNumber;
     private String className;
+    private String collegeName;
+    private String majorName;
 
     public StudentModel(){
     }
@@ -180,5 +182,21 @@ public class StudentModel{
 
     public void setClassName(String className) {
         this.className = className;
+    }
+
+    public String getCollegeName() {
+        return collegeName;
+    }
+
+    public void setCollegeName(String collegeName) {
+        this.collegeName = collegeName;
+    }
+
+    public String getMajorName() {
+        return majorName;
+    }
+
+    public void setMajorName(String majorName) {
+        this.majorName = majorName;
     }
 }

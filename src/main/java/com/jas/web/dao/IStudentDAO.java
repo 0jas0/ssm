@@ -28,4 +28,6 @@ public interface IStudentDAO {
     @Select("select * from beihua.student where is_del = 0 order by #{sort} #{lift} limit ${start},${size}")
     public List<StudentDO> listStudentByPage(@Param("start") Integer start, @Param("size") Integer size, @Param("sort") String sort, @Param("lift") String lift);
 
+    @Select("select count(*) from beihua.student where is_del = 0")
+    public int getTotalNum();
 }

@@ -62,4 +62,31 @@ public class StudentController {
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"获取学生信息失败",null);
         }
     }
+
+    @RequestMapping(value = "/ajax-get-student-by-page")
+    @ResponseBody
+    public Object getAllTeacher(@RequestParam(value = "currentPage", defaultValue = "1") Integer currentPage, @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize){
+        try {
+            PaperUtil<StudentModel> studentPape = studentService.getStudentByPage(currentPage, pageSize);
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS, "获取学生成功", studentPape);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"获取学生列表失败",null);
+        }
+    }
+
+    @RequestMapping("/student_list")
+    public String studentListView(){
+        return "student_list";
+    }
+    @RequestMapping("/student_add")
+    public String studentAddView(){
+        return "student_add";
+    }
+
+    @RequestMapping("/student_edit")
+    public String studentEditView(){
+        return "student_edit";
+    }
+
 }
