@@ -42,12 +42,11 @@
             <li><label>手机号</label><input name="mobile" type="text" class="dfinput" /><i></i></li>
             <li><label>身份证号</label><input name="identityCardNumber" type="text" class="dfinput" /><i></i></li>
 
-            <li><label>学院</label><select class="select1" name="college"><option>--请选择--</option></select><i></i></li>
-            <li><label>专业</label><select class="select2" name="major"><option>--请选择--</option></select><i></i></li>
-            <li><label>班级</label><select class="select3" name="classId"><option>--请选择--</option></select><i></i></li>
+            <li><label>学院</label><div class="vocation"><select class="select1" name="college"><option>--请选择--</option></select></div><i></i></li>
+            <li><label>专业</label><div class="vocation"><select class="select2" name="major"><option>--请选择--</option></select></div><i></i></li>
+            <li><label>班级</label><div class="vocation"><select class="select3" name="classId"><option>--请选择--</option></select></div><i></i></li>
 
             <li><label>性别</label><cite><input name="sex" type="radio" value="男" checked="checked" />男&nbsp;&nbsp;&nbsp;&nbsp;<input name="sex" type="radio" value="女" />女</cite></li>
-            <li><label>文章内容</label><textarea name="" cols="" rows="" class="textinput"></textarea></li>
             <li><label>&nbsp;</label><input name="" type="button" class="btn" value="确认保存"/></li>
         </form>
     </ul>
