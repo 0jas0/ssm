@@ -38,13 +38,12 @@ public class FileController {
     @ResponseBody
     public Object ajaxOnlyUploadFile(@RequestParam(value = "image", required = false) MultipartFile image, HttpSession session){
         try {
-           /* Integer userRole = (Integer) session.getAttribute("type");
+            Integer userRole = (Integer) session.getAttribute("type");
             if (StringUtils.isEmpty(userRole) || userRole == 0) {
                 return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED, "无权限", null);
-            }*/
+            }
             String fullPath = fileService.onlyUploadFile(image);
-           // session.setAttribute("fileName",image.getOriginalFilename());
-           // session.setAttribute("fullPath", fullPath);
+            session.setAttribute("fullPath", fullPath);
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS,"上传图片成功" , fullPath);
         }catch (Exception e){
             e.printStackTrace();
@@ -56,11 +55,9 @@ public class FileController {
     public Object ajaxFileDO(FileDO fileDO, HttpSession session){
         try {
             String username = (String)session.getAttribute("username");
-            String fileName = (String)session.getAttribute("fileName");
             String fullPath = (String)session.getAttribute("fullPath");
             fileDO.setPath(fullPath);
             fileDO.setStudentId(username);
-            fileDO.setFileName(fileName);
             fileDAO.addFile(fileDO);
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS,"上传图片成功" , null);
         }catch (Exception e){
