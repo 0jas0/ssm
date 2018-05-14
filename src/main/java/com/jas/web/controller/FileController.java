@@ -84,14 +84,14 @@ public class FileController {
     public Object ajaxGetImageByStudentId(@RequestParam("studentId") String studentId){
         try {
             List<FileDO> fileDOList = fileService.getFilesByStudentId(studentId);
-            Map<Integer,List<FileDO>> map = new HashMap<>();
+            Map<String,List<FileDO>> map = new HashMap<>();
             for (FileDO fileDO : fileDOList){
                 Integer fileType = fileDO.getFileType();
-                List<FileDO> fileDOS = map.get(fileType);
+                List<FileDO> fileDOS = map.get("file"+fileType);
                 if (fileDOS == null){
                     List<FileDO> fileDOLinkedList = new LinkedList<>();
                     fileDOLinkedList.add(fileDO);
-                    map.put(fileType, fileDOLinkedList);
+                    map.put("file"+fileType, fileDOLinkedList);
                 }else {
                     fileDOS.add(fileDO);
                 }
