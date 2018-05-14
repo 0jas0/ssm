@@ -49,12 +49,8 @@ public class FileController {
 
     @RequestMapping("ajax/upload-file-info")
     @ResponseBody
-    public Object ajaxFileDO(FileDO fileDO, HttpSession session){
+    public Object ajaxFileDO(FileDO fileDO){
         try {
-            String username = (String)session.getAttribute("username");
-            String fullPath = (String)session.getAttribute("fullPath");
-            fileDO.setPath(fullPath);
-            fileDO.setStudentId(username);
             fileDAO.addFile(fileDO);
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS,"上传图片成功" , null);
         }catch (Exception e){
