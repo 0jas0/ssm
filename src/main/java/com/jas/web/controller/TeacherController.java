@@ -1,11 +1,15 @@
 package com.jas.web.controller;
 
+import com.jas.web.bean.model.AdministrativeClassModel;
+import com.jas.web.bean.model.CollegeMajorModel;
+import com.jas.web.bean.model.StudentModel;
 import com.jas.web.bean.model.TeacherModel;
 import com.jas.web.service.ITeacherEvaluationService;
 import com.jas.web.service.ITeacherService;
 import com.jas.web.utils.PaperUtil;
 import com.jas.web.utils.ResponseUtil;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -41,6 +45,13 @@ public class TeacherController {
         teacherService.addTeacher(teacherModel);
         return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS, "添加教师成功", null);
     }
+    @RequestMapping(value = "/ajax-delete-teacher")
+    @ResponseBody
+    public Object deleteTeacher(@RequestParam("teacherId") String teacherId){
+        //数据的校验
+        teacherService.deleteTeacher(teacherId);
+        return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS, "删除教师成功", null);
+    }
 
     @RequestMapping(value = "/ajax-modify-teacher")
     @ResponseBody
@@ -69,4 +80,21 @@ public class TeacherController {
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"评价教师失败",null);
         }
     }
+
+    @RequestMapping("/teacher_list")
+    public String studentListView(){
+        return "teacher_list";
+    }
+    @RequestMapping("/teacher_add")
+    public String studentAddView(){
+        return "teacher_add";
+    }
+
+    @RequestMapping("/teacher_edit")
+    public String studentEditView(@RequestParam("teacherId") String teacherId, Model model){
+        TeacherModel teacherModel = teacherService.getByTeacherId(teacherId);
+        model.addAttribute("teacherModel",teacherModel);
+        return "teacher_edit";
+    }
+
 }

@@ -1,6 +1,8 @@
 package com.jas.web.service.impl;
 
+import com.github.tobato.fastdfs.domain.FileInfo;
 import com.github.tobato.fastdfs.domain.StorePath;
+import com.github.tobato.fastdfs.exception.FdfsServerException;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import com.jas.web.bean.domain.AdministrativeClassDO;
 import com.jas.web.bean.domain.CollegeMajorDO;
@@ -58,9 +60,7 @@ public class StudentServiceImpl implements IStudentService{
 
     @Override
     @Transactional
-    public void addStudent(MultipartFile image, StudentModel studentModel) throws IOException {
-        String fullPath = this.uploadFile(image);
-        studentModel.setPhoto(fullPath);
+    public void addStudent(StudentModel studentModel) throws IOException {
         //设置密码
         studentModel.setPassword(StringUtil.md5Password(studentModel.getPassword()));
         studentDAO.addStudent(new StudentDO(studentModel));
@@ -68,15 +68,10 @@ public class StudentServiceImpl implements IStudentService{
 
     @Override
     @Transactional
-    public void modifyStudent(MultipartFile image, StudentModel studentModel) throws IOException {
+    public void modifyStudent(StudentModel studentModel) throws IOException {
         StudentDO studentDO = studentDAO.getStudentByStudentId(studentModel.getStudentId());
-        if (image == null || StringUtil.isEmpty(image.getOriginalFilename())){
+        if (StringUtil.isEmpty(studentModel.getPhoto())){
             studentModel.setPhoto(studentDO.getPhoto());
-        }else {
-            //删除以前的文件
-            fastFileStorageClient.deleteFile(studentDO.getPhoto());
-            String path = uploadFile(image);
-            studentModel.setPhoto(path);
         }
         if (StringUtil.isEmpty(studentModel.getPassword())){
             studentModel.setPassword(studentDO.getPassword());
@@ -122,7 +117,7 @@ public class StudentServiceImpl implements IStudentService{
         return paperUtil;
     }
 
-    private String uploadFile(MultipartFile image) throws IOException {
+    public String uploadFile(MultipartFile image) throws IOException {
         String fileName = image.getOriginalFilename();
         String ext = FileUtil.getExt(fileName);
         InputStream inputStream = image.getInputStream();
@@ -138,4 +133,18 @@ public class StudentServiceImpl implements IStudentService{
         return storePath.getFullPath();
     }
 
+    @Override
+    public String reUploadFile(MultipartFile image, String student) throws IOException {
+        StudentDO studentDO = studentDAO.getStudentByStudentId(student);
+        //删除以前的文件
+        fastFileStorageClient.deleteFile(studentDO.getPhoto());
+        String path = uploadFile(image);
+        return path;
+    }
+
+    @Override
+    @Transactional
+    public void deleteStudent(String studentId) {
+        studentDAO.deleteStudent(studentId);
+    }
 }

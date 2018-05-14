@@ -39,6 +39,9 @@ public class StudentModel{
             this.bornDate = DateUtil.getStringDateByFormat(studentDO.getBornDate(), "yyyy-MM-dd");
             this.sex = ESex.getDescByValue(studentDO.getSex());
             this.politicalOutlook = studentDO.getPoliticalOutlook();
+            this.nativePlace = studentDO.getNativePlace();
+            this.nation = studentDO.getNation();
+            this.address =studentDO.getAddress();
             this.classId = studentDO.getClassId();
             this.college = studentDO.getCollege();
             this.major = studentDO.getMajor();

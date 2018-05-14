@@ -27,28 +27,25 @@
     <div class="formtitle"><span>学生信息</span></div>
     
     <ul class="forminfo">
-        <form id = "studentAdd">
+
             <li><label>学号</label><input name="studentId" type="text" class="dfinput" /><i></i></li>
             <li><label>密码</label><input name="password" type="password" class="dfinput" /><i></i></li>
-            <li><label>确认密码</label><input name="rePassword" type="password" class="dfinput" /><i></i></li>
             <li><label>姓名</label><input name="name" type="text" class="dfinput" /><i></i></li>
-            <li><label>图片</label><input name="name" type="file" /><i></i></li>
-            <li><label>出生日期</label><input name="bornDate" type="date"/><i></i></li>
+            <li><label>图片</label> <form id = "studentAdd" method="POST" enctype="multipart/form-data"><input name="image" type="file" /></form><i></i></li>
+            <li><label>出生日期</label><input class="dfinput" name="bornDate" type="date"/><i></i></li>
             <li><label>政治面貌</label><input name="politicalOutlook" type="text" class="dfinput" /><i></i></li>
             <li><label>籍贯</label><input name="nativePlace" type="text" class="dfinput" /><i></i></li>
-            <li><label>名族</label><input name="nation" type="text" class="dfinput" /><i></i></li>
+            <li><label>民族</label><input name="nation" type="text" class="dfinput" /><i></i></li>
             <li><label>地址</label><input name="address" type="text" class="dfinput" /><i></i></li>
             <li><label>邮政编码</label><input name="postalcode" type="text" class="dfinput" /><i></i></li>
             <li><label>手机号</label><input name="mobile" type="text" class="dfinput" /><i></i></li>
             <li><label>身份证号</label><input name="identityCardNumber" type="text" class="dfinput" /><i></i></li>
 
             <li><label>学院</label><div class="vocation"><select class="select1" name="college"><option>--请选择--</option></select></div><i></i></li>
-            <li><label>专业</label><div class="vocation"><select class="select2" name="major"><option>--请选择--</option></select></div><i></i></li>
-            <li><label>班级</label><div class="vocation"><select class="select3" name="classId"><option>--请选择--</option></select></div><i></i></li>
-
+            <li><label>专业</label><div class="vocation"><select class="select2" name="major"></select></div><i></i></li>
+            <li><label>班级</label><div class="vocation"><select class="select3" name="classId"></select></div><i></i></li>
             <li><label>性别</label><cite><input name="sex" type="radio" value="男" checked="checked" />男&nbsp;&nbsp;&nbsp;&nbsp;<input name="sex" type="radio" value="女" />女</cite></li>
-            <li><label>&nbsp;</label><input name="" type="button" class="btn" value="确认保存"/></li>
-        </form>
+        <li><label>&nbsp;</label><input name="" type="button" class="btn" value="确认保存" onclick="saveStudent()"/></li>
     </ul>
     </div>
 </body>
@@ -124,4 +121,68 @@
             });
         });
     });
+    var fullPath = "";
+    $("input[name='image']").change(function () {
+        $.ajax({
+            type: 'POST',
+            url: '/student/ajax-upload-file',
+            cache: false,
+            data: new FormData($("#studentAdd")[0]),
+            processData: false,
+            contentType: false,
+            success: function (result) {
+                fullPath = result.data;
+                console.log(fullPath+"---"+result);
+            }
+        });
+    });
+    function saveStudent() {
+        var studentId = $("input[name=\"studentId\"]").val();
+        var password = $("input[name=\"password\"]").val();
+        var name = $("input[name=\"name\"]").val();
+        var bornDate = $("input[name=\"bornDate\"]").val();
+        var politicalOutlook = $("input[name=\"politicalOutlook\"]").val();
+        var nativePlace = $("input[name=\"nativePlace\"]").val();
+        var nation = $("input[name=\"nation\"]").val();
+        var address = $("input[name=\"address\"]").val();
+        var postalcode = $("input[name=\"postalcode\"]").val();
+        var mobile = $("input[name=\"mobile\"]").val();
+        var identityCardNumber = $("input[name=\"identityCardNumber\"]").val();
+        var college = $(".select1 option:selected").val();
+        var major = $(".select2 option:selected").val();
+        var classId = $(".select3 option:selected").val();
+        var sex = $("input[name=\"sex\"]:checked").val();
+        console.log(fullPath);
+        $.ajax({
+            type: 'POST',
+            url: '/student/ajax-add-student',
+            cache: false,
+            data: {
+                "studentId":studentId,
+                "password":password,
+                "name":name,
+                "bornDate":bornDate,
+                "politicalOutlook":politicalOutlook,
+                "nativePlace":nativePlace,
+                "nation":nation,
+                "address":address,
+                "postalcode":postalcode,
+                "mobile":mobile,
+                "identityCardNumber":identityCardNumber,
+                "college":college,
+                "major":major,
+                "classId":classId,
+                "sex":sex,
+                "photo":fullPath
+            },
+            success: function (result) {
+                console.log(result)
+                if (!result.status) {
+                    location.href = "/student/student_list";
+                } else {
+                    location.href = "/error";
+                }
+            }
+        })
+    }
 </script>

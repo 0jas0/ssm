@@ -10,9 +10,15 @@ import java.io.IOException;
 public interface IStudentService {
     StudentModel getStudentByStudentId(String studentId);
 
-    void addStudent(MultipartFile image, StudentModel studentModel) throws IOException;
+    void addStudent(StudentModel studentModel) throws IOException;
 
-    void modifyStudent(MultipartFile image, StudentModel studentModel) throws IOException;
+    void modifyStudent(StudentModel studentModel) throws IOException;
 
     PaperUtil<StudentModel> getStudentByPage(Integer currentPage, Integer pageSize);
+
+    String uploadFile(MultipartFile image) throws IOException;
+
+    String reUploadFile(MultipartFile image, String student) throws IOException;
+
+    void deleteStudent(String studentId);
 }

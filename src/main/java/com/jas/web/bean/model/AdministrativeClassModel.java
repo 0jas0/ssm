@@ -5,6 +5,8 @@ import com.jas.web.bean.domain.BaseDO;
 
 public class AdministrativeClassModel{
 
+    private Integer id;
+
     private String classId;
 
     private String name;
@@ -17,11 +19,16 @@ public class AdministrativeClassModel{
 
     private Integer college;
 
+    private String majorName;
+
+    private String collegeName;
+
     public AdministrativeClassModel() {
     }
 
     public AdministrativeClassModel(AdministrativeClassDO administrativeClassDO) {
         if (administrativeClassDO != null){
+            this.id = administrativeClassDO.getId();
             this.classId = administrativeClassDO.getClassId();
             this.name = administrativeClassDO.getName();
             this.classNumber = administrativeClassDO.getClassNumber();
@@ -29,6 +36,30 @@ public class AdministrativeClassModel{
             this.major = administrativeClassDO.getMajor();
             this.college = administrativeClassDO.getCollege();
         }
+    }
+
+    public String getMajorName() {
+        return majorName;
+    }
+
+    public void setMajorName(String majorName) {
+        this.majorName = majorName;
+    }
+
+    public String getCollegeName() {
+        return collegeName;
+    }
+
+    public void setCollegeName(String collegeName) {
+        this.collegeName = collegeName;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getClassId() {

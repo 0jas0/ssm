@@ -28,13 +28,18 @@ public class TeacherServiceImpl implements ITeacherService{
 
     @Transactional
     public void addTeacher(TeacherModel teacherModel) {
-        Random random = new Random();
-        teacherModel.setTeacherId(DateUtil.getStringDateByFormat(new Date(),"yyyyMMddHHmmss")+random.nextInt(10));
+        teacherModel.setPassword(StringUtil.md5Password(teacherModel.getPassword()));
         teacherDAO.addTeacher(new TeacherDO(teacherModel));
     }
 
     @Transactional
     public void modifyTeacher(TeacherModel teacherModel) {
+        TeacherDO teacherDO = teacherDAO.getTeacherByTeacherId(teacherModel.getTeacherId());
+        if (StringUtil.isEmpty(teacherModel.getPassword())){
+            teacherModel.setPassword(teacherDO.getPassword());
+        }else {
+            teacherModel.setPassword(StringUtil.md5Password(teacherModel.getPassword()));
+        }
         teacherDAO.updateTeacher(new TeacherDO(teacherModel));
     }
 
@@ -60,5 +65,10 @@ public class TeacherServiceImpl implements ITeacherService{
         paperUtil.setPageSize(pageSize);
         paperUtil.setTotalRecord(totalNum);
         return paperUtil;
+    }
+
+    @Override
+    public void deleteTeacher(String teacherId) {
+        teacherDAO.deleteTeacher(teacherId);
     }
 }
