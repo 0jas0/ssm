@@ -32,6 +32,7 @@ public class IStudentServiceImpl implements IStudentService {
         studentModel.setPassword(Md5Util.md5Password(studentModel.getPassword()));
         studentModel.setEvaluate(EEvaluateType.UNASSESS.getValue());
         StudentDO studentDO = new StudentDO(studentModel);
+
         studentDAO.addStudent(studentDO);
     }
 

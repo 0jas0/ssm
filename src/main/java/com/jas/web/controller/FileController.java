@@ -60,6 +60,7 @@ public class FileController {
     }
 
     @RequestMapping("ajax/upload-file")
+    @ResponseBody
     public Object ajaxUploadFile(@RequestParam(value = "image", required = false) MultipartFile image,@RequestParam("type") Integer type, HttpSession session){
         try {
             String userName = (String) session.getAttribute("username");
@@ -79,6 +80,7 @@ public class FileController {
 
 
     @RequestMapping("ajax/get-image-by-studentId")
+    @ResponseBody
     public Object ajaxGetImageByStudentId(@RequestParam("studentId") String studentId){
         try {
             List<FileDO> fileDOList = fileService.getFilesByStudentId(studentId);
@@ -101,6 +103,7 @@ public class FileController {
 
     }
     @RequestMapping("ajax/delete-image-by-id")
+    @ResponseBody
     public Object ajaxDelImage(@RequestParam("id") Integer id){
         try {
             fileService.deleteImage(id);
