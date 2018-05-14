@@ -12,7 +12,7 @@ import java.util.List;
 public interface IFileDAO {
 
     @Insert("insert into ability.file (`student_id`,`path`,`file_name`,`file_type`,`addtime`,`modtime`)" +
-            " values (#{studentId},#{path},#{fileName},#{fileType},unix_timestamp(),unix_timestamp())")
+            " values (#{StudentId},#{path},#{fileName},#{fileType},unix_timestamp(),unix_timestamp())")
     @Options(useGeneratedKeys=true, keyProperty="id")
     public int addFile(FileDO fileDO);
 
