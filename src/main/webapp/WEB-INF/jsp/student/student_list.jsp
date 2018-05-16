@@ -40,7 +40,7 @@ pageEncoding="UTF-8"%>
     <table class="tablelist">
     	<thead>
     	<tr>
-        <th><input name="" type="checkbox" value="" checked="checked"/></th>
+        <th></th>
         <th>学号<i class="sort"><img src="/images/px.gif" /></i></th>
         <th>姓名</th>
         <th>图片</th>

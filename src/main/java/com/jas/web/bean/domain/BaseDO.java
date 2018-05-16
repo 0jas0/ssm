@@ -3,8 +3,8 @@ package com.jas.web.bean.domain;
 public class BaseDO {
     private Integer id;
     private Integer isDel;
-    private Integer addtime;
-    private Integer modtime;
+    private Long addtime;
+    private Long modtime;
 
     public Integer getId() {
         return id;
@@ -22,19 +22,19 @@ public class BaseDO {
         this.isDel = isDel;
     }
 
-    public Integer getAddtime() {
+    public Long getAddtime() {
         return addtime;
     }
 
-    public void setAddtime(Integer addtime) {
+    public void setAddtime(Long addtime) {
         this.addtime = addtime;
     }
 
-    public Integer getModtime() {
+    public Long getModtime() {
         return modtime;
     }
 
-    public void setModtime(Integer modtime) {
+    public void setModtime(Long modtime) {
         this.modtime = modtime;
     }
 }

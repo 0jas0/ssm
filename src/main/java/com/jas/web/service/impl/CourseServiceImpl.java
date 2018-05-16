@@ -1,17 +1,22 @@
 package com.jas.web.service.impl;
 
-import com.jas.web.bean.domain.CourseDO;
-import com.jas.web.bean.domain.CourseTimePlaceDO;
+import com.jas.web.bean.domain.*;
 import com.jas.web.bean.model.CourseModel;
 import com.jas.web.bean.model.CourseTimePlaceModel;
-import com.jas.web.dao.ICourseDAO;
-import com.jas.web.dao.ICourseTimePlaceDAO;
+import com.jas.web.bean.model.StudentModel;
+import com.jas.web.bean.model.TeacherModel;
+import com.jas.web.dao.*;
 import com.jas.web.service.ICourseService;
+import com.jas.web.service.IStudentService;
+import com.jas.web.utils.PaperUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CourseServiceImpl implements ICourseService{
@@ -20,6 +25,21 @@ public class CourseServiceImpl implements ICourseService{
 
     @Resource
     ICourseTimePlaceDAO courseTimePlaceDAO;
+
+    @Resource
+    ICollegeMajorDAO collegeMajorDAO;
+
+    @Resource
+    ITeacherDAO teacherDAO;
+
+    @Resource
+    IAdministrativeClassDAO administrativeClassDAO;
+
+    @Resource
+    IChoiceCoursesDAO choiceCoursesDAO;
+
+    @Resource
+    IStudentService studentService;
 
     @Override
     @Transactional
@@ -62,4 +82,101 @@ public class CourseServiceImpl implements ICourseService{
     public void modifyCourseTimePlace(CourseTimePlaceModel courseTimePlaceModel) {
         courseTimePlaceDAO.updateCourseTimePlace(new CourseTimePlaceDO(courseTimePlaceModel));
     }
+
+    @Override
+    public CourseModel getCourseById(Integer courseId) {
+        CourseDO courseDO = courseDAO.getCourseById(courseId);
+        return new CourseModel(courseDO);
+    }
+
+    @Override
+    public PaperUtil<CourseModel> getCourseByPage(Integer currentPage, Integer pageSize) {
+        PaperUtil<CourseModel> paperUtil = new PaperUtil<>();
+        int totalNum = courseDAO.getTotalNum();
+        int startRecord = (currentPage - 1) * pageSize > totalNum ? totalNum : (currentPage - 1) * pageSize;
+        List<CourseDO> courseDOList = courseDAO.listCourseByPage(startRecord, pageSize, "id", "desc");
+        List<TeacherDO> teacherDOS = teacherDAO.listTeacherAll();
+        List<CollegeMajorDO> collegeMajorDOS = collegeMajorDAO.getByParentId(0);
+        Map<String,CollegeMajorDO> collegeMajorDOMap = new HashMap<>();
+        for (CollegeMajorDO collegeMajorDO : collegeMajorDOS){
+            collegeMajorDOMap.put(collegeMajorDO.getId()+"",collegeMajorDO);
+        }
+
+        Map<String,TeacherDO> map = new HashMap<>();
+        for (TeacherDO teacherDO : teacherDOS){
+            map.put(teacherDO.getTeacherId(),teacherDO);
+        }
+        List<CourseModel> courseModels = new LinkedList<>();
+        for (CourseDO courseDO : courseDOList){
+            CourseModel courseModel = new CourseModel(courseDO);
+            courseModel.setTeacherName(map.get(courseModel.getTeacherId()).getName());
+            courseModel.setCollege(collegeMajorDOMap.get(courseDO.getCollege()).getName());
+            courseModels.add(courseModel);
+        }
+        paperUtil.setCurrentPage(currentPage);
+        paperUtil.setData(courseModels);
+        paperUtil.setPageSize(pageSize);
+        paperUtil.setTotalRecord(totalNum);
+        return paperUtil;
+    }
+
+    @Override
+    public List<CourseTimePlaceModel> getCOurseTimePlaceByCourseId(Integer courseId) {
+        List<CourseTimePlaceDO> courseTimePlaceDOS = courseTimePlaceDAO.getCourseTimePlaceByCourseId(courseId);
+        List<CourseTimePlaceModel> list = new LinkedList<>();
+        List<AdministrativeClassDO> administrativeClassDOS = administrativeClassDAO.getAllClass();
+        Map<Integer,AdministrativeClassDO> administrativeClassDOMap = new HashMap<>();
+        for (AdministrativeClassDO administrativeClassDO : administrativeClassDOS){
+            administrativeClassDOMap.put(administrativeClassDO.getId(),administrativeClassDO);
+        }
+
+        List<CourseDO> courseDOS = courseDAO.getCourseAll();
+        Map<Integer,CourseDO> courseDOMap = new HashMap<>();
+        for (CourseDO courseDO : courseDOS){
+            courseDOMap.put(courseDO.getId(), courseDO);
+        }
+        for (CourseTimePlaceDO courseTimePlaceDO : courseTimePlaceDOS){
+            CourseTimePlaceModel courseTimePlaceModel = new CourseTimePlaceModel(courseTimePlaceDO);
+            courseTimePlaceModel.setCourseTimeName(courseDOMap.get(courseTimePlaceDO.getCourseId()).getName());
+            courseTimePlaceModel.setClassName(administrativeClassDOMap.get(courseTimePlaceDO.getClassId()).getName());
+            list.add(courseTimePlaceModel);
+        }
+        return list;
+    }
+
+    @Override
+    public CourseTimePlaceModel getCourseTimePlaceById(Integer courseId) {
+        CourseTimePlaceDO courseTimePlaceDO = courseTimePlaceDAO.getCourseTimePlaceById(courseId);
+        return new CourseTimePlaceModel(courseTimePlaceDO);
+    }
+
+    @Override
+    public List<CourseTimePlaceModel> getCourseTimePlaceByClassId(Integer classId) {
+        List<CourseTimePlaceDO> courseTimePlaceDOS = courseTimePlaceDAO.getCourseTimePlaceByClassId(classId);
+        List<CourseTimePlaceModel> courseTimePlaceModels = new LinkedList<>();
+        for (CourseTimePlaceDO courseTimePlaceDO : courseTimePlaceDOS){
+            courseTimePlaceModels.add(new CourseTimePlaceModel(courseTimePlaceDO));
+        }
+        return courseTimePlaceModels;
+    }
+
+    @Override
+    public Map<String, Map<String, String>> getCourseScheduleByStudentId(Integer studentId) {
+        StudentModel studentModel =  studentService.getStudentById(studentId);
+        List<CourseTimePlaceDO> timePlaceModelList = courseTimePlaceDAO.getCourseTimePlaceByClassId(studentModel.getClassId());
+        List<ChoiceCoursesDO> choiceCoursesDOS = choiceCoursesDAO.getCourseByStudentId(studentId);
+        List<CourseDO> courseAll = courseDAO.getCourseAll();
+        Map<Integer, CourseDO> courseDOMap = new HashMap<>();
+        for (CourseDO courseDO : courseAll){
+            courseDOMap.put(courseDO.getId(), courseDO);
+        }
+        for (ChoiceCoursesDO choiceCoursesDO : choiceCoursesDOS){
+            List<CourseTimePlaceDO> courseTimePlace = courseTimePlaceDAO.getCourseTimePlaceByCourseId(choiceCoursesDO.getCourseId());
+            timePlaceModelList.addAll(courseTimePlace);
+        }
+
+        return null;
+    }
+
+
 }

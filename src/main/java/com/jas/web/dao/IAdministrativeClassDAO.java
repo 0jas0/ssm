@@ -42,4 +42,10 @@ public interface IAdministrativeClassDAO {
 
     @Select("select * from beihua.administrative_class where id = #{id} and is_del = 0")
     public AdministrativeClassDO getAdminstrativeClassById(@Param("id") Integer id);
+
+    @Select("select * from beihua.administrative_class where is_del = 0")
+    List<AdministrativeClassDO> getAllClass();
+
+    @Select("select * from beihua.administrative_class where college = #{college} and is_del = 0")
+    List<AdministrativeClassDO> getAdminstrativeClasssByCollege(@Param("college") Integer college);
 }

@@ -9,9 +9,9 @@ public class CourseDO extends BaseDO{
 
     private String name;
 
-    private Integer courseStart;
+    private Long courseStart;
 
-    private Integer courseEnd;
+    private Long courseEnd;
 
     private String semester;
 
@@ -28,10 +28,11 @@ public class CourseDO extends BaseDO{
 
     public CourseDO(CourseModel courseModel) {
         if (courseModel != null){
+            this.setId(courseModel.getId());
             this.teacherId = courseModel.getTeacherId();
             this.name = courseModel.getName();
-            this.courseStart = (int)DateUtil.getMillisFromStringByFormat(courseModel.getCourseStart(), "yyyy-MM-dd")/1000;
-            this.courseEnd = (int)DateUtil.getMillisFromStringByFormat(courseModel.getCourseEnd(), "yyyy-MM-dd")/1000;
+            this.courseStart = DateUtil.getMillisFromStringByFormat(courseModel.getCourseStart(), "yyyy-MM-dd")/1000;
+            this.courseEnd = DateUtil.getMillisFromStringByFormat(courseModel.getCourseEnd(), "yyyy-MM-dd")/1000;
             this.semester = courseModel.getSemester();
             this.college = courseModel.getCollege();
             this.period = courseModel.getPeriod();
@@ -56,19 +57,19 @@ public class CourseDO extends BaseDO{
         this.name = name;
     }
 
-    public Integer getCourseStart() {
+    public Long getCourseStart() {
         return courseStart;
     }
 
-    public void setCourseStart(Integer courseStart) {
+    public void setCourseStart(Long courseStart) {
         this.courseStart = courseStart;
     }
 
-    public Integer getCourseEnd() {
+    public Long getCourseEnd() {
         return courseEnd;
     }
 
-    public void setCourseEnd(Integer courseEnd) {
+    public void setCourseEnd(Long courseEnd) {
         this.courseEnd = courseEnd;
     }
 

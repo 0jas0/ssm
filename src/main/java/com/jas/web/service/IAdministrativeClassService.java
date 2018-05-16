@@ -19,4 +19,6 @@ public interface IAdministrativeClassService {
     PaperUtil<AdministrativeClassModel> getClassByPage(Integer currentPage, Integer pageSize);
 
     void deleteClass(Integer id);
+
+    List<AdministrativeClassModel> getByCollege(Integer college);
 }

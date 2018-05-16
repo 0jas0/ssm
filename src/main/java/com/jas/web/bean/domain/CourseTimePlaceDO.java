@@ -9,7 +9,7 @@ public class CourseTimePlaceDO extends BaseDO{
 
     private Integer courseWeek;
 
-    private Integer course;
+    private Integer courseTime;
 
     private Integer classId;
 
@@ -20,10 +20,11 @@ public class CourseTimePlaceDO extends BaseDO{
 
     public CourseTimePlaceDO(CourseTimePlaceModel courseTimePlaceModel) {
         if (courseTimePlaceModel != null){
+            this.setId(courseTimePlaceModel.getId());
             courseId = courseTimePlaceModel.getCourseId();
             name = courseTimePlaceModel.getName();
             courseWeek = courseTimePlaceModel.getCourseWeek();
-            course = courseTimePlaceModel.getCourse();
+            courseTime = courseTimePlaceModel.getCourseTime();
             classId = courseTimePlaceModel.getClassId();
             coursePlace = courseTimePlaceModel.getCoursePlace();
         }
@@ -61,12 +62,12 @@ public class CourseTimePlaceDO extends BaseDO{
         this.courseWeek = courseWeek;
     }
 
-    public Integer getCourse() {
-        return course;
+    public Integer getCourseTime() {
+        return courseTime;
     }
 
-    public void setCourse(Integer course) {
-        this.course = course;
+    public void setCourseTime(Integer courseTime) {
+        this.courseTime = courseTime;
     }
 
     public String getCoursePlace() {

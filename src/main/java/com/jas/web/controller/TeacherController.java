@@ -1,8 +1,5 @@
 package com.jas.web.controller;
 
-import com.jas.web.bean.model.AdministrativeClassModel;
-import com.jas.web.bean.model.CollegeMajorModel;
-import com.jas.web.bean.model.StudentModel;
 import com.jas.web.bean.model.TeacherModel;
 import com.jas.web.service.ITeacherEvaluationService;
 import com.jas.web.service.ITeacherService;
@@ -15,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Controller
 @RequestMapping("/teacher")
@@ -28,9 +26,21 @@ public class TeacherController {
 
     @RequestMapping(value = "/ajax-get-teacher-by-page")
     @ResponseBody
-    public Object getAllTeacher(@RequestParam(value = "currentPage", defaultValue = "1") Integer currentPage, @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize){
+    public Object getTeacherByPage(@RequestParam(value = "currentPage", defaultValue = "1") Integer currentPage, @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize){
         try {
             PaperUtil<TeacherModel> teacherModelList = teacherService.getTeacherByPage(currentPage, pageSize);
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS, "获取所有教师成功", teacherModelList);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"获取所有教师失败",null);
+        }
+    }
+
+    @RequestMapping(value = "ajax/get-all-teacher")
+    @ResponseBody
+    public Object getAllTeacher(){
+        try {
+            List<TeacherModel> teacherModelList = teacherService.getAllTeacher();
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS, "获取所有教师成功", teacherModelList);
         }catch (Exception e){
             e.printStackTrace();
@@ -83,18 +93,18 @@ public class TeacherController {
 
     @RequestMapping("/teacher_list")
     public String studentListView(){
-        return "teacher_list";
+        return "teacher/teacher_list";
     }
     @RequestMapping("/teacher_add")
     public String studentAddView(){
-        return "teacher_add";
+        return "teacher/teacher_add";
     }
 
     @RequestMapping("/teacher_edit")
     public String studentEditView(@RequestParam("teacherId") String teacherId, Model model){
         TeacherModel teacherModel = teacherService.getByTeacherId(teacherId);
         model.addAttribute("teacherModel",teacherModel);
-        return "teacher_edit";
+        return "teacher/teacher_edit";
     }
 
 }

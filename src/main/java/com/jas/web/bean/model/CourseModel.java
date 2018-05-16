@@ -6,6 +6,8 @@ import com.jas.web.enums.ECourseType;
 import com.jas.web.utils.DateUtil;
 
 public class CourseModel{
+    private Integer id;
+
     private String teacherId;
 
     private String name;
@@ -22,6 +24,8 @@ public class CourseModel{
 
     private Integer credit;
 
+    private String teacherName;
+
     private Integer type;
 
     private String typeName;
@@ -31,10 +35,11 @@ public class CourseModel{
 
     public CourseModel(CourseDO courseDO) {
         if (courseDO != null){
+            this.id = courseDO.getId();
             this.teacherId = courseDO.getTeacherId();
             this.name = courseDO.getName();
-            this.courseStart = DateUtil.getStringFromLongByFormat(courseDO.getCourseStart(), "yyyy-MM-dd");
-            this.courseEnd = DateUtil.getStringFromLongByFormat(courseDO.getCourseEnd(), "yyyy-MM-dd");
+            this.courseStart = DateUtil.formatSeconds(courseDO.getCourseStart(), "yyyy-MM-dd");
+            this.courseEnd = DateUtil.formatSeconds(courseDO.getCourseEnd(), "yyyy-MM-dd");
             this.semester = courseDO.getSemester();
             this.college = courseDO.getCollege();
             this.period = courseDO.getPeriod();
@@ -44,6 +49,21 @@ public class CourseModel{
         }
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
+    }
 
     public String getTeacherId() {
         return teacherId;

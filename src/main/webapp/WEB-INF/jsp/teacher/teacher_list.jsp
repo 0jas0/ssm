@@ -24,9 +24,9 @@ pageEncoding="UTF-8"%>
     <div class="tools">
     
     	<ul class="toolbar">
-        <li class="AddClass"><span><img src="/images/t01.png" /></span>添加</li>
-        <li class="editClass"><span><img src="/images/t02.png" /></span>修改</li>
-        <li class="removeClass"><span><img src="/images/t03.png" /></span>删除</li>
+        <li class="AddTeacher"><span><img src="/images/t01.png" /></span>添加</li>
+        <li class="editTeacher"><span><img src="/images/t02.png" /></span>修改</li>
+        <li class="removeTeacher"><span><img src="/images/t03.png" /></span>删除</li>
         </ul>
         
         
@@ -40,14 +40,15 @@ pageEncoding="UTF-8"%>
     <table class="tablelist">
     	<thead>
     	<tr>
-        <th><input name="" type="checkbox" value="" checked="checked"/></th>
-        <th>序号<i class="sort"><img src="/images/px.gif" /></i></th>
-        <th>班级号</th>
-        <th>班级名称</th>
-        <th>班级人数</th>
-        <th>辅导员</th>
-        <th>所属学院</th>
-        <th>所属专业</th>
+        <th></th>
+        <th>教师工号<i class="sort"><img src="/images/px.gif" /></i></th>
+        <th>教师名称</th>
+        <th>出生日期</th>
+        <th>性别</th>
+        <th>学历</th>
+        <th>职称</th>
+        <th>住址</th>
+        <th>联系电话</th>
         </tr>
         </thead>
         <tbody id="studentList">
@@ -64,11 +65,11 @@ pageEncoding="UTF-8"%>
 </html>
 <script type="text/javascript">
     $(document).ready(function(){
-        $(".AddClass").click(function () {
-            location.href = "/class/class_add";
+        $(".AddTeacher").click(function () {
+            location.href = "/teacher/teacher_add";
         });
 
-        $(".editClass").click(function () {
+        $(".editTeacher").click(function () {
             var  length = $("input[name='selectFlag']:checked").length;
             if(length != 1){
                 alert("请选择一行");
@@ -76,12 +77,12 @@ pageEncoding="UTF-8"%>
             }
             $("input[name='selectFlag']:checked").each(function () {
                 var id = $(this).closest("tr").find("td:eq(1)").text();
-                location.href = "/class/class_edit?id="+id;
+                location.href = "/teacher/teacher_edit?teacherId="+id;
             });
         });
 
 
-        $(".removeClass").click(function () {
+        $(".removeTeacher").click(function () {
             var  length = $("input[name='selectFlag']:checked").length;
             if (length < 1){
                 alert("至少选择一行");
@@ -90,17 +91,17 @@ pageEncoding="UTF-8"%>
 
             if (confirm("确认删除这些数据？") == true){
                 $("input[name='selectFlag']:checked").each(function () {
-                    var id = $(this).closest("tr").find("td:eq(1)").text();
+                    var teacherId = $(this).closest("tr").find("td:eq(1)").text();
                     $.ajax({
                         type: 'post',
-                        url: '/class/ajax-delete-class?id='+id,
+                        url: '/teacher/ajax-delete-teacher?teacherId='+teacherId,
                         success: function (res) {
                             console.log(res)
                         }
                     });
                 });
             }
-            location.href = "/class/class_list";
+            location.href = "/teacher/teacher_list";
         });
 
 
@@ -111,7 +112,7 @@ pageEncoding="UTF-8"%>
     function page(currentPage,pageSize) {
         $.ajax({
             type: 'post',
-            url: '/class/ajax-get-class-by-page',
+            url: '/teacher/ajax-get-teacher-by-page',
             data: {
                 'currentPage': currentPage,
                 'pageSize':pageSize
@@ -122,13 +123,14 @@ pageEncoding="UTF-8"%>
                     var html = "";
                     data.forEach(function (item, index) {
                         html += '<tr><td><input name=\"selectFlag\" type=\"checkbox\" /></td>';
-                        html += "<td>"+item.id+"</td>";
-                        html += '<td>'+item.classId+'</td>';
-                        html += "<td>"+item.name+"</td>";
-                        html += "<td>"+item.classNumber+"</td>";
-                        html += "<td>"+item.instructor+"</td>";
-                        html += "<td>"+item.collegeName+"</td>";
-                        html += "<td>"+item.majorName+"</td>";
+                        html += "<td>"+item.teacherId+"</td>";
+                        html += '<td>'+item.name+'</td>';
+                        html += "<td>"+item.bornDate+"</td>";
+                        html += "<td>"+item.sex+"</td>";
+                        html += "<td>"+item.education+"</td>";
+                        html += "<td>"+item.position+"</td>";
+                        html += "<td>"+item.address+"</td>";
+                        html += "<td>"+item.mobile+"</td>";
                         html+="</tr>";
                     });
                     $("#totalRecord").text(res.data.totalRecord);

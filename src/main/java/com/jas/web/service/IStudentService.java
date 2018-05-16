@@ -21,4 +21,6 @@ public interface IStudentService {
     String reUploadFile(MultipartFile image, String student) throws IOException;
 
     void deleteStudent(String studentId);
+
+    StudentModel getStudentById(Integer studentId);
 }

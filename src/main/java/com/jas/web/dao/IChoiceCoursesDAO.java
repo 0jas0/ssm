@@ -26,4 +26,7 @@ public interface IChoiceCoursesDAO {
 
     @Select("select * from beihua.choice_courses where is_del = 0")
     public List<ChoiceCoursesDO> getCourseAll();
+
+    @Select("select * from beihua.choice_courses where student_id = #{studentId} and is_del = 0")
+    public List<ChoiceCoursesDO> getCourseByStudentId(@Param("studentId") Integer studentId);
 }

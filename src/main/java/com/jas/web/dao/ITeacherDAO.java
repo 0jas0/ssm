@@ -30,6 +30,7 @@ public interface ITeacherDAO {
     @Select("select count(*) from beihua.teacher where is_del = 0")
     public Integer getTotalNum();
 
-    @Select("select * from beihua.teachear where is_del = 0")
+    @Select("select * from beihua.teacher where is_del = 0")
     public List<TeacherDO> listTeacherAll();
+
 }

@@ -313,6 +313,13 @@ public final class DateUtil {
         return formatter.format(calendar.getTime());
     }
 
+    public static String getStringFromSecondByFormat(long time, String format) {
+        DateFormat formatter = new SimpleDateFormat(format);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(time);
+        return formatter.format(calendar.getTime());
+    }
+
     /**
      * 将秒数，按照format的格式，转换成日期的字符串
      *

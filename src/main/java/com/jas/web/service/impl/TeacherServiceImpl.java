@@ -71,4 +71,14 @@ public class TeacherServiceImpl implements ITeacherService{
     public void deleteTeacher(String teacherId) {
         teacherDAO.deleteTeacher(teacherId);
     }
+
+    @Override
+    public List<TeacherModel> getAllTeacher() {
+        List<TeacherDO> teacherDOS = teacherDAO.listTeacherAll();
+        List<TeacherModel> teacherModelList = new LinkedList<>();
+        for (TeacherDO teacherDO : teacherDOS){
+            teacherModelList.add(new TeacherModel(teacherDO));
+        }
+        return teacherModelList;
+    }
 }

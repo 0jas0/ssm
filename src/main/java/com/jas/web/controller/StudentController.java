@@ -3,13 +3,10 @@ package com.jas.web.controller;
 import com.jas.web.bean.model.AdministrativeClassModel;
 import com.jas.web.bean.model.CollegeMajorModel;
 import com.jas.web.bean.model.StudentModel;
-import com.jas.web.bean.model.TeacherModel;
-import com.jas.web.dao.ICollegeMajorDAO;
 import com.jas.web.exception.ParamNotValidException;
 import com.jas.web.service.IAdministrativeClassService;
 import com.jas.web.service.ICollegeMajorService;
 import com.jas.web.service.IStudentService;
-import com.jas.web.service.ITeacherService;
 import com.jas.web.utils.PaperUtil;
 import com.jas.web.utils.ResponseUtil;
 import org.springframework.stereotype.Controller;
@@ -20,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import javax.mail.Multipart;
 import java.util.List;
 
 @Controller
@@ -127,11 +123,11 @@ public class StudentController {
 
     @RequestMapping("/student_list")
     public String studentListView(){
-        return "student_list";
+        return "student/student_list";
     }
     @RequestMapping("/student_add")
     public String studentAddView(){
-        return "student_add";
+        return "student/student_add";
     }
 
     @RequestMapping("/student_edit")
@@ -144,7 +140,7 @@ public class StudentController {
         model.addAttribute("majorList",majorByParentId);
         model.addAttribute("classList",classDO);
         model.addAttribute("studentModel",studentModel);
-        return "student_edit";
+        return "student/student_edit";
     }
 
 }

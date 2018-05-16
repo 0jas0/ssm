@@ -99,5 +99,15 @@ public class AdministrativeClassServiceImpl implements IAdministrativeClassServi
         administrativeClassDAO.deleteById(id);
     }
 
+    @Override
+    public List<AdministrativeClassModel> getByCollege(Integer college) {
+        List<AdministrativeClassDO> administrativeClassDOList =  administrativeClassDAO.getAdminstrativeClasssByCollege(college);
+        List<AdministrativeClassModel> administrativeClassModels = new ArrayList<>();
+        for (AdministrativeClassDO administrativeClassDO : administrativeClassDOList){
+            administrativeClassModels.add(new AdministrativeClassModel(administrativeClassDO));
+        }
+        return administrativeClassModels;
+    }
+
 
 }

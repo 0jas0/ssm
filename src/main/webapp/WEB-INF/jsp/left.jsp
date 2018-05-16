@@ -68,6 +68,12 @@ $(function(){
         <li><cite></cite><a href="/teacher/teacher_list" target="rightFrame">教师列表</a><i></i></li>
     </ul>
     </dd>
+
+    <dd><div class="title"><span><img src="/images/leftico03.png" /></span>课程管理</div>
+    <ul class="menuson">
+        <li><cite></cite><a href="/course/course_list" target="rightFrame">课程列表</a><i></i></li>
+    </ul>
+    </dd>
     </dl>
 </body>
 </html>

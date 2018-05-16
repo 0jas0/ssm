@@ -147,4 +147,11 @@ public class StudentServiceImpl implements IStudentService{
     public void deleteStudent(String studentId) {
         studentDAO.deleteStudent(studentId);
     }
+
+    @Override
+    public StudentModel getStudentById(Integer studentId) {
+        StudentDO studentDO = studentDAO.getStudentById(studentId);
+        StudentModel studentModel = new StudentModel(studentDO);
+        return studentModel;
+    }
 }

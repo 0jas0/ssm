@@ -30,4 +30,7 @@ public interface IStudentDAO {
 
     @Select("select count(*) from beihua.student where is_del = 0")
     public int getTotalNum();
+
+    @Select("select * from beihua.student where id = #{studentId} and is_del = 0")
+    StudentDO getStudentById(@Param("studentId") Integer studentId);
 }

@@ -2,11 +2,9 @@ package com.jas.web.controller;
 
 import com.jas.web.bean.model.AdministrativeClassModel;
 import com.jas.web.bean.model.CollegeMajorModel;
-import com.jas.web.bean.model.StudentModel;
 import com.jas.web.exception.ParamNotValidException;
 import com.jas.web.service.IAdministrativeClassService;
 import com.jas.web.service.ICollegeMajorService;
-import com.jas.web.service.IStudentService;
 import com.jas.web.utils.PaperUtil;
 import com.jas.web.utils.ResponseUtil;
 import org.springframework.stereotype.Controller;
@@ -14,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -107,14 +104,25 @@ public class AdministrativeClassController {
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"获取班级信息失败",null);
         }
     }
+    @RequestMapping(value = "ajax/get-class-by-collegeId")
+    @ResponseBody
+    public Object getClassByCollege(@RequestParam("collegeId") Integer college){
+        try {
+            List<AdministrativeClassModel> administrativeClassModels = administrativeClassService.getByCollege(college);
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS, "获取班级信息成功", administrativeClassModels);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"获取班级信息失败",null);
+        }
+    }
 
     @RequestMapping("/class_list")
     public String classListView(){
-        return "class_list";
+        return "class/class_list";
     }
     @RequestMapping("/class_add")
     public String studentAddView(){
-        return "class_add";
+        return "class/class_add";
     }
     @RequestMapping("/class_edit")
     public String studentEditView(@RequestParam("id") Integer id, Model model){
@@ -124,6 +132,6 @@ public class AdministrativeClassController {
         model.addAttribute("collegeList",college);
         model.addAttribute("majorList",majorByParentId);
         model.addAttribute("classDO",administrativeClassModel);
-        return "class_edit";
+        return "class/class_edit";
     }
 }

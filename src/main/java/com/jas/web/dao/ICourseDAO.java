@@ -27,4 +27,10 @@ public interface ICourseDAO {
 
     @Select("select * from beihua.course where is_del = 0")
     public List<CourseDO> getCourseAll();
+
+    @Select("select count(*) from beihua.course where is_del = 0")
+    public int getTotalNum();
+
+    @Select("select * from beihua.course where is_del = 0 order by #{sort} #{lift} limit ${start},${size}")
+    List<CourseDO> listCourseByPage(@Param("start") Integer start, @Param("size") Integer size, @Param("sort") String sort, @Param("lift") String lift);
 }
