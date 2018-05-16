@@ -6,6 +6,8 @@ import com.jas.web.bean.model.CourseTimePlaceModel;
 import com.jas.web.bean.model.StudentModel;
 import com.jas.web.bean.model.TeacherModel;
 import com.jas.web.dao.*;
+import com.jas.web.enums.ECourse;
+import com.jas.web.enums.ECourseWeek;
 import com.jas.web.service.ICourseService;
 import com.jas.web.service.IStudentService;
 import com.jas.web.utils.PaperUtil;
@@ -161,7 +163,7 @@ public class CourseServiceImpl implements ICourseService{
     }
 
     @Override
-    public Map<String, Map<String, String>> getCourseScheduleByStudentId(Integer studentId) {
+    public Map<Integer, Map<Integer, String>> getCourseScheduleByStudentId(Integer studentId) {
         StudentModel studentModel =  studentService.getStudentById(studentId);
         List<CourseTimePlaceDO> timePlaceModelList = courseTimePlaceDAO.getCourseTimePlaceByClassId(studentModel.getClassId());
         List<ChoiceCoursesDO> choiceCoursesDOS = choiceCoursesDAO.getCourseByStudentId(studentId);
@@ -174,9 +176,25 @@ public class CourseServiceImpl implements ICourseService{
             List<CourseTimePlaceDO> courseTimePlace = courseTimePlaceDAO.getCourseTimePlaceByCourseId(choiceCoursesDO.getCourseId());
             timePlaceModelList.addAll(courseTimePlace);
         }
-
-        return null;
+        //获取课程时间
+        List<Integer> ecourseList = ECourse.getValues();
+        //获取课程的星期
+        List<Integer> ecourseWeekList = ECourseWeek.getValues();
+        Map<Integer,Map<Integer,String>> mapMap = new HashMap<>();
+        for (Integer week : ecourseWeekList){
+            Map<Integer,String> map = new HashMap<>();
+            for (Integer course : ecourseList){
+                map.put(course,"");
+            }
+            mapMap.put(week,map);
+        }
+        for (CourseTimePlaceDO courseTimePlaceDO : timePlaceModelList){
+            CourseDO courseDO = courseDOMap.get(courseTimePlaceDO.getCourseId());
+            Integer courseWeek = courseTimePlaceDO.getCourseWeek();
+            Integer courseTime = courseTimePlaceDO.getCourseTime();
+            Map<Integer, String> map = mapMap.get(courseWeek);
+            map.put(courseTime,courseDO.getName());
+        }
+        return mapMap;
     }
-
-
 }

@@ -1,5 +1,8 @@
 package com.jas.web.enums;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public enum ECourse {
     FISRT_CLASS(1,"第一大节课"),
     SECOND_CLASS(2,"第二大节课"),
@@ -37,6 +40,14 @@ public enum ECourse {
             return "";
         }
         return eSex.getDesc();
+    }
+
+    public static List<Integer> getValues(){
+        List<Integer> descList = new LinkedList<>();
+        for(ECourse eCourse : ECourse.values()){
+            descList.add(eCourse.getValue());
+        }
+        return descList;
     }
 
 

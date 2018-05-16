@@ -1,5 +1,8 @@
 package com.jas.web.enums;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public enum ECourseWeek {
     MONDAY(1,"周一"),
     TUESDAY(2,"周二"),
@@ -46,6 +49,14 @@ public enum ECourseWeek {
             return "";
         }
         return eSex.getDesc();
+    }
+
+    public static List<Integer> getValues(){
+        List<Integer> courseWeek = new LinkedList<>();
+        for(ECourseWeek eCourseWeek : ECourseWeek.values()){
+            courseWeek.add(eCourseWeek.getValue());
+        }
+        return courseWeek;
     }
 
     public Integer getValue() {

@@ -31,5 +31,5 @@ public interface ICourseService {
 
     List<CourseTimePlaceModel> getCourseTimePlaceByClassId(Integer classId);
 
-    Map<String,Map<String,String>> getCourseScheduleByStudentId(Integer studentId);
+    Map<Integer,Map<Integer,String>> getCourseScheduleByStudentId(Integer studentId);
 }

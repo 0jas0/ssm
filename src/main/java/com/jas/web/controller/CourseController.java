@@ -185,9 +185,14 @@ public class CourseController {
     @RequestMapping("/cousre-schedule-by-studentId")
     @ResponseBody
     public Object courseScheduleByStudentId(@RequestParam("studentId") Integer studentId){
-        Map<String,Map<String,String>> courseSchedule = courseService.getCourseScheduleByStudentId(studentId);
-
-
-        return null;
+        try {
+            Map<Integer,Map<Integer,String>> courseSchedule = courseService.getCourseScheduleByStudentId(studentId);
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS,"获取课程表成功",courseSchedule);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"获取课程表失败",null);
+        }
     }
+
+
 }
