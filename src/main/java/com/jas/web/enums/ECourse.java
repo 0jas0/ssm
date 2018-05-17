@@ -49,6 +49,13 @@ public enum ECourse {
         }
         return descList;
     }
+    public static List<String> getDescs(){
+        List<String> descList = new LinkedList<>();
+        for(ECourse eCourse : ECourse.values()){
+            descList.add(eCourse.getDesc());
+        }
+        return descList;
+    }
 
 
     public Integer getValue() {

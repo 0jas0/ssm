@@ -37,7 +37,7 @@ $(function(){
     <dl class="leftmenu">
     <dd>
         <div class="title">
-            <span><img src="/images/leftico01.png" /></span>首页
+            <span><img src="/images/leftico03.png" /></span>首页
         </div>
         <ul class="menuson">
             <li class="active"><cite></cite><a href="#">首页</a><i></i></li>
@@ -63,7 +63,7 @@ $(function(){
     </dd> 
     
     
-    <dd><div class="title"><span><img src="/images/leftico03.png" /></span>教师管理</div>
+    <dd><div class="title"><span><img src="/images/leftico02.png" /></span>教师管理</div>
     <ul class="menuson">
         <li><cite></cite><a href="/teacher/teacher_list" target="rightFrame">教师列表</a><i></i></li>
     </ul>
@@ -72,8 +72,25 @@ $(function(){
     <dd><div class="title"><span><img src="/images/leftico03.png" /></span>课程管理</div>
     <ul class="menuson">
         <li><cite></cite><a href="/course/course_list" target="rightFrame">课程列表</a><i></i></li>
+        <li><cite></cite><a href="/course/course_schedule" target="rightFrame">课程表</a><i></i></li>
+        <li><cite></cite><a href="/course/select_course" target="rightFrame">选择课程</a><i></i></li>
     </ul>
     </dd>
+
+    <dd><div class="title"><span><img src="/images/leftico01.png" /></span>成绩管理</div>
+        <ul class="menuson">
+            <li><cite></cite><a href="/score/score_student" target="rightFrame">个人成绩</a><i></i></li>
+            <li><cite></cite><a href="/score/score_list" target="rightFrame">成绩列表</a><i></i></li>
+        </ul>
+    </dd>
+
+    <dd><div class="title"><span><img src="/images/leftico02.png" /></span>评价管理</div>
+        <ul class="menuson">
+            <li><cite></cite><a href="/teacher/evaluation_teacher" target="rightFrame">评价老师</a><i></i></li>
+            <li><cite></cite><a href="/teacher/view_evaluation" target="rightFrame">查看评价</a><i></i></li>
+        </ul>
+    </dd>
+
     </dl>
 </body>
 </html>

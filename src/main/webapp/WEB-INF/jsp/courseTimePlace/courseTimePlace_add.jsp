@@ -43,7 +43,7 @@
             </select></div><i></i></li>
             <li><label>课程地点</label><input name="coursePlace" type="text" class="dfinput" /><i></i></li>
             <li><label>班级号</label><div class="vocation">
-                <select class="select3" name="classId"><option>----请选择----</option></select>
+                <select class="select3" name="classId"></select>
             </div><i></i></li>
             <li><label>&nbsp;</label><input name="" type="button" class="btn" value="确认保存" onclick="saveClass()"/></li>
     </ul>
@@ -99,7 +99,7 @@
             success: function (result) {
                 console.log(result)
                 if (!result.status) {
-                    location.href = "/course/ajax/get-course-time-place-by-courseId?courseId="+courseId;
+                    location.href = "/course/course_time_place_list?courseId="+courseId;
                 } else {
                     location.href = "/error";
                 }

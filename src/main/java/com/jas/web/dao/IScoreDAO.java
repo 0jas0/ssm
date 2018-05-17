@@ -5,6 +5,8 @@ import com.jas.web.bean.domain.ScoreDO;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface IScoreDAO {
 
@@ -18,9 +20,20 @@ public interface IScoreDAO {
     public void updateScore(ScoreDO scoreDO);
 
     @Update("update beihua.score set is_del = 1, modtime = unix_timestamp() where id = #{id}")
-    public void deleteScore(@Param("id") String id);
+    public void deleteScore(@Param("id") Integer id);
 
     @Select("select * from beihua.score where id = #{id} and is_del = 0")
     public ScoreDO getScoreById(@Param("id") Integer id);
 
+    @Select("select * from beihua.score where student_id = #{studentId} and is_del = 0")
+    List<ScoreDO> getScoreByStudentId(@Param("studentId") Integer studentId);
+
+    @Select("select count(*) from beihua.score where course_id = #{courseId} and is_del = 0")
+    int getTotalNumByCourseId(@Param("courseId") Integer courseId);
+
+    @Select("select * from beihua.score where course_id = #{courseId} and is_del = 0 limit #{startRecord},#{pageSize}")
+    List<ScoreDO> getScoreByCourseId(@Param("courseId") Integer courseId,@Param("startRecord")  Integer startRecord,@Param("pageSize") Integer pageSize);
+
+    @Select("select * from beihua.score where course_id = #{courseId} and is_del = 0")
+    List<ScoreDO> getScoreByCourse(@Param("courseId") Integer courseId);
 }

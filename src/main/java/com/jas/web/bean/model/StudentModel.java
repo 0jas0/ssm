@@ -7,6 +7,7 @@ import com.jas.web.enums.ESex;
 import com.jas.web.utils.DateUtil;
 
 public class StudentModel{
+    private Integer id;
     private String studentId;
     private String password;
     private String photo;
@@ -32,6 +33,7 @@ public class StudentModel{
 
     public StudentModel(StudentDO studentDO){
         if (studentDO != null){
+            this.id = studentDO.getId();
             this.studentId = studentDO.getStudentId();
             this.password = studentDO.getPassword();
             this.photo = studentDO.getPhoto();
@@ -49,6 +51,14 @@ public class StudentModel{
             this.mobile = studentDO.getMobile();
             this.identityCardNumber = studentDO.getIdentityCardNumber();
         }
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getPhoto() {

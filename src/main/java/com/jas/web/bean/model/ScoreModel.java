@@ -3,6 +3,7 @@ package com.jas.web.bean.model;
 import com.jas.web.bean.domain.ScoreDO;
 
 public class ScoreModel{
+    private Integer id;
 
     private Integer courseId;
 
@@ -22,6 +23,7 @@ public class ScoreModel{
 
     public ScoreModel(ScoreDO scoreDO){
         if (scoreDO != null){
+            this.id = scoreDO.getId();
             this.courseId = scoreDO.getCourseId();
             this.studentId = scoreDO.getStudentId();
             this.grade = scoreDO.getGrade();
@@ -30,6 +32,14 @@ public class ScoreModel{
             this.failReason = scoreDO.getFailReason();
             this.reworkSituation = scoreDO.getReworkSituation();
         }
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getCourseId() {

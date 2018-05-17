@@ -13,7 +13,7 @@ public class CourseDO extends BaseDO{
 
     private Long courseEnd;
 
-    private String semester;
+    private Integer semester;
 
     private String college;
 
@@ -73,11 +73,11 @@ public class CourseDO extends BaseDO{
         this.courseEnd = courseEnd;
     }
 
-    public String getSemester() {
+    public Integer getSemester() {
         return semester;
     }
 
-    public void setSemester(String semester) {
+    public void setSemester(Integer semester) {
         this.semester = semester;
     }
 

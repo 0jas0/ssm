@@ -2,6 +2,7 @@ package com.jas.web.bean.model;
 
 import com.jas.web.bean.domain.BaseDO;
 import com.jas.web.bean.domain.CourseDO;
+import com.jas.web.enums.ECourseSemester;
 import com.jas.web.enums.ECourseType;
 import com.jas.web.utils.DateUtil;
 
@@ -16,7 +17,7 @@ public class CourseModel{
 
     private String courseEnd;
 
-    private String semester;
+    private Integer semester;
 
     private String college;
 
@@ -29,6 +30,12 @@ public class CourseModel{
     private Integer type;
 
     private String typeName;
+
+    private Double grade;
+
+    private String semesterName;
+
+    private Integer isSelected;
 
     public CourseModel() {
     }
@@ -46,7 +53,32 @@ public class CourseModel{
             this.credit = courseDO.getCredit();
             this.type = courseDO.getType();
             this.typeName = ECourseType.getDescByValue(type);
+            this.semesterName = ECourseSemester.getDescByValue(semester);
         }
+    }
+
+    public Integer getIsSelected() {
+        return isSelected;
+    }
+
+    public void setIsSelected(Integer isSelected) {
+        this.isSelected = isSelected;
+    }
+
+    public String getSemesterName() {
+        return semesterName;
+    }
+
+    public void setSemesterName(String semesterName) {
+        this.semesterName = semesterName;
+    }
+
+    public Double getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Double grade) {
+        this.grade = grade;
     }
 
     public Integer getId() {
@@ -97,11 +129,11 @@ public class CourseModel{
         this.courseEnd = courseEnd;
     }
 
-    public String getSemester() {
+    public Integer getSemester() {
         return semester;
     }
 
-    public void setSemester(String semester) {
+    public void setSemester(Integer semester) {
         this.semester = semester;
     }
 

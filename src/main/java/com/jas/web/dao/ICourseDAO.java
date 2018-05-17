@@ -2,6 +2,7 @@ package com.jas.web.dao;
 
 import com.jas.web.bean.domain.AdministrativeClassDO;
 import com.jas.web.bean.domain.CourseDO;
+import com.jas.web.bean.domain.CourseTimePlaceDO;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
@@ -33,4 +34,13 @@ public interface ICourseDAO {
 
     @Select("select * from beihua.course where is_del = 0 order by #{sort} #{lift} limit ${start},${size}")
     List<CourseDO> listCourseByPage(@Param("start") Integer start, @Param("size") Integer size, @Param("sort") String sort, @Param("lift") String lift);
+
+    @Select("select * from beihua.course where teacher_id = #{teacherId} and is_del = 0 order by id desc limit #{startRecord},#{pageSize}")
+    List<CourseDO> getCourseByTeacherIdAndPage(@Param("teacherId") String teacherId,@Param("startRecord") Integer startRecord, @Param("pageSize") Integer pageSize);
+
+    @Select("select count(*) from beihua.course where teacher_id = #{teacherId} and is_del = 0")
+    int getCourseNumByTeacherId(@Param("teacherId") String teacherId);
+
+    @Select("select * from beihua.course where college = #{college} and type = #{type} and is_del = 0")
+    List<CourseDO> getCourseByCollegeAndType(@Param("college") Integer college,@Param("type") Integer type);
 }

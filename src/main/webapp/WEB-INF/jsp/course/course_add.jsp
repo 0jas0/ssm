@@ -34,14 +34,14 @@
             <li><label>课程开始时间</label><input name="courseStart" type="date" class="dfinput" /><i></i></li>
             <li><label>课程结束时间</label><input name="courseEnd" type="date" class="dfinput"/><i></i></li>
             <li><label>开课学期</label><div class="vocation"><select class="select1" name="semester">
-                <option value="大一上学期">大一上学期</option>
-                <option value="大一下学期">大一下学期</option>
-                <option value="大二上学期">大二上学期</option>
-                <option value="大二下学期">大二下学期</option>
-                <option value="大三上学期">大三上学期</option>
-                <option value="大三下学期">大三下学期</option>
-                <option value="大四上学期">大四上学期</option>
-                <option value="大四下学期">大四下学期</option>
+                <option value="1">大一上学期</option>
+                <option value="2">大一下学期</option>
+                <option value="3">大二上学期</option>
+                <option value="4">大二下学期</option>
+                <option value="5">大三上学期</option>
+                <option value="6">大三下学期</option>
+                <option value="7">大四上学期</option>
+                <option value="8">大四下学期</option>
             </select></div><i></i></li>
             <li><label>开课学院</label><div class="vocation">
                 <select class="select2" name="college"><option>----请选择----</option></select>

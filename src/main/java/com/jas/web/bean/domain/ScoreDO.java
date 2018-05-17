@@ -23,6 +23,7 @@ public class ScoreDO extends BaseDO{
 
     public ScoreDO(ScoreModel scoreModel){
         if (scoreModel != null){
+            this.setId(scoreModel.getId());
             this.courseId = scoreModel.getCourseId();
             this.studentId = scoreModel.getStudentId();
             this.grade= scoreModel.getGrade();

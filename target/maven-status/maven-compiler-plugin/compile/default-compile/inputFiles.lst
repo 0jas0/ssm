@@ -21,6 +21,7 @@
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/dao/ITeacherDAO.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/service/ICourseService.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/dao/ISupplementaryDAO.java
+/Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/model/EvalutionModel.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/dao/IScoreDAO.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/model/CourseModel.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/domain/StudentDO.java
@@ -28,6 +29,7 @@
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/domain/TeachingEvaluationDO.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/service/IScoreService.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/constants/TimeConstant.java
+/Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/model/EvalutionTeacherModel.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/service/IAdministrativeClassService.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/controller/StudentController.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/enums/ECourseType.java
@@ -45,6 +47,7 @@
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/domain/CourseTimePlaceDO.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/controller/AdministrativeClassController.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/service/impl/AdministrativeClassServiceImpl.java
+/Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/enums/ECourseSemester.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/dao/ICourseDAO.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/service/impl/ScoreServiceImpl.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/model/CourseTimePlaceModel.java
@@ -62,6 +65,7 @@
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/controller/CollegeMajorController.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/model/AdminModel.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/service/impl/TeacherServiceImpl.java
+/Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/model/ScoreDetailModel.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/domain/AdminDO.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/enums/ECourse.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/controller/IndexController.java

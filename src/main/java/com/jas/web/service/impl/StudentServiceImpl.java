@@ -4,15 +4,10 @@ import com.github.tobato.fastdfs.domain.FileInfo;
 import com.github.tobato.fastdfs.domain.StorePath;
 import com.github.tobato.fastdfs.exception.FdfsServerException;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
-import com.jas.web.bean.domain.AdministrativeClassDO;
-import com.jas.web.bean.domain.CollegeMajorDO;
-import com.jas.web.bean.domain.StudentDO;
-import com.jas.web.bean.domain.TeacherDO;
+import com.jas.web.bean.domain.*;
 import com.jas.web.bean.model.StudentModel;
 import com.jas.web.bean.model.TeacherModel;
-import com.jas.web.dao.IAdministrativeClassDAO;
-import com.jas.web.dao.ICollegeMajorDAO;
-import com.jas.web.dao.IStudentDAO;
+import com.jas.web.dao.*;
 import com.jas.web.exception.ParamNotValidException;
 import com.jas.web.service.IStudentService;
 import com.jas.web.utils.FileUtil;
@@ -21,12 +16,15 @@ import com.jas.web.utils.StringUtil;
 import com.sun.imageio.plugins.jpeg.JPEG;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
+import java.util.List;
 
 @Service
 public class StudentServiceImpl implements IStudentService{
@@ -42,6 +40,14 @@ public class StudentServiceImpl implements IStudentService{
     @Resource
     FastFileStorageClient fastFileStorageClient;
 
+    @Resource
+    ICourseTimePlaceDAO courseTimePlaceDAO;
+
+    @Resource
+    IChoiceCoursesDAO choiceCoursesDAO;
+
+    @Resource
+    IScoreDAO scoreDAO;
     private static final List<String> allowExt = new ArrayList<>();
 
     static {
@@ -153,5 +159,50 @@ public class StudentServiceImpl implements IStudentService{
         StudentDO studentDO = studentDAO.getStudentById(studentId);
         StudentModel studentModel = new StudentModel(studentDO);
         return studentModel;
+    }
+
+    @Override
+    public List<StudentModel> getStudentByCourseId(Integer courseId) {
+        List<Integer> classList = courseTimePlaceDAO.getClassIdByCourseId(courseId);
+        List<StudentDO> studentDOList = studentDAO.getAllStudent();
+        List<ScoreDO> scoreByCourseId = scoreDAO.getScoreByCourse(courseId);
+        List<Integer> unContainStudentId = new LinkedList<>();
+        for (ScoreDO scoreDO : scoreByCourseId){
+            unContainStudentId.add(scoreDO.getStudentId());
+        }
+        Map<Integer,List<StudentDO>> studentMap = new LinkedHashMap<>();
+        Map<Integer,StudentDO> studentDOMap = new LinkedHashMap<>();
+        for (StudentDO studentDO : studentDOList){
+            studentDOMap.put(studentDO.getId(),studentDO);
+            List<StudentDO> studentDOS = studentMap.get(studentDO.getClassId());
+            if (studentDOS == null){
+                studentDOS = new LinkedList<>();
+                studentMap.put(studentDO.getClassId(), studentDOS);
+            }
+            studentDOS.add(studentDO);
+        }
+
+        List<StudentDO> studentDOS = new LinkedList<>();
+        for (Integer classId : classList){
+            if (classId == null){
+                continue;
+            }
+            List<StudentDO> studentDOS1 = studentMap.get(classId);
+            studentDOS.addAll(studentDOS1);
+        }
+        //选修的人数
+        List<ChoiceCoursesDO> choiceCoursesDOS = choiceCoursesDAO.getChoiceByCourseId(courseId);
+        for (ChoiceCoursesDO choiceCoursesDO : choiceCoursesDOS){
+            StudentDO studentDO = studentDOMap.get(choiceCoursesDO.getStudentId());
+            studentDOS.add(studentDO);
+        }
+        List<StudentModel> studentModels = new LinkedList<>();
+        for (StudentDO studentDO : studentDOS){
+            if (unContainStudentId.contains(studentDO.getId())){
+                continue;
+            }
+            studentModels.add(new StudentModel(studentDO));
+        }
+        return studentModels;
     }
 }

@@ -32,4 +32,14 @@ public interface ICourseTimePlaceDAO {
 
     @Select("select * from beihua.course_time_place where class_id = #{classId} and is_del = 0")
     List<CourseTimePlaceDO> getCourseTimePlaceByClassId(@Param("classId") Integer classId);
+
+    @Select("select bc.semester from beihua.course_time_place bctp left join beihua.course bc on bctp.course_id = bc.id where " +
+            "class_id = #{classId} and bc.is_del = 0 and bctp.is_del = 0 order by bc.semester desc limit 1")
+    Integer getNewSemesterByClassId(@Param("classId") Integer classId);
+
+    @Select("select * from beihua.course_time_place where class_id = #{classId} and is_del = 0 group by course_id")
+    List<CourseTimePlaceDO> getUniqueCourseTimePlaceByClassId(@Param("classId") Integer classId);
+
+    @Select("select class_id from beihua.course_time_place where course_id = #{courseId} and is_del = 0 group by class_id")
+    List<Integer> getClassIdByCourseId(@Param("courseId") Integer courseId);
 }

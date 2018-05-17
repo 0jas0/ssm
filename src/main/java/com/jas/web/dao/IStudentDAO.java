@@ -33,4 +33,7 @@ public interface IStudentDAO {
 
     @Select("select * from beihua.student where id = #{studentId} and is_del = 0")
     StudentDO getStudentById(@Param("studentId") Integer studentId);
+
+    @Select("select * from beihua.student where is_del = 0")
+    List<StudentDO> getAllStudent();
 }

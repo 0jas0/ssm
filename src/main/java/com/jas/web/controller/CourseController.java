@@ -1,6 +1,8 @@
 package com.jas.web.controller;
 
+import com.jas.web.bean.domain.ChoiceCoursesDO;
 import com.jas.web.bean.model.*;
+import com.jas.web.enums.ECourseType;
 import com.jas.web.exception.ParamNotValidException;
 import com.jas.web.service.*;
 import com.jas.web.utils.PaperUtil;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -182,15 +185,80 @@ public class CourseController {
         return "courseTimePlace/courseTimePlace_edit";
     }
 
-    @RequestMapping("/cousre-schedule-by-studentId")
+    @RequestMapping("ajax/cousre-schedule-by-studentId")
     @ResponseBody
     public Object courseScheduleByStudentId(@RequestParam("studentId") Integer studentId){
         try {
-            Map<Integer,Map<Integer,String>> courseSchedule = courseService.getCourseScheduleByStudentId(studentId);
+            Map<String,Map<String,String>> courseSchedule = courseService.getCourseScheduleByStudentId(studentId);
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS,"获取课程表成功",courseSchedule);
         }catch (Exception e){
             e.printStackTrace();
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"获取课程表失败",null);
+        }
+    }
+
+    @RequestMapping("/course_schedule")
+    public String courseScheduleView(){
+        return "course/course_schedule";
+    }
+
+    @RequestMapping("/select_course")
+    public String selectCourseView(){
+        return "course/select_course";
+    }
+
+    @RequestMapping("ajax/select-course-list")
+    @ResponseBody
+    public Object ajaxSelectCourseList(){
+        try {
+            //todo 通过session获取
+            String studentId = "aaa1341234";
+            Integer id = 3;
+            StudentModel studentByStudent = studentService.getStudentByStudentId(studentId);
+            List<CourseModel> courseModels = courseService.getCourseByCollegeAndType(studentByStudent.getCollege(), ECourseType.ELECTIVE.getValue());
+            List<ChoiceCoursesDO> coursesDOS = courseService.getChoiceCourseByStudentId(id);
+            List<Integer> courseList = new LinkedList<>();
+            for (ChoiceCoursesDO choiceCoursesDO : coursesDOS) {
+                courseList.add(choiceCoursesDO.getCourseId());
+            }
+            for (CourseModel courseModel : courseModels) {
+                if (courseList.contains(courseModel.getId())) {
+                    courseModel.setIsSelected(1);
+                } else {
+                    courseModel.setIsSelected(0);
+                }
+            }
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS,"获取选择课程列表成功",courseModels);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"获取选择课程列表失败",null);
+        }
+    }
+    @RequestMapping("ajax/choice-course")
+    @ResponseBody
+    public Object ajaxChoiceCourse(@RequestParam("courseId") Integer courseId){
+        try {
+            //todo 通过session获取
+            Integer studentId = 3;
+            courseService.choiceCourse(studentId, courseId);
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS,"选择课程成功",null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"选择课程失败",null);
+        }
+    }
+
+    @RequestMapping("ajax/concel-course")
+    @ResponseBody
+    public Object ajaxConcelCourse(@RequestParam("courseId") Integer courseId){
+        try {
+            //todo 通过session获取
+            Integer studentId = 3;
+            courseService.concelCourse(studentId, courseId);
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS,"取消课程成功",null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"取消课程失败",null);
         }
     }
 

@@ -41,6 +41,7 @@ public class CourseTimePlaceModel {
             coursePlace = courseTimePlaceDO.getCoursePlace();
             courseWeekName = ECourseWeek.getDescByValue(courseWeek);
             courseName = ECourse.getDescByValue(courseTime);
+            courseTimeName = ECourse.getDescByValue(courseTime);
         }
     }
 

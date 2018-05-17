@@ -1,5 +1,7 @@
 package com.jas.web.controller;
 
+import com.jas.web.bean.model.EvalutionModel;
+import com.jas.web.bean.model.EvalutionTeacherModel;
 import com.jas.web.bean.model.TeacherModel;
 import com.jas.web.service.ITeacherEvaluationService;
 import com.jas.web.service.ITeacherService;
@@ -80,7 +82,7 @@ public class TeacherController {
 
     @RequestMapping(value = "ajax/teacher-evaluation")
     @ResponseBody
-    public Object evaluationTeacher(@RequestParam("StudentId")String studentId, @RequestParam("teacherId") String teacherId,
+    public Object evaluationTeacher(@RequestParam("studentId")String studentId, @RequestParam("teacherId") String teacherId,
                                     @RequestParam("courseId") Integer courseId, @RequestParam("evaluationGrade") Integer evaluationGrade){
         try {
             teacherEvaluationService.evaluationTeacher(studentId, teacherId, courseId, evaluationGrade);
@@ -90,6 +92,7 @@ public class TeacherController {
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"评价教师失败",null);
         }
     }
+
 
     @RequestMapping("/teacher_list")
     public String studentListView(){
@@ -107,4 +110,36 @@ public class TeacherController {
         return "teacher/teacher_edit";
     }
 
+    @RequestMapping("/evaluation_teacher")
+    public String evaluationTeacherView(){
+        return "teacher/evaluation_teacher";
+    }
+    @RequestMapping("ajax/student_evaluation_teacher_list")
+    @ResponseBody
+    public Object evaluationTeacherList(@RequestParam("studentId") Integer studentId) {
+        try {
+            List<EvalutionModel> list = teacherService.studentEvaluationTeacherList(studentId);
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS, "获取需要评级的老师列表成功", list);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED, "获取需要评级的老师列表失败", null);
+        }
+    }
+
+    @RequestMapping("view_evaluation")
+    public String viewEvaluation(){
+        return "teacher/view_evaluation";
+    }
+
+    @RequestMapping("ajax/get-evaluation-by-teacherId")
+    @ResponseBody
+    public Object getEvaluationByTeacherId(@RequestParam("teacherId") String teacherId,@RequestParam(value = "currentPage", defaultValue = "1") Integer currentPage, @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize){
+        try {
+            PaperUtil<EvalutionTeacherModel> evalutionTeacherModels = teacherService.getEvaluationByTeacherIdAndPage(teacherId, currentPage, pageSize);
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS, "老师获取评价列表成功", evalutionTeacherModels);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS, "老师获取评价列表失败", null);
+        }
+    }
 }

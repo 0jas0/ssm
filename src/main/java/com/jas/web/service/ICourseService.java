@@ -1,6 +1,7 @@
 package com.jas.web.service;
 
 
+import com.jas.web.bean.domain.ChoiceCoursesDO;
 import com.jas.web.bean.model.CourseModel;
 import com.jas.web.bean.model.CourseTimePlaceModel;
 import com.jas.web.utils.PaperUtil;
@@ -31,5 +32,19 @@ public interface ICourseService {
 
     List<CourseTimePlaceModel> getCourseTimePlaceByClassId(Integer classId);
 
-    Map<Integer,Map<Integer,String>> getCourseScheduleByStudentId(Integer studentId);
+    Map<String,Map<String,String>> getCourseScheduleByStudentId(Integer studentId);
+
+    Integer getNewSemester(Integer studentId, Integer classId);
+
+    List<CourseModel> getCourseByTeacherIdAndPage(String teacherId, Integer currentPage, Integer pageSize);
+
+    int getCourseNumByTeacherId(String teacherId);
+
+    List<CourseModel> getCourseByCollegeAndType(Integer college, Integer value);
+
+    List<ChoiceCoursesDO> getChoiceCourseByStudentId(Integer studentId);
+
+    void choiceCourse(Integer studentId, Integer courseId);
+
+    void concelCourse(Integer studentId, Integer courseId);
 }

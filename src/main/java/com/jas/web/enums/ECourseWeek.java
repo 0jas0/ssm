@@ -59,6 +59,14 @@ public enum ECourseWeek {
         return courseWeek;
     }
 
+    public static List<String> getDescs(){
+        List<String> courseWeek = new LinkedList<>();
+        for(ECourseWeek eCourseWeek : ECourseWeek.values()){
+            courseWeek.add(eCourseWeek.getDesc());
+        }
+        return courseWeek;
+    }
+
     public Integer getValue() {
         return value;
     }

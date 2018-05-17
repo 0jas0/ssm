@@ -15,18 +15,17 @@ public interface IChoiceCoursesDAO {
     @Options(useGeneratedKeys=true, keyProperty="id")
     public int addChoiceCourses(ChoiceCoursesDO choiceCoursesDO);
 
-    @Update("update beihua.choice_courses set course_id = #{courseId}, student_id = #{studentId}, modtime = unix_timestamp() where id = #{id} and is_del = 0")
-    public void updateChoiceCourse(ChoiceCoursesDO choiceCoursesDO);
 
-    @Update("update beihua.choice_courses set is_del = 1 where id = #{id}")
-    public void deleteChoiceCourse(@Param("id") Integer id);
-
-    @Select("select * from beihua.choice_courses where id = #{id} and is_del = 0")
-    public ChoiceCoursesDO getChoiceById(@Param("id") Integer id);
-
-    @Select("select * from beihua.choice_courses where is_del = 0")
-    public List<ChoiceCoursesDO> getCourseAll();
+    @Update("update beihua.choice_courses set is_del = 1 where student_id = #{studentId} and course_id = #{courseId}")
+    public void deleteByStudentIdAndCourseId(@Param("studentId") Integer studentId,@Param("courseId") Integer courseId);
 
     @Select("select * from beihua.choice_courses where student_id = #{studentId} and is_del = 0")
     public List<ChoiceCoursesDO> getCourseByStudentId(@Param("studentId") Integer studentId);
+
+    @Select("select bc.semester from beihua.choice_courses bcc left join beihua.course bc" +
+            " on bcc.course_id = bc.id where bcc.student_id = #{studentId} and bc.is_del = 0 and bcc.is_del = 0 order by bc.semester limit 1")
+    Integer getNewSemesterByStudentId(@Param("studentId")Integer studentId);
+
+    @Select("select * from beihua.choice_courses where course_id = #{courseId} and is_del = 0")
+    List<ChoiceCoursesDO> getChoiceByCourseId(@Param("courseId")Integer courseId);
 }

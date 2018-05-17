@@ -6,6 +6,7 @@ import com.jas.web.utils.PaperUtil;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface IStudentService {
     StudentModel getStudentByStudentId(String studentId);
@@ -23,4 +24,6 @@ public interface IStudentService {
     void deleteStudent(String studentId);
 
     StudentModel getStudentById(Integer studentId);
+
+    List<StudentModel> getStudentByCourseId(Integer courseId);
 }

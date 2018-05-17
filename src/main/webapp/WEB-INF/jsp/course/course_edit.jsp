@@ -43,14 +43,14 @@
             <li><label>课程开始时间</label><input name="courseStart" value="${courseModel.courseStart}" type="date" class="dfinput" /><i></i></li>
             <li><label>课程结束时间</label><input name="courseEnd" value="${courseModel.courseEnd}" type="date" class="dfinput"/><i></i></li>
             <li><label>开课学期</label><div class="vocation"><select class="select1" name="semester">
-                <option value="大一上学期" <c:if test="${courseModel.semester == '大一上学期'}">selected</c:if>>大一上学期</option>
-                <option value="大一下学期" <c:if test="${courseModel.semester == '大一下学期'}">selected</c:if>>大一下学期</option>
-                <option value="大二上学期" <c:if test="${courseModel.semester == '大二上学期'}">selected</c:if>>大二上学期</option>
-                <option value="大二下学期" <c:if test="${courseModel.semester == '大二下学期'}">selected</c:if>>大二下学期</option>
-                <option value="大三上学期" <c:if test="${courseModel.semester == '大三上学期'}">selected</c:if>>大三上学期</option>
-                <option value="大三下学期" <c:if test="${courseModel.semester == '大三下学期'}">selected</c:if>>大三下学期</option>
-                <option value="大四上学期" <c:if test="${courseModel.semester == '大四上学期'}">selected</c:if>>大四上学期</option>
-                <option value="大四下学期" <c:if test="${courseModel.semester == '大四下学期'}">selected</c:if>>大四下学期</option>
+                <option value="1" <c:if test="${courseModel.semester == 1}">selected</c:if>>大一上学期</option>
+                <option value="2" <c:if test="${courseModel.semester == 2}">selected</c:if>>大一下学期</option>
+                <option value="3" <c:if test="${courseModel.semester == 3}">selected</c:if>>大二上学期</option>
+                <option value="4" <c:if test="${courseModel.semester == 4}">selected</c:if>>大二下学期</option>
+                <option value="5" <c:if test="${courseModel.semester == 5}">selected</c:if>>大三上学期</option>
+                <option value="6" <c:if test="${courseModel.semester == 6}">selected</c:if>>大三下学期</option>
+                <option value="7" <c:if test="${courseModel.semester == 7}">selected</c:if>>大四上学期</option>
+                <option value="8" <c:if test="${courseModel.semester == 8}">selected</c:if>>大四下学期</option>
             </select></div><i></i></li>
             <li><label>开课学院</label><div class="vocation">
                 <select class="select2" name="college">
