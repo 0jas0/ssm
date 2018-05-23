@@ -46,18 +46,42 @@
     <div class="loginbox">
     
     <ul>
-    <li><input name="" type="text" class="loginuser" value="admin" onclick="JavaScript:this.value=''"/></li>
-    <li><input name="" type="text" class="loginpwd" value="密码" onclick="JavaScript:this.value=''"/></li>
-    <li><input name="" type="button" class="loginbtn" value="登录"  onclick="javascript:window.location='main.jsp'"  /><label><input name="" type="checkbox" value="" checked="checked" />记住密码</label><label><a href="#">忘记密码？</a></label></li>
+    <li><input name="username" type="text" class="loginuser" value="" /></li>
+    <li><input name="password" type="password" class="loginpwd" value="" /></li>
+    <li><select name="type" class="typeSelect">
+        <option value="0">管理员</option>
+        <option value="1">学生</option>
+        <option value="2">教师</option></select>
+    </li>
+    <li><input type="button" class="loginbtn" value="登录"  onclick="login()"  /><label><input name="" type="checkbox" value="" checked="checked" />记住密码</label><label><a href="#">忘记密码？</a></label></li>
     </ul>
     
-    
     </div>
-    
     </div>
-    
-    
-    
-    <div class="loginbm">版权所有  2013  .com 仅供学习交流，勿用于任何商业用途</div>
+    <div class="loginbm">版权所有  2018  .com 仅供学习交流，勿用于任何商业用途</div>
 </body>
 </html>
+<script type="text/javascript">
+    function login() {
+        var username = $(".loginuser").val();
+        var password = $(".loginpwd").val();
+        var type = $(".typeSelect option:selected").val();
+        $.ajax({
+            type: 'POST',
+            url: '/do-login',
+            cache: false,
+            data: {
+                "username" : username,
+                "password" : password,
+                "type" : type
+            },
+            success:function (res) {
+                if(res.status == 0){
+                    location.href = "/";
+                }else {
+                    alert(res.msg);
+                }
+            }
+        });
+    }
+</script>
