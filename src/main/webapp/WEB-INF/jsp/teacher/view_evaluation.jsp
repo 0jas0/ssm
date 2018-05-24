@@ -45,14 +45,13 @@ pageEncoding="UTF-8"%>
 </html>
 <script type="text/javascript">
     $(document).ready(function(){
-        page("202314132",1,10);
+        page(1,10);
     });
-    function page(teacherId,currentPage,pageSize) {
+    function page(currentPage,pageSize) {
         $.ajax({
             type: 'post',
             url: '/teacher/ajax/get-evaluation-by-teacherId',
             data: {
-                'teacherId' : teacherId,
                 'currentPage': currentPage,
                 'pageSize':pageSize
             },
@@ -61,6 +60,7 @@ pageEncoding="UTF-8"%>
                     var data = res.data.data;
                     var html = "";
                     data.forEach(function (item, index) {
+                        html +="<tr>";
                         html += "<td>"+item.courseId+"</td>";
                         html += '<td>'+item.courseName+'</td>';
                         html += "<td>"+item.collegeName+"</td>";
@@ -73,21 +73,21 @@ pageEncoding="UTF-8"%>
                     $("#currentPage").text(res.data.currentPage);
                     $(".paginList").empty();
                     if(res.data.currentPage != 1){
-                        $(".paginList").append("<li class=\"paginItem\"><a href=\"javascript:;\" onclick='page("+teacherId+","+(res.data.currentPage-1)+",10)'><span class=\"pagepre\"></span></a></li>");
+                        $(".paginList").append("<li class=\"paginItem\"><a href=\"javascript:;\" onclick='page(res.data.currentPage-1,10)'><span class=\"pagepre\"></span></a></li>");
                     }
 
                     var begin = ((res.data.currentPage - 2) < 1) ? 1: res.data.currentPage - 2;
                     var end = ((res.data.currentPage + 2) > res.data.totalPage)? res.data.totalPage :res.data.currentPage + 2;
                     for(var i = begin; i<= end; i++){
                         if(i == res.data.currentPage){
-                            $(".paginList").append("<li class='paginItem current'><a href='javascript:;' onclick='page("+teacherId+","+i+",10)'>"+i+"</a></li>");
+                            $(".paginList").append("<li class='paginItem current'><a href='javascript:;' onclick='page(i,10)'>"+i+"</a></li>");
                         }else {
-                            $(".paginList").append("<li class='paginItem'><a href='javascript:;' onclick='page("+teacherId+","+i+",10)'>"+i+"</a></li>");
+                            $(".paginList").append("<li class='paginItem'><a href='javascript:;' onclick='page(i,10)'>"+i+"</a></li>");
                         }
                     }
 
                     if(res.data.currentPage != res.data.totalPage){
-                        $(".paginList").append("<li class='paginItem'><a href='javascript:;' onclick='page("+teacherId+","+(res.data.currentPage+1)+",10)'><span class=\"pagenxt\"></span></a></li>");
+                        $(".paginList").append("<li class='paginItem'><a href='javascript:;' onclick='page(res.data.currentPage+1,10)'><span class=\"pagenxt\"></span></a></li>");
                     }
                     $("#studentList").empty();
                     $("#studentList").html(html);

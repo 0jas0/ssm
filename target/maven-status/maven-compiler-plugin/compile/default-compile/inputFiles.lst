@@ -52,10 +52,12 @@
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/service/impl/ScoreServiceImpl.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/model/CourseTimePlaceModel.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/dao/ICourseTimePlaceDAO.java
+/Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/model/UserModel.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/model/TeacherModel.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/domain/BaseDO.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/model/StudentModel.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/service/ICollegeMajorService.java
+/Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/interceptor/LoginInterceptor.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/service/impl/CourseServiceImpl.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/exception/StatusNotValidException.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/utils/StringUtil.java

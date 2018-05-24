@@ -35,22 +35,26 @@ public class IndexController {
                           @RequestParam("type") Integer type, HttpSession session){
         boolean flag = false;
         password = StringUtil.md5Password(password);
+        Integer id = null;
         if (type == 0){
             //登陆的是管理员
             AdminDO adminDO = adminDAO.getByName(username);
             if (adminDO != null && adminDO.getPassword().equals(password)){
+                id = adminDO.getId();
                 flag = true;
             }
         }else if (type == 1){
             //登陆的是学生
             StudentModel studentModel = studentService.getStudentByStudentId(username);
             if (studentModel != null && studentModel.getPassword().equals(password)){
+                id = studentModel.getId();
                 flag = true;
             }
         }else if (type == 2){
             //登陆的是老师
             TeacherModel teacherModel = teacherService.getByTeacherId(username);
             if (teacherModel != null && teacherModel.getPassword().equals(password)){
+                id = teacherModel.getId();
                 flag = true;
             }
         }
@@ -59,12 +63,20 @@ public class IndexController {
             UserModel userModel = new UserModel();
             userModel.setUsername(username);
             userModel.setType(type);
+            userModel.setId(id);
             session.setAttribute("userModel", userModel);
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS, "登陆成功", null);
         }else {
             //登陆失败
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED, "用户名或密码错误", null);
         }
+    }
+
+    @RequestMapping("/loginOut")
+    @ResponseBody
+    public Object loginOut(HttpSession session){
+        session.removeAttribute("userModel");
+        return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS, "退出登陆成功", null);
     }
 
     @RequestMapping("/login")

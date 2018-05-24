@@ -8,16 +8,6 @@
 <link href="/css/style.css" rel="stylesheet" type="text/css" />
 <script language="JavaScript" src="/js/jquery.js"></script>
 <script src="/js/cloud.js" type="text/javascript"></script>
-
-<script language="javascript">
-	$(function(){
-    $('.loginbox').css({'position':'absolute','left':($(window).width()-692)/2});
-	$(window).resize(function(){  
-    $('.loginbox').css({'position':'absolute','left':($(window).width()-692)/2});
-    })  
-});  
-</script> 
-
 </head>
 
 <body style="background-color:#1c77ac; background-image:url(/images/light.png); background-repeat:no-repeat; background-position:center top; overflow:hidden;">
@@ -62,6 +52,12 @@
 </body>
 </html>
 <script type="text/javascript">
+    $(function(){
+        $('.loginbox').css({'position':'absolute','left':($(window).width()-692)/2});
+        $(window).resize(function(){
+            $('.loginbox').css({'position':'absolute','left':($(window).width()-692)/2});
+        })
+    });
     function login() {
         var username = $(".loginuser").val();
         var password = $(".loginpwd").val();

@@ -5,6 +5,7 @@ import com.jas.web.enums.ESex;
 import com.jas.web.utils.DateUtil;
 
 public class TeacherModel {
+    private Integer id;
     private String teacherId;
     private String password;
     private String name;
@@ -23,6 +24,7 @@ public class TeacherModel {
 
     public TeacherModel(TeacherDO teacherDO){
         if (teacherDO != null){
+            this.id = teacherDO.getId();
             this.teacherId = teacherDO.getTeacherId();
             this.password = teacherDO.getPassword();
             this.name = teacherDO.getName();
@@ -36,6 +38,14 @@ public class TeacherModel {
             this.mobile = teacherDO.getMobile();
             this.identityCardNumber = teacherDO.getIdentityCardNumber();
         }
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTeacherId() {

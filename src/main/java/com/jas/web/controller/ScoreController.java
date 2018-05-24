@@ -1,9 +1,6 @@
 package com.jas.web.controller;
 
-import com.jas.web.bean.model.CourseModel;
-import com.jas.web.bean.model.ScoreDetailModel;
-import com.jas.web.bean.model.ScoreModel;
-import com.jas.web.bean.model.StudentModel;
+import com.jas.web.bean.model.*;
 import com.jas.web.exception.ParamNotValidException;
 import com.jas.web.service.ICourseService;
 import com.jas.web.service.IScoreService;
@@ -18,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -78,9 +76,10 @@ public class ScoreController {
 
     @RequestMapping(value = "/ajax-get-score-by-student-id")
     @ResponseBody
-    public Object getScoreByStudentId(@RequestParam("studentId") Integer studentId){
+    public Object getScoreByStudentId(HttpSession session){
         try {
-            Map<String,List<CourseModel>> scoreMap = scoreService.getScoreBystudentId(studentId);
+            UserModel userModel = (UserModel) session.getAttribute("userModel");
+            Map<String,List<CourseModel>> scoreMap = scoreService.getScoreBystudentId(userModel.getId());
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS,"获取个人成绩成功",scoreMap);
         }catch (Exception e){
             e.printStackTrace();
@@ -100,9 +99,10 @@ public class ScoreController {
 
     @RequestMapping("ajax/score-list-by-teacherId")
     @ResponseBody
-    public Object scoreListTeacherId(@RequestParam("currentPage") Integer currentPage, @RequestParam("pageSize") Integer pageSize){
+    public Object scoreListTeacherId(@RequestParam("currentPage") Integer currentPage, @RequestParam("pageSize") Integer pageSize, HttpSession session){
         try {
-            String teacherId = "202314132";
+            UserModel userModel = (UserModel) session.getAttribute("userModel");
+            String teacherId = userModel.getUsername();
             List<CourseModel> courseModel = courseService.getCourseByTeacherIdAndPage(teacherId, currentPage, pageSize);
             int totalNum = courseService.getCourseNumByTeacherId(teacherId);
             PaperUtil<CourseModel> paperUtil = new PaperUtil<>();

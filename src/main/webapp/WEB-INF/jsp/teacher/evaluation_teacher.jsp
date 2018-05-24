@@ -46,9 +46,6 @@ pageEncoding="UTF-8"%>
         $.ajax({
             type: 'post',
             url: '/teacher/ajax/student_evaluation_teacher_list',
-            data: {
-                'studentId': 3,
-            },
             success: function (res) {
                 if (res.status == 0){
                     var data = res.data;

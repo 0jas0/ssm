@@ -3,6 +3,7 @@ package com.jas.web.controller;
 import com.jas.web.bean.model.EvalutionModel;
 import com.jas.web.bean.model.EvalutionTeacherModel;
 import com.jas.web.bean.model.TeacherModel;
+import com.jas.web.bean.model.UserModel;
 import com.jas.web.service.ITeacherEvaluationService;
 import com.jas.web.service.ITeacherService;
 import com.jas.web.utils.PaperUtil;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -116,9 +118,10 @@ public class TeacherController {
     }
     @RequestMapping("ajax/student_evaluation_teacher_list")
     @ResponseBody
-    public Object evaluationTeacherList(@RequestParam("studentId") Integer studentId) {
+    public Object evaluationTeacherList(HttpSession session) {
         try {
-            List<EvalutionModel> list = teacherService.studentEvaluationTeacherList(studentId);
+            UserModel userModel =(UserModel) session.getAttribute("userModel");
+            List<EvalutionModel> list = teacherService.studentEvaluationTeacherList(userModel.getId());
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS, "获取需要评级的老师列表成功", list);
         } catch (Exception e) {
             e.printStackTrace();
@@ -133,9 +136,11 @@ public class TeacherController {
 
     @RequestMapping("ajax/get-evaluation-by-teacherId")
     @ResponseBody
-    public Object getEvaluationByTeacherId(@RequestParam("teacherId") String teacherId,@RequestParam(value = "currentPage", defaultValue = "1") Integer currentPage, @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize){
+    public Object getEvaluationByTeacherId(@RequestParam(value = "currentPage", defaultValue = "1") Integer currentPage,
+                                           @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize, HttpSession session){
         try {
-            PaperUtil<EvalutionTeacherModel> evalutionTeacherModels = teacherService.getEvaluationByTeacherIdAndPage(teacherId, currentPage, pageSize);
+            UserModel userModel = (UserModel) session.getAttribute("userModel");
+            PaperUtil<EvalutionTeacherModel> evalutionTeacherModels = teacherService.getEvaluationByTeacherIdAndPage(userModel.getUsername(), currentPage, pageSize);
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS, "老师获取评价列表成功", evalutionTeacherModels);
         }catch (Exception e){
             e.printStackTrace();

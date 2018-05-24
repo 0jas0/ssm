@@ -1,4 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -43,54 +44,74 @@ $(function(){
             <li class="active"><cite></cite><a href="#">首页</a><i></i></li>
         </ul>
     </dd>
-    <dd>
-    <div class="title">
-    <span><img src="/images/leftico01.png" /></span>学生管理
-    </div>
-    	<ul class="menuson">
-        <li><cite></cite><a href="/student/student_list" target="rightFrame">学生列表</a><i></i></li>
-        </ul>
-    </dd>
-        
-    
-    <dd>
-    <div class="title">
-    <span><img src="/images/leftico02.png" /></span>班级管理
-    </div>
-    <ul class="menuson">
-        <li><cite></cite><a href="/class/class_list" target="rightFrame">班级列表</a><i></i></li>
-        </ul>
-    </dd> 
-    
-    
-    <dd><div class="title"><span><img src="/images/leftico02.png" /></span>教师管理</div>
-    <ul class="menuson">
-        <li><cite></cite><a href="/teacher/teacher_list" target="rightFrame">教师列表</a><i></i></li>
-    </ul>
-    </dd>
+    <c:if test="${userModel.type == 0}">
+        <dd>
+        <div class="title">
+        <span><img src="/images/leftico01.png" /></span>学生管理
+        </div>
+            <ul class="menuson">
+            <li><cite></cite><a href="/student/student_list" target="rightFrame">学生列表</a><i></i></li>
+            </ul>
+        </dd>
+    </c:if>
 
-    <dd><div class="title"><span><img src="/images/leftico03.png" /></span>课程管理</div>
-    <ul class="menuson">
-        <li><cite></cite><a href="/course/course_list" target="rightFrame">课程列表</a><i></i></li>
-        <li><cite></cite><a href="/course/course_schedule" target="rightFrame">课程表</a><i></i></li>
-        <li><cite></cite><a href="/course/select_course" target="rightFrame">选择课程</a><i></i></li>
-    </ul>
-    </dd>
-
-    <dd><div class="title"><span><img src="/images/leftico01.png" /></span>成绩管理</div>
+    <c:if test="${userModel.type == 0}">
+        <dd>
+        <div class="title">
+        <span><img src="/images/leftico02.png" /></span>班级管理
+        </div>
         <ul class="menuson">
-            <li><cite></cite><a href="/score/score_student" target="rightFrame">个人成绩</a><i></i></li>
-            <li><cite></cite><a href="/score/score_list" target="rightFrame">成绩列表</a><i></i></li>
-        </ul>
-    </dd>
+            <li><cite></cite><a href="/class/class_list" target="rightFrame">班级列表</a><i></i></li>
+            </ul>
+        </dd>
+    </c:if>
 
-    <dd><div class="title"><span><img src="/images/leftico02.png" /></span>评价管理</div>
+    <c:if test="${userModel.type == 0}">
+        <dd><div class="title"><span><img src="/images/leftico02.png" /></span>教师管理</div>
         <ul class="menuson">
-            <li><cite></cite><a href="/teacher/evaluation_teacher" target="rightFrame">评价老师</a><i></i></li>
-            <li><cite></cite><a href="/teacher/view_evaluation" target="rightFrame">查看评价</a><i></i></li>
+            <li><cite></cite><a href="/teacher/teacher_list" target="rightFrame">教师列表</a><i></i></li>
         </ul>
-    </dd>
+        </dd>
+    </c:if>
+    <c:if test="${userModel.type == 0 || userModel.type == 1}">
+        <dd><div class="title"><span><img src="/images/leftico03.png" /></span>课程管理</div>
+        <ul class="menuson">
+            <c:if test="${userModel.type == 0}">
+                    <li><cite></cite><a href="/course/course_list" target="rightFrame">课程列表</a><i></i></li>
+            </c:if>
+            <c:if test="${userModel.type == 1}">
+                    <li><cite></cite><a href="/course/course_schedule" target="rightFrame">课程表</a><i></i></li>
+                    <li><cite></cite><a href="/course/select_course" target="rightFrame">选择课程</a><i></i></li>
+            </c:if>
+        </ul>
+        </dd>
+    </c:if>
 
+    <c:if test="${userModel.type == 1 || userModel.type == 2}">
+        <dd><div class="title"><span><img src="/images/leftico01.png" /></span>成绩管理</div>
+            <ul class="menuson">
+            <c:if test="${userModel.type == 1}">
+                    <li><cite></cite><a href="/score/score_student" target="rightFrame">个人成绩</a><i></i></li>
+            </c:if>
+            <c:if test="${userModel.type == 2}">
+                    <li><cite></cite><a href="/score/score_list" target="rightFrame">成绩列表</a><i></i></li>
+            </c:if>
+            </ul>
+        </dd>
+    </c:if>
+
+    <c:if test="${userModel.type == 1 || userModel.type == 2}">
+        <dd><div class="title"><span><img src="/images/leftico02.png" /></span>评价管理</div>
+            <ul class="menuson">
+                <c:if test="${userModel.type == 1}">
+                        <li><cite></cite><a href="/teacher/evaluation_teacher" target="rightFrame">评价老师</a><i></i></li>
+                </c:if>
+                <c:if test="${userModel.type == 2}">
+                        <li><cite></cite><a href="/teacher/view_evaluation" target="rightFrame">查看评价</a><i></i></li>
+                </c:if>
+            </ul>
+        </dd>
+    </c:if>
     </dl>
 </body>
 </html>

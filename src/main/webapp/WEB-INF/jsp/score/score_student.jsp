@@ -37,9 +37,6 @@ pageEncoding="UTF-8"%>
         $.ajax({
             type: 'post',
             url: '/score/ajax-get-score-by-student-id',
-            data: {
-                'studentId': 3,
-            },
             success: function (res) {
                 if (res.status == 0){
                     var data = res.data;

@@ -13,8 +13,21 @@ $(function(){
 	$(".nav li a").click(function(){
 		$(".nav li a.selected").removeClass("selected")
 		$(this).addClass("selected");
-	})	
-})	
+	})
+});
+function loginOut() {
+    $.ajax({
+        type: 'POST',
+        url: '/loginOut',
+        cache: false,
+        success:function (res) {
+            if(res.status == 0){
+                window.parent.parent.location.href = "/login";
+            }
+        }
+    });
+}
+
 </script>
 
 
@@ -30,15 +43,12 @@ $(function(){
     <ul>
     <li><span><img src="/images/help.png" title="帮助"  class="helpimg"/></span><a href="#">帮助</a></li>
     <li><a href="#">关于</a></li>
-    <li><a href="login.jsp" target="_parent">退出</a></li>
+    <li><a onclick="loginOut()">退出</a></li>
     </ul>
      
     <div class="user">
-    <span>管理员名称</span>
-    <i>消息</i>
-    <b>5</b>
+    <span>${userModel.username}</span>
     </div>    
-    
     </div>
 </body>
 </html>

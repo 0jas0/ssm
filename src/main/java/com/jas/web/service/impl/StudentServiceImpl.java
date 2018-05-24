@@ -61,7 +61,10 @@ public class StudentServiceImpl implements IStudentService{
     @Override
     public StudentModel getStudentByStudentId(String studentId) {
         StudentDO studentDO = studentDAO.getStudentByStudentId(studentId);
-        return new StudentModel(studentDO);
+        if (studentDO != null){
+            return new StudentModel(studentDO);
+        }
+        return null;
     }
 
     @Override

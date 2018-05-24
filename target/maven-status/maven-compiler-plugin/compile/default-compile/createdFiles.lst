@@ -50,6 +50,7 @@ com/jas/web/service/impl/ScoreServiceImpl.class
 com/jas/web/service/ICourseService.class
 com/jas/web/utils/PaperUtil.class
 com/jas/web/service/IAdministrativeClassService.class
+com/jas/web/interceptor/LoginInterceptor.class
 com/jas/web/bean/domain/CourseDO.class
 com/jas/web/dao/IScoreDAO.class
 com/jas/web/dao/ISupplementaryDAO.class

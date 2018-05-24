@@ -1,9 +1,19 @@
 package com.jas.web.bean.model;
 
 public class UserModel {
+    private Integer id;
+
     private String username;
 
     private Integer type;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -187,9 +188,10 @@ public class CourseController {
 
     @RequestMapping("ajax/cousre-schedule-by-studentId")
     @ResponseBody
-    public Object courseScheduleByStudentId(@RequestParam("studentId") Integer studentId){
+    public Object courseScheduleByStudentId(HttpSession session){
         try {
-            Map<String,Map<String,String>> courseSchedule = courseService.getCourseScheduleByStudentId(studentId);
+            UserModel userModel = (UserModel) session.getAttribute("userModel");
+            Map<String,Map<String,String>> courseSchedule = courseService.getCourseScheduleByStudentId(userModel.getId());
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS,"获取课程表成功",courseSchedule);
         }catch (Exception e){
             e.printStackTrace();
@@ -209,11 +211,11 @@ public class CourseController {
 
     @RequestMapping("ajax/select-course-list")
     @ResponseBody
-    public Object ajaxSelectCourseList(){
+    public Object ajaxSelectCourseList(HttpSession session){
         try {
-            //todo 通过session获取
-            String studentId = "aaa1341234";
-            Integer id = 3;
+            UserModel userModel = (UserModel)session.getAttribute("userModel");
+            String studentId = userModel.getUsername();
+            Integer id = userModel.getId();
             StudentModel studentByStudent = studentService.getStudentByStudentId(studentId);
             List<CourseModel> courseModels = courseService.getCourseByCollegeAndType(studentByStudent.getCollege(), ECourseType.ELECTIVE.getValue());
             List<ChoiceCoursesDO> coursesDOS = courseService.getChoiceCourseByStudentId(id);
@@ -236,10 +238,10 @@ public class CourseController {
     }
     @RequestMapping("ajax/choice-course")
     @ResponseBody
-    public Object ajaxChoiceCourse(@RequestParam("courseId") Integer courseId){
+    public Object ajaxChoiceCourse(@RequestParam("courseId") Integer courseId,HttpSession session){
         try {
-            //todo 通过session获取
-            Integer studentId = 3;
+            UserModel userModel = (UserModel) session.getAttribute("userModel");
+            Integer studentId = userModel.getId();
             courseService.choiceCourse(studentId, courseId);
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS,"选择课程成功",null);
         }catch (Exception e){
@@ -250,10 +252,11 @@ public class CourseController {
 
     @RequestMapping("ajax/concel-course")
     @ResponseBody
-    public Object ajaxConcelCourse(@RequestParam("courseId") Integer courseId){
+    public Object ajaxConcelCourse(@RequestParam("courseId") Integer courseId, HttpSession session){
         try {
             //todo 通过session获取
-            Integer studentId = 3;
+            UserModel userModel = (UserModel) session.getAttribute("userModel");
+            Integer studentId = userModel.getId();
             courseService.concelCourse(studentId, courseId);
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS,"取消课程成功",null);
         }catch (Exception e){
