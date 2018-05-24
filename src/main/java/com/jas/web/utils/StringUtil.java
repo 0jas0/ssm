@@ -3,6 +3,7 @@
  */
 package com.jas.web.utils;
 
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.util.StringUtils;
 
 import java.io.UnsupportedEncodingException;
@@ -636,6 +637,10 @@ public class StringUtil extends StringUtils{
             return "";
         }
 
+    }
+
+    public static byte[] nettyBytes(String str){
+        return (str+System.getProperty("line.separator")).getBytes();
     }
     public static void main(String[] args) {
         String uuid = getUUID();

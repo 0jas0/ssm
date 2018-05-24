@@ -1,19 +1,28 @@
 package com.jas.web.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.jas.web.bean.domain.*;
+import com.jas.web.bean.model.ChoiceCourseModel;
 import com.jas.web.bean.model.CourseModel;
 import com.jas.web.bean.model.CourseTimePlaceModel;
 import com.jas.web.bean.model.StudentModel;
 import com.jas.web.dao.*;
 import com.jas.web.enums.ECourse;
 import com.jas.web.enums.ECourseWeek;
+import com.jas.web.helper.NettyClient;
 import com.jas.web.service.ICourseService;
 import com.jas.web.service.IStudentService;
 import com.jas.web.utils.PaperUtil;
+import com.jas.web.utils.StringUtil;
+import io.netty.buffer.Unpooled;
+import io.netty.channel.Channel;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
 import java.util.*;
 
 @Service
@@ -265,17 +274,24 @@ public class CourseServiceImpl implements ICourseService{
     }
 
     @Override
-    @Transactional
     public void choiceCourse(Integer studentId, Integer courseId) {
-        ChoiceCoursesDO choiceCoursesDO = new ChoiceCoursesDO();
-        choiceCoursesDO.setStudentId(studentId);
-        choiceCoursesDO.setCourseId(courseId);
-        choiceCoursesDAO.addChoiceCourses(choiceCoursesDO);
+        Channel channel = NettyClient.channel;
+        ChoiceCourseModel choiceCourseModel = new ChoiceCourseModel();
+        choiceCourseModel.setStudentId(studentId);
+        choiceCourseModel.setCourseId(courseId);
+        choiceCourseModel.setType(0);
+        String jsonString = JSONObject.toJSONString(choiceCourseModel);
+        channel.writeAndFlush(Unpooled.copiedBuffer(StringUtil.nettyBytes(jsonString)));
     }
 
     @Override
-    @Transactional
     public void concelCourse(Integer studentId, Integer courseId) {
-        choiceCoursesDAO.deleteByStudentIdAndCourseId(studentId,courseId);
+        Channel channel = NettyClient.channel;
+        ChoiceCourseModel choiceCourseModel = new ChoiceCourseModel();
+        choiceCourseModel.setStudentId(studentId);
+        choiceCourseModel.setCourseId(courseId);
+        choiceCourseModel.setType(1);
+        String jsonString = JSONObject.toJSONString(choiceCourseModel);
+        channel.writeAndFlush(Unpooled.copiedBuffer(StringUtil.nettyBytes(jsonString)));
     }
 }

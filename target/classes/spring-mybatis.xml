@@ -25,6 +25,7 @@
             <list>
                 <value>classpath:jdbc.properties</value>
                 <value>classpath:fastdfs.properties</value>
+                <value>classpath:netty.properties</value>
             </list>
         </property>
         <property name="fileEncoding" value="UTF-8"/>

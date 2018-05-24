@@ -34,6 +34,7 @@
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/controller/StudentController.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/enums/ECourseType.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/domain/CollegeMajorDO.java
+/Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/utils/MarshallingCodeCFactory.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/service/impl/StudentServiceImpl.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/dao/IStudentDAO.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/utils/DateUtil.java
@@ -53,7 +54,9 @@
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/model/CourseTimePlaceModel.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/dao/ICourseTimePlaceDAO.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/model/UserModel.java
+/Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/helper/NettyClient.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/model/TeacherModel.java
+/Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/model/ChoiceCourseModel.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/domain/BaseDO.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/model/StudentModel.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/service/ICollegeMajorService.java

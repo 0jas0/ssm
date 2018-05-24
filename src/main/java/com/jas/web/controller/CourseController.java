@@ -4,9 +4,11 @@ import com.jas.web.bean.domain.ChoiceCoursesDO;
 import com.jas.web.bean.model.*;
 import com.jas.web.enums.ECourseType;
 import com.jas.web.exception.ParamNotValidException;
+import com.jas.web.helper.NettyClient;
 import com.jas.web.service.*;
 import com.jas.web.utils.PaperUtil;
 import com.jas.web.utils.ResponseUtil;
+import io.netty.channel.Channel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -254,7 +256,6 @@ public class CourseController {
     @ResponseBody
     public Object ajaxConcelCourse(@RequestParam("courseId") Integer courseId, HttpSession session){
         try {
-            //todo 通过session获取
             UserModel userModel = (UserModel) session.getAttribute("userModel");
             Integer studentId = userModel.getId();
             courseService.concelCourse(studentId, courseId);
