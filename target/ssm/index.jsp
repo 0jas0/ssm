@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<form  method="POST" enctype="multipart/form-data" action="/user/ajax/uploadFile">
+<form  method="POST" enctype="multipart/form-data" action="/ssm/user/ajax/uploadFile">
     <input type="file" name="uploadFile" id="uploadFile"/>
     <input type="submit" name="sure" value="提交"/>
 </form>
