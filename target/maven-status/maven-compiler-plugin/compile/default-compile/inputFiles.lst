@@ -34,7 +34,6 @@
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/controller/StudentController.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/enums/ECourseType.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/domain/CollegeMajorDO.java
-/Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/utils/MarshallingCodeCFactory.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/service/impl/StudentServiceImpl.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/dao/IStudentDAO.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/utils/DateUtil.java
