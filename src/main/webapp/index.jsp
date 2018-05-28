@@ -11,15 +11,9 @@
     <title>Title</title>
 </head>
 <body>
-<marquee width="100%" hight="200px" bgcolor="red" behavior="" direction="">
-    浩然小姐姐：
-    外在美是你的资本，
-    内在美是你的涵养，
-    温柔是你的味道，
-    贤惠是你的本质，
-    善良是你的天性，
-    快乐是我给你的祝福，
-    祝你青春常在!
-</marquee>
+<form  method="POST" enctype="multipart/form-data" action="/user/ajax/uploadFile">
+    <input type="file" name="uploadFile" id="uploadFile"/>
+    <input type="submit" name="sure" value="提交"/>
+</form>
 </body>
 </html>
