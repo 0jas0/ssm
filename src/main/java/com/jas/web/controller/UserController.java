@@ -49,6 +49,7 @@ public class UserController {
         if (filename.endsWith(".xlsx") || filename.endsWith(".xls")) {
             Workbook workbook = null;
             try {
+                System.out.println("导出开始");
                 FileInputStream inputStream = (FileInputStream) file.getInputStream();
                 workbook = ExcelUtil.getWorkbook(inputStream, filename);
                 List<ExcelModel> dataList = excelFileService.getDataByExcel(workbook);
@@ -69,6 +70,7 @@ public class UserController {
                 // 这个类主要来发送邮件
                 SimpleMailSender sms = new SimpleMailSender();
                 sms.sendHtmlMail(mailInfo, "/var/tmp/"+fileName, fileName); // 发送html格式
+                System.out.println("导出结束");
             } catch (IOException e) {
                 return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED, "上传文件失败", null);
             }
