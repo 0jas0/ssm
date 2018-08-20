@@ -39,6 +39,9 @@ public class CourseController {
     @Resource
     IStudentService studentService;
 
+    @Resource
+    ICourseService iCourseService;
+
     @RequestMapping("ajax/modify-course")
     @ResponseBody
     public Object modifyCourse(CourseModel courseModel) {

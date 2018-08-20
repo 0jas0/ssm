@@ -16,6 +16,7 @@ import com.jas.web.utils.PaperUtil;
 import com.jas.web.utils.StringUtil;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -293,5 +294,9 @@ public class CourseServiceImpl implements ICourseService{
         choiceCourseModel.setType(1);
         String jsonString = JSONObject.toJSONString(choiceCourseModel);
         channel.writeAndFlush(Unpooled.copiedBuffer(StringUtil.nettyBytes(jsonString)));
+    }
+
+    public void test1(){
+        System.out.println("aa");
     }
 }
