@@ -20,4 +20,13 @@ public class ChoiceCoursesDO extends BaseDO{
     public void setStudentId(Integer studentId) {
         this.studentId = studentId;
     }
+
+    @Override
+    public String toString() {
+        String superString = super.toString();
+        return superString + "ChoiceCoursesDO{" +
+                "courseId=" + courseId +
+                ", studentId=" + studentId +
+                '}';
+    }
 }

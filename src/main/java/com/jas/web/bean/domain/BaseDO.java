@@ -37,4 +37,14 @@ public class BaseDO {
     public void setModtime(Long modtime) {
         this.modtime = modtime;
     }
+
+    @Override
+    public String toString() {
+        return "BaseDO{" +
+                "id=" + id +
+                ", isDel=" + isDel +
+                ", addtime=" + addtime +
+                ", modtime=" + modtime +
+                '}';
+    }
 }
