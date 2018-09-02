@@ -1,6 +1,7 @@
 package com.jas.web.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.jas.web.annotation.MethodTime;
 import com.jas.web.bean.domain.*;
 import com.jas.web.bean.model.ChoiceCourseModel;
 import com.jas.web.bean.model.CourseModel;
@@ -269,6 +270,7 @@ public class CourseServiceImpl implements ICourseService{
     }
 
     @Override
+    @MethodTime
     public List<ChoiceCoursesDO> getChoiceCourseByStudentId(Integer studentId) {
         List<ChoiceCoursesDO> coursesDOS = choiceCoursesDAO.getCourseByStudentId(studentId);
         return coursesDOS;

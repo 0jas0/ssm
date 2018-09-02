@@ -103,4 +103,6 @@
             <bean class="com.github.tobato.fastdfs.conn.PooledConnectionFactory"/>
         </constructor-arg>
     </bean>
+    <!--开启aop自动代理-->
+    <aop:aspectj-autoproxy />
 </beans>
