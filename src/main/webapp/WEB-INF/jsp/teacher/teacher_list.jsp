@@ -30,10 +30,7 @@ pageEncoding="UTF-8"%>
         </ul>
         
         
-        <ul class="toolbar1">
-        <li><span><img src="/images/t05.png" /></span>设置</li>
-        </ul>
-    
+
     </div>
     
     

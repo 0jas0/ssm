@@ -28,12 +28,8 @@ pageEncoding="UTF-8"%>
         <li class="editStudent"><span><img src="/images/t02.png" /></span>修改</li>
         <li class="removeStudent"><span><img src="/images/t03.png" /></span>删除</li>
         </ul>
-        
-        
-        <ul class="toolbar1">
-        <li><span><img src="/images/t05.png" /></span>设置</li>
-        </ul>
-    
+
+
     </div>
     
     
@@ -43,7 +39,6 @@ pageEncoding="UTF-8"%>
         <th></th>
         <th>学号<i class="sort"><img src="/images/px.gif" /></i></th>
         <th>姓名</th>
-        <th>图片</th>
         <th>出生日期</th>
         <th>性别</th>
         <th>政治面貌</th>
@@ -130,7 +125,6 @@ pageEncoding="UTF-8"%>
                         html += '<tr><td><input name=\"selectFlag\" type=\"checkbox\" /></td>';
                         html += "<td>"+item.studentId+"</td>";
                         html += '<td>'+item.name+'</td>';
-                        html += "<td><img src='http://www.xiaoyuanlove.com.cn/"+item.photo+"' style=\"width: 80px;height: 90px\" /></td>";
                         html += "<td>"+item.bornDate+"</td>";
                         html += "<td>"+item.sex+"</td>";
                         html += "<td>"+item.politicalOutlook+"</td>";

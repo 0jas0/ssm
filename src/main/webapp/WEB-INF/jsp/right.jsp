@@ -54,11 +54,7 @@ $(document).ready(function(){
         <li><span><img src="/images/t03.png" /></span>删除</li>
         <li><span><img src="/images/t04.png" /></span>统计</li>
         </ul>
-        
-        
-        <ul class="toolbar1">
-        <li><span><img src="/images/t05.png" /></span>设置</li>
-        </ul>
+
     
     </div>
     

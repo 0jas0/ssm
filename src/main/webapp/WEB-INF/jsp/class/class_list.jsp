@@ -28,11 +28,6 @@ pageEncoding="UTF-8"%>
         <li class="editClass"><span><img src="/images/t02.png" /></span>修改</li>
         <li class="removeClass"><span><img src="/images/t03.png" /></span>删除</li>
         </ul>
-        
-        
-        <ul class="toolbar1">
-        <li><span><img src="/images/t05.png" /></span>设置</li>
-        </ul>
     
     </div>
     

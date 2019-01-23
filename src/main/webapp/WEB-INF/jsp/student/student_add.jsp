@@ -31,7 +31,6 @@
             <li><label>学号</label><input name="studentId" type="text" class="dfinput" /><i></i></li>
             <li><label>密码</label><input name="password" type="password" class="dfinput" /><i></i></li>
             <li><label>姓名</label><input name="name" type="text" class="dfinput" /><i></i></li>
-            <li><label>图片</label> <form id = "studentAdd" method="POST" enctype="multipart/form-data"><input name="image" type="file" /></form><i></i></li>
             <li><label>出生日期</label><input class="dfinput" name="bornDate" type="date"/><i></i></li>
             <li><label>政治面貌</label><input name="politicalOutlook" type="text" class="dfinput" /><i></i></li>
             <li><label>籍贯</label><input name="nativePlace" type="text" class="dfinput" /><i></i></li>

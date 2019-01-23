@@ -86,10 +86,10 @@ public class AdministrativeClassController {
         try {
             //数据的校验
             administrativeClassService.deleteClass(id);
-            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS, "删除班级成功", null);
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS, "删除班级成功", "");
         }catch (Exception e){
             e.printStackTrace();
-            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"删除班级失败",null);
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"删除班级失败","");
         }
     }
 

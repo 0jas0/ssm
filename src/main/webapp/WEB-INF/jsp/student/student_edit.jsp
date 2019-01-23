@@ -31,7 +31,6 @@
             <li><label>学号</label><input name="studentId" type="text" class="dfinput" value="${studentModel.studentId}" readonly/><i></i></li>
             <li><label>密码</label><input name="password" type="password" class="dfinput"/><i></i></li>
             <li><label>姓名</label><input name="name" type="text" class="dfinput" value="${studentModel.name}"/><i></i></li>
-            <li><label>图片</label><img src="http://www.xiaoyuanlove.com.cn/${studentModel.photo}" style="width: 50px;height: 80px"/><form id = "studentModify" method="POST" enctype="multipart/form-data"><input name="image" type="file" /><input name="student" value="${studentModel.studentId}" type="hidden"></form><i></i></li>
             <li><label>出生日期</label><input name="bornDate" class="dfinput" type="date" value="${studentModel.bornDate}"/><i></i></li>
             <li><label>政治面貌</label><input name="politicalOutlook" type="text" class="dfinput" value="${studentModel.politicalOutlook}"/><i></i></li>
             <li><label>籍贯</label><input name="nativePlace" type="text" class="dfinput" value="${studentModel.nativePlace}"/><i></i></li>
