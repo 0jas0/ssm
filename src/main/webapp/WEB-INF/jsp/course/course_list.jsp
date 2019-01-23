@@ -99,8 +99,9 @@ pageEncoding="UTF-8"%>
                         }
                     });
                 });
+                location.href = "/course/course_list";
+
             }
-            location.href = "/course/course_list";
         });
 
 

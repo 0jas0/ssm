@@ -81,13 +81,14 @@ pageEncoding="UTF-8"%>
                     $.ajax({
                         type: 'post',
                         url: '/course/ajax/delete-course-time-place?id='+id,
+                        cache: false,
                         success: function (res) {
                             console.log(res)
                         }
                     });
                 });
+                location.href = "/course/course_time_place_list?courseId="+${courseId};
             }
-            location.href = "/course/course_time_place_list?courseId="+${courseId};
         });
         page(${courseId});
 

@@ -88,14 +88,16 @@ pageEncoding="UTF-8"%>
                     var id = $(this).closest("tr").find("td:eq(1)").text();
                     $.ajax({
                         type: 'post',
-                        url: '/class/ajax-delete-class?id='+id,
+                        url: '/class/ajax-delete-class',
+                        cache: false,
+                        data:{"id": id},
                         success: function (res) {
                             console.log(res)
                         }
                     });
                 });
+                location.href = "/class/class_list";
             }
-            location.href = "/class/class_list";
         });
 
 

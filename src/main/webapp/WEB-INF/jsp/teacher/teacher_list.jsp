@@ -97,8 +97,8 @@ pageEncoding="UTF-8"%>
                         }
                     });
                 });
+                location.href = "/teacher/teacher_list";
             }
-            location.href = "/teacher/teacher_list";
         });
 
 
