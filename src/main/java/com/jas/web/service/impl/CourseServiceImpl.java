@@ -182,6 +182,16 @@ public class CourseServiceImpl implements ICourseService{
         Map<Integer, CourseDO> courseDOMap = new HashMap<>();
         for (CourseDO courseDO : courseAll){
             courseDOMap.put(courseDO.getId(), courseDO);
+            // 选修的课程，先删除
+            if (courseDO.getType() == 0){
+                Iterator<CourseTimePlaceDO> iterator = timePlaceModelList.iterator();
+                while (iterator.hasNext()){
+                    CourseTimePlaceDO courseTimePlaceDO = iterator.next();
+                    if (courseTimePlaceDO.getCourseId() == courseDO.getId()){
+                        iterator.remove();
+                    }
+                }
+            }
         }
         for (ChoiceCoursesDO choiceCoursesDO : choiceCoursesDOS){
             List<CourseTimePlaceDO> courseTimePlace = courseTimePlaceDAO.getCourseTimePlaceByCourseId(choiceCoursesDO.getCourseId());
@@ -278,27 +288,15 @@ public class CourseServiceImpl implements ICourseService{
 
     @Override
     public void choiceCourse(Integer studentId, Integer courseId) {
-        Channel channel = NettyClient.channel;
-        ChoiceCourseModel choiceCourseModel = new ChoiceCourseModel();
-        choiceCourseModel.setStudentId(studentId);
-        choiceCourseModel.setCourseId(courseId);
-        choiceCourseModel.setType(0);
-        String jsonString = JSONObject.toJSONString(choiceCourseModel);
-        channel.writeAndFlush(Unpooled.copiedBuffer(StringUtil.nettyBytes(jsonString)));
+        ChoiceCoursesDO choiceCoursesDO = new ChoiceCoursesDO();
+        choiceCoursesDO.setStudentId(studentId);
+        choiceCoursesDO.setCourseId(courseId);
+        choiceCoursesDAO.addChoiceCourses(choiceCoursesDO);
     }
 
     @Override
     public void concelCourse(Integer studentId, Integer courseId) {
-        Channel channel = NettyClient.channel;
-        ChoiceCourseModel choiceCourseModel = new ChoiceCourseModel();
-        choiceCourseModel.setStudentId(studentId);
-        choiceCourseModel.setCourseId(courseId);
-        choiceCourseModel.setType(1);
-        String jsonString = JSONObject.toJSONString(choiceCourseModel);
-        channel.writeAndFlush(Unpooled.copiedBuffer(StringUtil.nettyBytes(jsonString)));
+        choiceCoursesDAO.deleteByStudentIdAndCourseId(studentId, courseId);
     }
 
-    public void test1(){
-        System.out.println("aa");
-    }
 }

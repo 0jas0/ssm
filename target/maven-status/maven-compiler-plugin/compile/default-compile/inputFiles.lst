@@ -1,5 +1,6 @@
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/exception/RecordNotExistException.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/dao/ICollegeMajorDAO.java
+/Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/aspect/AspectTime.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/dao/IChoiceCoursesDAO.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/exception/ParamNotValidException.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/service/impl/CollegeMajorServiceImpl.java
@@ -34,6 +35,7 @@
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/controller/StudentController.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/enums/ECourseType.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/domain/CollegeMajorDO.java
+/Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/annotation/MethodTime.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/service/impl/StudentServiceImpl.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/dao/IStudentDAO.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/utils/DateUtil.java
@@ -43,8 +45,8 @@
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/exception/UserException.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/dao/IAdministrativeClassDAO.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/controller/CourseController.java
-/Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/service/ITeacherService.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/domain/CourseTimePlaceDO.java
+/Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/service/ITeacherService.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/controller/AdministrativeClassController.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/service/impl/AdministrativeClassServiceImpl.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/enums/ECourseSemester.java
@@ -54,6 +56,7 @@
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/dao/ICourseTimePlaceDAO.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/model/UserModel.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/helper/NettyClient.java
+/Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/test/SpringTest.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/model/TeacherModel.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/model/ChoiceCourseModel.java
 /Users/jas/Programs/workspace/ssm/src/main/java/com/jas/web/bean/domain/BaseDO.java
