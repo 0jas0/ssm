@@ -150,7 +150,11 @@ public class CourseServiceImpl implements ICourseService{
             if (courseTimePlaceDO.getClassId() == null){
                 courseTimePlaceModel.setClassName("");
             }else {
-                courseTimePlaceModel.setClassName(administrativeClassDOMap.get(courseTimePlaceDO.getClassId()).getName());
+                if (administrativeClassDOMap.get(courseTimePlaceDO.getClassId()) == null){
+                    courseTimePlaceModel.setClassName("");
+                }else {
+                    courseTimePlaceModel.setClassName(administrativeClassDOMap.get(courseTimePlaceDO.getClassId()).getName());
+                }
             }
             list.add(courseTimePlaceModel);
         }

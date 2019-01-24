@@ -5,17 +5,6 @@
 <title>无标题文档</title>
 <link href="/css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/js/jquery.js"></script>
-
-<script language="javascript">
-	$(function(){
-    $('.error').css({'position':'absolute','left':($(window).width()-490)/2});
-	$(window).resize(function(){  
-    $('.error').css({'position':'absolute','left':($(window).width()-490)/2});
-    })  
-});  
-</script> 
-
-
 </head>
 
 

@@ -91,16 +91,18 @@ pageEncoding="UTF-8"%>
             if (confirm("确认删除这些数据？") == true){
                 $("input[name='selectFlag']:checked").each(function () {
                     var id = $(this).closest("tr").find("td:eq(1)").text();
+                    console.log(id);
                     $.ajax({
                         type: 'post',
+                        cache: false,
                         url: '/course/ajax/delete-course?id='+id,
+                        dataType: "json",
                         success: function (res) {
                             console.log(res)
                         }
                     });
                 });
                 location.href = "/course/course_list";
-
             }
         });
 
