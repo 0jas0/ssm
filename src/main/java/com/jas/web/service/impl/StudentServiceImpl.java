@@ -112,7 +112,7 @@ public class StudentServiceImpl implements IStudentService{
                 studentModel.setCollegeName(collegeMajorDOMap.get(studentDO.getCollege()).getName());
             }
             if (collegeMajorDOMap.get(studentDO.getMajor()) != null){
-                studentModel.setMajorName(collegeMajor.get(studentDO.getMajor()).getName());
+                studentModel.setMajorName(collegeMajorDOMap.get(studentDO.getMajor()).getName());
             }
             if (administrativeClassDOMap.get(studentDO.getClassId()) != null){
                 studentModel.setClassName(administrativeClassDOMap.get(studentDO.getClassId()).getName());
