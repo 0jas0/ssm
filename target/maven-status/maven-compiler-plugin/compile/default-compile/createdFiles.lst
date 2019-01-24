@@ -6,6 +6,7 @@ com/jas/web/exception/ParamNotValidException.class
 com/jas/web/dao/ITeacherDAO.class
 com/jas/web/bean/domain/CollegeMajorDO.class
 com/jas/web/bean/model/EvalutionTeacherModel.class
+com/jas/web/bean/model/UserModel.class
 com/jas/web/service/impl/SystemSettingServiceImpl.class
 com/jas/web/exception/StatusNotValidException.class
 com/jas/web/enums/ECourse.class
@@ -31,12 +32,14 @@ com/jas/web/bean/model/StudentModel.class
 com/jas/web/constants/TimeConstant.class
 com/jas/web/controller/TeacherController.class
 com/jas/web/bean/domain/CourseTimePlaceDO.class
+com/jas/web/test/test.class
 com/jas/web/bean/domain/SystemSettingDO.class
 com/jas/web/bean/domain/TeachingEvaluationDO.class
 com/jas/web/bean/model/ScoreDetailModel.class
 com/jas/web/helper/NettyClient$1.class
 com/jas/web/bean/domain/TeacherDO.class
 com/jas/web/enums/ECourseType.class
+com/jas/web/test/SpringTest.class
 com/jas/web/utils/ResponseUtil.class
 com/jas/web/dao/IStudentDAO.class
 com/jas/web/service/IStudentService.class
@@ -53,6 +56,7 @@ com/jas/web/dao/IAdministrativeClassDAO.class
 com/jas/web/bean/model/TeacherModel.class
 com/jas/web/helper/NettyClient.class
 com/jas/web/bean/domain/AdminDO.class
+com/jas/web/aspect/AspectTime.class
 com/jas/web/bean/model/CourseTimePlaceModel.class
 com/jas/web/bean/model/CourseModel.class
 com/jas/web/dao/ICourseTimePlaceDAO.class
@@ -76,6 +80,7 @@ com/jas/web/interceptor/LoginInterceptor.class
 com/jas/web/bean/domain/CourseDO.class
 com/jas/web/dao/IScoreDAO.class
 com/jas/web/dao/ISupplementaryDAO.class
+com/jas/web/annotation/MethodTime.class
 com/jas/web/bean/domain/StudentDO.class
 com/jas/web/controller/AdministrativeClassController.class
 com/jas/web/bean/model/SystemSettingModel.class
