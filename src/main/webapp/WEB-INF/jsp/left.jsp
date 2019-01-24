@@ -81,7 +81,9 @@ $(function(){
             </c:if>
             <c:if test="${userModel.type == 1}">
                     <li><cite></cite><a href="/course/course_schedule" target="rightFrame">课程表</a><i></i></li>
+                <c:if test="${sysModel.canChoiceCourse}">
                     <li><cite></cite><a href="/course/select_course" target="rightFrame">选择课程</a><i></i></li>
+                </c:if>
             </c:if>
         </ul>
         </dd>
@@ -112,6 +114,14 @@ $(function(){
             </ul>
         </dd>
     </c:if>
+
+        <c:if test="${userModel.type == 0}">
+            <dd><div class="title"><span><img src="/images/leftico02.png" /></span>系统设置</div>
+                <ul class="menuson">
+                    <li><cite></cite><a href="/sys/sys_view" target="rightFrame">系统设置</a><i></i></li>
+                </ul>
+            </dd>
+        </c:if>
     </dl>
 </body>
 </html>

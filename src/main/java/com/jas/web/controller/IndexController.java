@@ -2,11 +2,14 @@ package com.jas.web.controller;
 
 import com.jas.web.bean.domain.AdminDO;
 import com.jas.web.bean.model.StudentModel;
+import com.jas.web.bean.model.SystemSettingModel;
 import com.jas.web.bean.model.TeacherModel;
 import com.jas.web.bean.model.UserModel;
 import com.jas.web.dao.IAdminDAO;
 import com.jas.web.service.IStudentService;
+import com.jas.web.service.ISystemSettingService;
 import com.jas.web.service.ITeacherService;
+import com.jas.web.utils.DateUtil;
 import com.jas.web.utils.ResponseUtil;
 import com.jas.web.utils.StringUtil;
 import org.springframework.stereotype.Controller;
@@ -16,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import javax.xml.crypto.Data;
+import java.util.Date;
 
 @Controller
 public class IndexController {
@@ -28,6 +33,9 @@ public class IndexController {
 
     @Resource
     ITeacherService teacherService;
+
+    @Resource
+    ISystemSettingService systemSettingService;
 
     @RequestMapping("/do-login")
     @ResponseBody
@@ -59,12 +67,20 @@ public class IndexController {
             }
         }
         if (flag){
+            SystemSettingModel systemSettingModel = systemSettingService.getSystemSettingModel();
+            String nowData = DateUtil.getNowTimeByFormat("yyyy-MM-dd");
+            long nowSeconds = DateUtil.getMillisFromStringByFormat(nowData, "yyyy-MM-dd") / 1000;
+            if (Double.compare(nowSeconds, systemSettingModel.getChoiceStartTime()) >= 0 &&
+                    Double.compare(nowSeconds, systemSettingModel.getChoiceEndTime()) <= 0){
+                systemSettingModel.setCanChoiceCourse(true);
+            }
             //登陆成功
             UserModel userModel = new UserModel();
             userModel.setUsername(username);
             userModel.setType(type);
             userModel.setId(id);
             session.setAttribute("userModel", userModel);
+            session.setAttribute("sysModel", systemSettingModel);
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS, "登陆成功", null);
         }else {
             //登陆失败
