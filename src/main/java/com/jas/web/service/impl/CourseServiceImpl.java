@@ -277,7 +277,11 @@ public class CourseServiceImpl implements ICourseService{
         List<CourseModel> courseModelList = new LinkedList<>();
         for (CourseDO courseDO : courseDOList){
             CourseModel courseModel = new CourseModel(courseDO);
-            courseModel.setTeacherName(map.get(courseDO.getTeacherId()).getName());
+            if (map.get(courseDO.getTeacherId()) != null){
+                courseModel.setTeacherName(map.get(courseDO.getTeacherId()).getName());
+            }else {
+                courseModel.setTeacherName("");
+            }
             courseModelList.add(courseModel);
         }
         return courseModelList;
