@@ -24,6 +24,10 @@ public interface ITeacherDAO {
     @Select("select * from beihua.teacher where teacher_id = #{teacherId} and is_del = 0")
     public TeacherDO getTeacherByTeacherId(@Param("teacherId") String teacherId);
 
+    @Select("select * from beihua.teacher where id = #{id} and is_del = 0")
+    public TeacherDO getTeacherById(@Param("id") Integer id);
+
+
     @Select("select * from beihua.teacher where is_del = 0 order by #{sort} #{lift} limit ${start},${size}")
     public List<TeacherDO> listTeacherByPage(@Param("start") Integer start, @Param("size") Integer size, @Param("sort") String sort, @Param("lift") String lift);
 

@@ -1,14 +1,12 @@
 package com.jas.web.service.impl;
 
 import com.jas.web.bean.domain.*;
-import com.jas.web.bean.model.AdministrativeClassModel;
-import com.jas.web.bean.model.CourseModel;
-import com.jas.web.bean.model.ScoreDetailModel;
-import com.jas.web.bean.model.ScoreModel;
+import com.jas.web.bean.model.*;
 import com.jas.web.dao.*;
 import com.jas.web.enums.ECourseSemester;
 import com.jas.web.service.ICourseService;
 import com.jas.web.service.IScoreService;
+import com.jas.web.service.IStudentService;
 import com.jas.web.utils.PaperUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,6 +34,9 @@ public class ScoreServiceImpl implements IScoreService{
 
     @Resource
     IAdministrativeClassDAO administrativeClassDAO;
+
+    @Resource
+    IStudentService studentService;
 
     @Override
     @Transactional
@@ -97,6 +98,8 @@ public class ScoreServiceImpl implements IScoreService{
     @Override
     public PaperUtil<ScoreDetailModel> getScoreDetailByCourseId(Integer courseId,Integer currentPage,Integer pageSize) {
         int totalNum = scoreDAO.getTotalNumByCourseId(courseId);
+        List<StudentModel> studentModels = studentService.getStudentByCourseId(courseId);
+        totalNum += studentModels.size();
         int startRecord = (currentPage - 1) * pageSize > totalNum ? totalNum : (currentPage - 1) * pageSize;
         List<ScoreDO> scoreDOS = scoreDAO.getScoreByCourseId(courseId,startRecord,pageSize);
         List<ScoreDetailModel> scoreDetailModels = new LinkedList<>();
@@ -113,10 +116,22 @@ public class ScoreServiceImpl implements IScoreService{
             scoreDetailModel.setFailReason(scoreDO.getFailReason());
             scoreDetailModel.setGrade(scoreDO.getGrade());
             scoreDetailModel.setReworkSituation(scoreDO.getReworkSituation());
-            scoreDetailModel.setStudentId(scoreDO.getStudentId());
             StudentDO studentDO = studentDAO.getStudentById(scoreDO.getStudentId());
+            scoreDetailModel.setStudentId(studentDO.getStudentId());
             scoreDetailModel.setStudentName(studentDO.getName());
             AdministrativeClassDO administrativeClassDO = classDOMap.get(studentDO.getClassId());
+            if (administrativeClassDO != null){
+                scoreDetailModel.setClassName(administrativeClassDO.getName());
+            }
+            scoreDetailModels.add(scoreDetailModel);
+        }
+        for (StudentModel studentModel : studentModels){
+            ScoreDetailModel scoreDetailModel = new ScoreDetailModel();
+            scoreDetailModel.setCourseId(courseId);
+            scoreDetailModel.setFailReason("");
+            scoreDetailModel.setStudentId(studentModel.getStudentId());
+            scoreDetailModel.setStudentName(studentModel.getName());
+            AdministrativeClassDO administrativeClassDO = classDOMap.get(studentModel.getClassId());
             if (administrativeClassDO != null){
                 scoreDetailModel.setClassName(administrativeClassDO.getName());
             }

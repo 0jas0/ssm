@@ -21,7 +21,7 @@ pageEncoding="UTF-8"%>
     
     <div class="rightinfo">
     
-    <div class="tools">
+    <%--<div class="tools">
     
     	<ul class="toolbar">
         <li class="AddStudent"><span><img src="/images/t01.png" /></span>添加</li>
@@ -29,7 +29,7 @@ pageEncoding="UTF-8"%>
         <li class="removeStudent"><span><img src="/images/t03.png" /></span>删除</li>
         </ul>
 
-    </div>
+    </div>--%>
     
     
     <table class="tablelist">

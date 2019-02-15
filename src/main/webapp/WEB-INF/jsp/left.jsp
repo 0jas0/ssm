@@ -73,15 +73,15 @@ $(function(){
         </ul>
         </dd>
     </c:if>
-    <c:if test="${userModel.type == 0 || userModel.type == 1}">
+    <c:if test="${userModel.type == 0 || userModel.type == 1 || userModel.type == 2}">
         <dd><div class="title"><span><img src="/images/leftico03.png" /></span>课程管理</div>
         <ul class="menuson">
             <c:if test="${userModel.type == 0}">
                     <li><cite></cite><a href="/course/course_list" target="rightFrame">课程列表</a><i></i></li>
             </c:if>
-            <c:if test="${userModel.type == 1}">
+            <c:if test="${userModel.type != 0}">
                     <li><cite></cite><a href="/course/course_schedule" target="rightFrame">课程表</a><i></i></li>
-                <c:if test="${sysModel.canChoiceCourse}">
+                <c:if test="${sysModel.canChoiceCourse && userModel.type == 1}">
                     <li><cite></cite><a href="/course/select_course" target="rightFrame">选择课程</a><i></i></li>
                 </c:if>
             </c:if>
@@ -96,7 +96,7 @@ $(function(){
                     <li><cite></cite><a href="/score/score_student" target="rightFrame">个人成绩</a><i></i></li>
             </c:if>
             <c:if test="${userModel.type == 2}">
-                    <li><cite></cite><a href="/score/score_list" target="rightFrame">成绩列表</a><i></i></li>
+                    <li><cite></cite><a href="/score/score_list" target="rightFrame">成绩录入</a><i></i></li>
             </c:if>
             </ul>
         </dd>

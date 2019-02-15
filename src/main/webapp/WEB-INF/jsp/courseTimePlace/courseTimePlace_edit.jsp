@@ -28,7 +28,7 @@
     <ul class="forminfo">
             <input type="hidden" name="id" value="${courseTimePlaceModel.id}">
             <input type="hidden" name="courseId" value="${courseTimePlaceModel.courseId}">
-            <li><label><b style="color: red">*</b>第几节课</label><div class="vocation"><select class="select1" name="courseTime">
+            <li><label><b style="color: red">*</b>课程时间</label><div class="vocation"><select class="select1" name="courseTime">
                 <option value="1" <c:if test="${courseTimePlaceModel.courseTime == 1}">selected</c:if>>第1～2节课</option>
                 <option value="2" <c:if test="${courseTimePlaceModel.courseTime == 2}">selected</c:if>>第3～4节课</option>
                 <option value="3" <c:if test="${courseTimePlaceModel.courseTime == 3}">selected</c:if>>第5～6节课</option>

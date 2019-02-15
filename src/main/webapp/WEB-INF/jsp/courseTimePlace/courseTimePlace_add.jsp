@@ -26,7 +26,7 @@
     
     <ul class="forminfo">
             <input type="hidden" name="courseId" value="${courseId}">
-            <li><label><b style="color: red">*</b>第几节课</label><div class="vocation"><select class="select1" name="courseTime">
+            <li><label><b style="color: red">*</b>课程时间</label><div class="vocation"><select class="select1" name="courseTime">
                 <option value="1">第1～2节课</option>
                 <option value="2">第3～4节课</option>
                 <option value="3">第5～6节课</option>

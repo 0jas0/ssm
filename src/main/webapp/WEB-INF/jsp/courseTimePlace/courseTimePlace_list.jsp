@@ -38,7 +38,7 @@ pageEncoding="UTF-8"%>
         <th>序号<i class="sort"><img src="/images/px.gif" /></i></th>
         <th>课程名</th>
         <th>星期</th>
-        <th>第几节课</th>
+        <th>课程时间</th>
         <th>课程地点</th>
         <th>班级</th>
         </tr>

@@ -6,7 +6,7 @@ public class ScoreDetailModel {
 
     private Integer courseId;
 
-    private Integer studentId;
+    private String studentId;
 
     private String studentName;
 
@@ -36,11 +36,11 @@ public class ScoreDetailModel {
         this.courseId = courseId;
     }
 
-    public Integer getStudentId() {
+    public String getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(Integer studentId) {
+    public void setStudentId(String studentId) {
         this.studentId = studentId;
     }
 

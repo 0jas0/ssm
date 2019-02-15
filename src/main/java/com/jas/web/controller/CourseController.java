@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -191,12 +192,17 @@ public class CourseController {
         return "courseTimePlace/courseTimePlace_edit";
     }
 
-    @RequestMapping("ajax/cousre-schedule-by-studentId")
+    @RequestMapping("ajax/cousre-schedule-byId")
     @ResponseBody
     public Object courseScheduleByStudentId(HttpSession session){
         try {
             UserModel userModel = (UserModel) session.getAttribute("userModel");
-            Map<String,Map<String,String>> courseSchedule = courseService.getCourseScheduleByStudentId(userModel.getId());
+            Map<String,Map<String,String>> courseSchedule = new HashMap<>();
+            if (userModel.getType() == 1){
+                courseSchedule = courseService.getCourseScheduleByStudentId(userModel.getId());
+            }else {
+                courseSchedule = courseService.getCourseScheduleByTeacherId(userModel.getId());
+            }
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS,"获取课程表成功",courseSchedule);
         }catch (Exception e){
             e.printStackTrace();

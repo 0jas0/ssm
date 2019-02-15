@@ -47,4 +47,6 @@ public interface ICourseService {
     void choiceCourse(Integer studentId, Integer courseId);
 
     void concelCourse(Integer studentId, Integer courseId);
+
+    Map<String,Map<String,String>> getCourseScheduleByTeacherId(Integer id);
 }

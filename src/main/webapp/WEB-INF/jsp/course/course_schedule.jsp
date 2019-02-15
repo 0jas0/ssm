@@ -48,7 +48,7 @@ pageEncoding="UTF-8"%>
     $(document).ready(function(){
         $.ajax({
             type: 'post',
-            url: '/course/ajax/cousre-schedule-by-studentId',
+            url: '/course/ajax/cousre-schedule-byId',
             success: function (res) {
                 if (res.status == 0){
                     var data = res.data;

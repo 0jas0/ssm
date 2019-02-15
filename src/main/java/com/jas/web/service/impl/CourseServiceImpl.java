@@ -226,7 +226,7 @@ public class CourseServiceImpl implements ICourseService{
             Integer courseTime = courseTimePlaceDO.getCourseTime();
             String coursePlace = courseTimePlaceDO.getCoursePlace();
             Map<String, String> map = mapMap.get(ECourse.getDescByValue(courseTime));
-            map.put(ECourseWeek.getDescByValue(courseWeek),"课程名称：" + courseDO.getName() + "，上课地点：" + coursePlace);
+            map.put(ECourseWeek.getDescByValue(courseWeek),"课程名称：" + courseDO.getName() + "<br/>　上课地点：" + coursePlace);
         }
         return mapMap;
     }
@@ -317,6 +317,46 @@ public class CourseServiceImpl implements ICourseService{
     @Override
     public void concelCourse(Integer studentId, Integer courseId) {
         choiceCoursesDAO.deleteByStudentIdAndCourseId(studentId, courseId);
+    }
+
+    @Override
+    public Map<String, Map<String, String>> getCourseScheduleByTeacherId(Integer teacherId) {
+        TeacherDO teacher = teacherDAO.getTeacherById(teacherId);
+        List<CourseDO> courseDOList = courseDAO.getCourseByTeacherId(teacher.getTeacherId());
+        Map<Integer, CourseDO> courseDOMap = new HashMap<>();
+        for (CourseDO courseDO : courseDOList){
+            courseDOMap.put(courseDO.getId(), courseDO);
+        }
+        List<CourseTimePlaceDO> timePlaceModelList = new ArrayList<>();
+        List<CourseTimePlaceDO> courseTimePlaceAll = courseTimePlaceDAO.getCourseTimePlaceAll();
+        for (CourseTimePlaceDO courseTimePlaceDO : courseTimePlaceAll){
+            if (courseDOMap.containsKey(courseTimePlaceDO.getCourseId())){
+                timePlaceModelList.add(courseTimePlaceDO);
+            }
+        }
+        //获取课程时间
+        List<String> ecourseList = ECourse.getDescs();
+        //获取课程的星期
+        List<String> ecourseWeekList = ECourseWeek.getDescs();
+        Map<String,Map<String,String>> mapMap = new LinkedHashMap<>();
+        for (String course : ecourseList){
+            Map<String,String> map = new LinkedHashMap<>();
+            for (String week : ecourseWeekList){
+                map.put(week,"");
+            }
+            mapMap.put(course,map);
+        }
+        //获取最新一学期
+        //所有的课程的时间和地点
+        for (CourseTimePlaceDO courseTimePlaceDO : timePlaceModelList){
+            CourseDO courseDO = courseDOMap.get(courseTimePlaceDO.getCourseId());
+            Integer courseWeek = courseTimePlaceDO.getCourseWeek();
+            Integer courseTime = courseTimePlaceDO.getCourseTime();
+            String coursePlace = courseTimePlaceDO.getCoursePlace();
+            Map<String, String> map = mapMap.get(ECourse.getDescByValue(courseTime));
+            map.put(ECourseWeek.getDescByValue(courseWeek),"课程名称：" + courseDO.getName() + "<br/>　上课地点：" + coursePlace);
+        }
+        return mapMap;
     }
 
 }

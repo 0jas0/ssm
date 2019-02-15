@@ -29,6 +29,9 @@ public interface ICourseDAO {
     @Select("select * from beihua.course where is_del = 0")
     public List<CourseDO> getCourseAll();
 
+    @Select("select * from beihua.course where teacher_id = #{teacherId} and is_del = 0")
+    public List<CourseDO> getCourseByTeacherId(@Param("teacherId") String teacherId);
+
     @Select("select count(*) from beihua.course where is_del = 0")
     public int getTotalNum();
 
