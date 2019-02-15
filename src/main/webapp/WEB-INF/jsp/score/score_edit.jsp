@@ -29,9 +29,9 @@
             <input type="hidden" name="id" value="${scoreModel.id}">
             <input type="hidden" name="courseId" value="${scoreModel.courseId}">
             <input type="hidden" name="studentId" value="${studentModel.id}">
-            <li><label>学生名称</label><input name="studentName" type="text" readonly value="${studentModel.name}" class="dfinput" /><i></i></li>
-            <li><label>分数</label><input name="grade" type="text" value="${scoreModel.grade}" class="dfinput" /><i></i></li>
-            <li><label>所获学分</label><input name="accessCredits" type="text" value="${scoreModel.accessCredits}" class="dfinput" /><i></i></li>
+            <li><label><b style="color: red">*</b>学生名称</label><input name="studentName" type="text" readonly value="${studentModel.name}" class="dfinput" /><i></i></li>
+            <li><label><b style="color: red">*</b>分数</label><input name="grade" type="text" value="${scoreModel.grade}" class="dfinput" /><i></i></li>
+            <li><label><b style="color: red">*</b>所获学分</label><input name="accessCredits" type="text" value="${scoreModel.accessCredits}" class="dfinput" /><i></i></li>
             <li><label>挂科原因</label><input name="failReason" type="text" value="${scoreModel.failReason}" class="dfinput" /><i></i></li>
             <li><label>重修情况</label><input name="reworkSituation" type="text" value="${scoreModel.reworkSituation}" class="dfinput"/><i></i></li>
         <li><label>是否重修</label><cite><input name="isRework" type="radio" value="1" <c:if test="${scoreModel.isRework == 1}">checked</c:if> />是

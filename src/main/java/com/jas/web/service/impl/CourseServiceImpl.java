@@ -224,8 +224,9 @@ public class CourseServiceImpl implements ICourseService{
             }
             Integer courseWeek = courseTimePlaceDO.getCourseWeek();
             Integer courseTime = courseTimePlaceDO.getCourseTime();
+            String coursePlace = courseTimePlaceDO.getCoursePlace();
             Map<String, String> map = mapMap.get(ECourse.getDescByValue(courseTime));
-            map.put(ECourseWeek.getDescByValue(courseWeek),courseDO.getName());
+            map.put(ECourseWeek.getDescByValue(courseWeek),"课程名称：" + courseDO.getName() + "，上课地点：" + coursePlace);
         }
         return mapMap;
     }
@@ -267,9 +268,14 @@ public class CourseServiceImpl implements ICourseService{
     }
 
     @Override
-    public List<CourseModel> getCourseByCollegeAndType(Integer college, Integer value) {
-        List<CourseDO> courseDOList = courseDAO.getCourseByCollegeAndType(college,value);
+    public List<CourseModel> getCourseByClassAndType(Integer classId, Integer value) {
+        List<CourseDO> courseDOList = courseDAO.getCourseByClassAndType(classId, value);
         List<TeacherDO> teacherDOS = teacherDAO.listTeacherAll();
+        List<CollegeMajorDO> allCollegeMajor = collegeMajorDAO.getAllCollegeMajor();
+        Map<String, CollegeMajorDO> collegeMajorDOMap = new HashMap<>();
+        for (CollegeMajorDO collegeMajorDO : allCollegeMajor){
+            collegeMajorDOMap.put(collegeMajorDO.getId()+"", collegeMajorDO);
+        }
         Map<String,TeacherDO> map = new HashMap<>();
         for (TeacherDO teacherDO : teacherDOS){
             map.put(teacherDO.getTeacherId(), teacherDO);
@@ -281,6 +287,12 @@ public class CourseServiceImpl implements ICourseService{
                 courseModel.setTeacherName(map.get(courseDO.getTeacherId()).getName());
             }else {
                 courseModel.setTeacherName("");
+            }
+            CollegeMajorDO collegeMajorDO = collegeMajorDOMap.get(courseDO.getCollege());
+            if (collegeMajorDO != null){
+                courseModel.setCollege(collegeMajorDO.getName());
+            }else {
+                courseModel.setCollege("");
             }
             courseModelList.add(courseModel);
         }

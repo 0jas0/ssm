@@ -40,7 +40,7 @@ public interface ICourseService {
 
     int getCourseNumByTeacherId(String teacherId);
 
-    List<CourseModel> getCourseByCollegeAndType(Integer college, Integer value);
+    List<CourseModel> getCourseByClassAndType(Integer college, Integer value);
 
     List<ChoiceCoursesDO> getChoiceCourseByStudentId(Integer studentId);
 

@@ -222,7 +222,7 @@ public class CourseController {
             String studentId = userModel.getUsername();
             Integer id = userModel.getId();
             StudentModel studentByStudent = studentService.getStudentByStudentId(studentId);
-            List<CourseModel> courseModels = courseService.getCourseByCollegeAndType(studentByStudent.getCollege(), ECourseType.ELECTIVE.getValue());
+            List<CourseModel> courseModels = courseService.getCourseByClassAndType(studentByStudent.getClassId(), ECourseType.ELECTIVE.getValue());
             List<ChoiceCoursesDO> coursesDOS = courseService.getChoiceCourseByStudentId(id);
             List<Integer> courseList = new LinkedList<>();
             for (ChoiceCoursesDO choiceCoursesDO : coursesDOS) {

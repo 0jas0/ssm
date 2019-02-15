@@ -37,7 +37,7 @@ public interface ICourseTimePlaceDAO {
             "class_id = #{classId} and bc.is_del = 0 and bctp.is_del = 0 order by bc.semester desc limit 1")
     Integer getNewSemesterByClassId(@Param("classId") Integer classId);
 
-    @Select("select * from beihua.course_time_place where class_id = #{classId} and is_del = 0 group by course_id")
+    @Select("select bct.* from beihua.course_time_place bct left join beihua.course bc on bc.id = bct.course_id  where bct.class_id = #{classId} and bc.type = 1 and bct.is_del = 0 group by bct.course_id")
     List<CourseTimePlaceDO> getUniqueCourseTimePlaceByClassId(@Param("classId") Integer classId);
 
     @Select("select class_id from beihua.course_time_place where course_id = #{courseId} and is_del = 0 group by class_id")

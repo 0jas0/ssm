@@ -28,13 +28,13 @@
     <ul class="forminfo">
             <input type="hidden" name="id" value="${courseTimePlaceModel.id}">
             <input type="hidden" name="courseId" value="${courseTimePlaceModel.courseId}">
-            <li><label>第几节课</label><div class="vocation"><select class="select1" name="courseTime">
-                <option value="1" <c:if test="${courseTimePlaceModel.courseTime == 1}">selected</c:if>>第一大节课</option>
-                <option value="2" <c:if test="${courseTimePlaceModel.courseTime == 2}">selected</c:if>>第二大节课</option>
-                <option value="3" <c:if test="${courseTimePlaceModel.courseTime == 3}">selected</c:if>>第三大节课</option>
-                <option value="4" <c:if test="${courseTimePlaceModel.courseTime == 4}">selected</c:if>>第四大节课</option>
+            <li><label><b style="color: red">*</b>第几节课</label><div class="vocation"><select class="select1" name="courseTime">
+                <option value="1" <c:if test="${courseTimePlaceModel.courseTime == 1}">selected</c:if>>第1～2节课</option>
+                <option value="2" <c:if test="${courseTimePlaceModel.courseTime == 2}">selected</c:if>>第3～4节课</option>
+                <option value="3" <c:if test="${courseTimePlaceModel.courseTime == 3}">selected</c:if>>第5～6节课</option>
+                <option value="4" <c:if test="${courseTimePlaceModel.courseTime == 4}">selected</c:if>>第7～8节课</option>
             </select></div><i></i></li>
-            <li><label>星期</label><div class="vocation"><select class="select2" name="courseWeek">
+            <li><label><b style="color: red">*</b>星期</label><div class="vocation"><select class="select2" name="courseWeek">
                 <option value="1" <c:if test="${courseTimePlaceModel.courseWeek == 1}">selected</c:if>>周一</option>
                 <option value="2" <c:if test="${courseTimePlaceModel.courseWeek == 2}">selected</c:if>>周二</option>
                 <option value="3" <c:if test="${courseTimePlaceModel.courseWeek == 3}">selected</c:if>>周三</option>
@@ -43,8 +43,8 @@
                 <option value="6" <c:if test="${courseTimePlaceModel.courseWeek == 6}">selected</c:if>>周六</option>
                 <option value="7" <c:if test="${courseTimePlaceModel.courseWeek == 7}">selected</c:if>>周日</option>
             </select></div><i></i></li>
-            <li><label>课程地点</label><input name="coursePlace" type="text" class="dfinput" value="${courseTimePlaceModel.coursePlace}"/><i></i></li>
-            <li><label>班级号</label><div class="vocation">
+            <li><label><b style="color: red">*</b>课程地点</label><input name="coursePlace" type="text" class="dfinput" value="${courseTimePlaceModel.coursePlace}"/><i></i></li>
+            <li><label><b style="color: red">*</b>班级号</label><div class="vocation">
                 <select class="select3" name="classId">
                     <c:forEach items="${classModels}" var="classModel">
                         <c:if test="${classModel.id == courseTimePlaceModel.classId}">

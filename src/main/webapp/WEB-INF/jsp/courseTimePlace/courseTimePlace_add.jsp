@@ -26,13 +26,13 @@
     
     <ul class="forminfo">
             <input type="hidden" name="courseId" value="${courseId}">
-            <li><label>第几节课</label><div class="vocation"><select class="select1" name="courseTime">
-                <option value="1">第一大节课</option>
-                <option value="2">第二大节课</option>
-                <option value="3">第三大节课</option>
-                <option value="4">第四大节课</option>
+            <li><label><b style="color: red">*</b>第几节课</label><div class="vocation"><select class="select1" name="courseTime">
+                <option value="1">第1～2节课</option>
+                <option value="2">第3～4节课</option>
+                <option value="3">第5～6节课</option>
+                <option value="4">第7～8节课</option>
             </select></div><i></i></li>
-            <li><label>星期</label><div class="vocation"><select class="select2" name="courseWeek">
+            <li><label><b style="color: red">*</b>星期</label><div class="vocation"><select class="select2" name="courseWeek">
                 <option value="1">周一</option>
                 <option value="2">周二</option>
                 <option value="3">周三</option>
@@ -41,8 +41,8 @@
                 <option value="6">周六</option>
                 <option value="7">周日</option>
             </select></div><i></i></li>
-            <li><label>课程地点</label><input name="coursePlace" type="text" class="dfinput" /><i></i></li>
-            <li><label>班级号</label><div class="vocation">
+            <li><label><b style="color: red">*</b>课程地点</label><input name="coursePlace" type="text" class="dfinput" /><i></i></li>
+            <li><label><b style="color: red">*</b>班级号</label><div class="vocation">
                 <select class="select3" name="classId"></select>
             </div><i></i></li>
             <li><label>&nbsp;</label><input name="" type="button" class="btn" value="确认保存" onclick="saveClass()"/></li>

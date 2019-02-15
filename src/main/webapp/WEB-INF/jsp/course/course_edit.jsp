@@ -27,7 +27,7 @@
     
     <ul class="forminfo">
             <input type="hidden" value="${courseModel.id}" name="id">
-            <li><label>教师名称</label><div class="vocation">
+            <li><label><b style="color: red">*</b>教师名称</label><div class="vocation">
                 <select class="select3" name="teacherId">
                     <c:forEach items="${teacherALl}" var="teacher">
                         <c:if test="${teacher.teacherId == courseModel.teacherId}">
@@ -39,10 +39,10 @@
                     </c:forEach>
                 </select>
             </div><i></i></li>
-            <li><label>课程名称</label><input name="name" value="${courseModel.name}" type="text" class="dfinput" /><i></i></li>
-            <li><label>课程开始时间</label><input name="courseStart" value="${courseModel.courseStart}" type="date" class="dfinput" /><i></i></li>
-            <li><label>课程结束时间</label><input name="courseEnd" value="${courseModel.courseEnd}" type="date" class="dfinput"/><i></i></li>
-            <li><label>开课学期</label><div class="vocation"><select class="select1" name="semester">
+            <li><label><b style="color: red">*</b>课程名称</label><input name="name" value="${courseModel.name}" type="text" class="dfinput" /><i></i></li>
+            <li><label><b style="color: red">*</b>课程开始时间</label><input name="courseStart" value="${courseModel.courseStart}" type="date" class="dfinput" /><i></i></li>
+            <li><label><b style="color: red">*</b>课程结束时间</label><input name="courseEnd" value="${courseModel.courseEnd}" type="date" class="dfinput"/><i></i></li>
+            <li><label><b style="color: red">*</b>开课学期</label><div class="vocation"><select class="select1" name="semester">
                 <option value="1" <c:if test="${courseModel.semester == 1}">selected</c:if>>大一上学期</option>
                 <option value="2" <c:if test="${courseModel.semester == 2}">selected</c:if>>大一下学期</option>
                 <option value="3" <c:if test="${courseModel.semester == 3}">selected</c:if>>大二上学期</option>
@@ -52,7 +52,7 @@
                 <option value="7" <c:if test="${courseModel.semester == 7}">selected</c:if>>大四上学期</option>
                 <option value="8" <c:if test="${courseModel.semester == 8}">selected</c:if>>大四下学期</option>
             </select></div><i></i></li>
-            <li><label>开课学院</label><div class="vocation">
+            <li><label><b style="color: red">*</b>开课学院</label><div class="vocation">
                 <select class="select2" name="college">
                     <c:forEach items="${collegeList}" var="college">
                         <c:if test="${college.id == courseModel.college}">
@@ -64,8 +64,8 @@
                     </c:forEach>
                 </select>
             </div><i></i></li>
-            <li><label>学时</label><input name="period" value="${courseModel.period}" type="text" class="dfinput" /><i></i></li>
-            <li><label>学分</label><input name="credit" value="${courseModel.credit}" type="text" class="dfinput" /><i></i></li>
+            <li><label><b style="color: red">*</b>学时</label><input name="period" value="${courseModel.period}" type="text" class="dfinput" /><i></i></li>
+            <li><label><b style="color: red">*</b>学分</label><input name="credit" value="${courseModel.credit}" type="text" class="dfinput" /><i></i></li>
         <li><label>课程类型</label><cite><input name="type" type="radio"  value="1" <c:if test="${courseModel.type == 1}">checked</c:if> />必修
                 &nbsp;&nbsp;&nbsp;&nbsp;<input name="type" type="radio" value="0" <c:if test="${courseModel.type == 0}">checked</c:if>/>选修</cite>
             </li>

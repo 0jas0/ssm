@@ -25,15 +25,15 @@
     <div class="formtitle"><span>班级信息</span></div>
     
     <ul class="forminfo">
-            <li><label>教师名称</label><div class="vocation">
+            <li><label><b style="color: red">*</b>教师名称</label><div class="vocation">
                 <select class="select3" name="teacherId">
                     <option>----请选择----</option>
                 </select>
             </div><i></i></li>
-            <li><label>课程名称</label><input name="name" type="text" class="dfinput" /><i></i></li>
-            <li><label>课程开始时间</label><input name="courseStart" type="date" class="dfinput" /><i></i></li>
-            <li><label>课程结束时间</label><input name="courseEnd" type="date" class="dfinput"/><i></i></li>
-            <li><label>开课学期</label><div class="vocation"><select class="select1" name="semester">
+            <li><label><b style="color: red">*</b>课程名称</label><input name="name" type="text" class="dfinput" /><i></i></li>
+            <li><label><b style="color: red">*</b>课程开始时间</label><input name="courseStart" type="date" class="dfinput" /><i></i></li>
+            <li><label><b style="color: red">*</b>课程结束时间</label><input name="courseEnd" type="date" class="dfinput"/><i></i></li>
+            <li><label><b style="color: red">*</b>开课学期</label><div class="vocation"><select class="select1" name="semester">
                 <option value="1">大一上学期</option>
                 <option value="2">大一下学期</option>
                 <option value="3">大二上学期</option>
@@ -43,11 +43,11 @@
                 <option value="7">大四上学期</option>
                 <option value="8">大四下学期</option>
             </select></div><i></i></li>
-            <li><label>开课学院</label><div class="vocation">
+            <li><label><b style="color: red">*</b>开课学院</label><div class="vocation">
                 <select class="select2" name="college"><option>----请选择----</option></select>
             </div><i></i></li>
-            <li><label>学时</label><input name="period" type="text" class="dfinput" /><i></i></li>
-            <li><label>学分</label><input name="credit" type="text" class="dfinput" /><i></i></li>
+            <li><label><b style="color: red">*</b>学时</label><input name="period" type="text" class="dfinput" /><i></i></li>
+            <li><label><b style="color: red">*</b>学分</label><input name="credit" type="text" class="dfinput" /><i></i></li>
             <li><label>课程类型</label><cite><input name="type" type="radio" value="1" checked="checked" />必修
                 &nbsp;&nbsp;&nbsp;&nbsp;<input name="type" type="radio" value="0" />选修</cite>
             </li>

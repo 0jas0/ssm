@@ -27,11 +27,11 @@
     
     <ul class="forminfo">
             <input type="hidden" name="id" value="${classDO.id}"/>
-            <li><label>班级号</label><input name="classId" type="text" class="dfinput" value="${classDO.classId}" readonly/><i></i></li>
-            <li><label>班级名称</label><input name="name" type="text" class="dfinput" value="${classDO.name}"/><i></i></li>
-            <li><label>班级人数</label><input name="classNumber" type="text" class="dfinput" value="${classDO.classNumber}"/><i></i></li>
+            <li><label><b style="color: red">*</b>班级号</label><input name="classId" type="text" class="dfinput" value="${classDO.classId}" readonly/><i></i></li>
+            <li><label><b style="color: red">*</b>班级名称</label><input name="name" type="text" class="dfinput" value="${classDO.name}"/><i></i></li>
+            <li><label><b style="color: red">*</b>班级人数</label><input name="classNumber" type="text" class="dfinput" value="${classDO.classNumber}"/><i></i></li>
             <li><label>辅导员</label><input name="instructor" type="text" class="dfinput" value="${classDO.instructor}"/><i></i></li>
-            <li><label>学院</label><div class="vocation"><select class="select1" name="college">
+            <li><label><b style="color: red">*</b>学院</label><div class="vocation"><select class="select1" name="college">
                 <c:forEach items="${collegeList}" var = "college">
                     <c:if test="${college.id != classDO.college}">
                         <option value="${college.id}">${college.name}</option>
@@ -41,7 +41,7 @@
                     </c:if>
                 </c:forEach>
             </select></div><i></i></li>
-            <li><label>专业</label><div class="vocation"><select class="select2" name="major">
+            <li><label><b style="color: red">*</b>专业</label><div class="vocation"><select class="select2" name="major">
                 <c:forEach items="${majorList}" var = "major">
                     <c:if test="${major.id == classDO.major}">
                         <option value="${major.id}" selected>${major.name}</option>

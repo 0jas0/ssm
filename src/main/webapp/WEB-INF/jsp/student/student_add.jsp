@@ -28,21 +28,21 @@
     
     <ul class="forminfo">
 
-            <li><label>学号</label><input name="studentId" type="text" class="dfinput" /><i></i></li>
-            <li><label>密码</label><input name="password" type="password" class="dfinput" /><i></i></li>
-            <li><label>姓名</label><input name="name" type="text" class="dfinput" /><i></i></li>
+            <li><label><b style="color: red">*</b>学号</label><input name="studentId" type="text" class="dfinput" /><i></i></li>
+            <li><label><b style="color: red">*</b>密码</label><input name="password" type="password" class="dfinput" /><i></i></li>
+            <li><label><b style="color: red">*</b>姓名</label><input name="name" type="text" class="dfinput" /><i></i></li>
             <li><label>出生日期</label><input class="dfinput" name="bornDate" type="date"/><i></i></li>
             <li><label>政治面貌</label><input name="politicalOutlook" type="text" class="dfinput" /><i></i></li>
-            <li><label>籍贯</label><input name="nativePlace" type="text" class="dfinput" /><i></i></li>
-            <li><label>民族</label><input name="nation" type="text" class="dfinput" /><i></i></li>
-            <li><label>地址</label><input name="address" type="text" class="dfinput" /><i></i></li>
+            <li><label><b style="color: red">*</b>籍贯</label><input name="nativePlace" type="text" class="dfinput" /><i></i></li>
+            <li><label><b style="color: red">*</b>民族</label><input name="nation" type="text" class="dfinput" /><i></i></li>
+            <li><label><b style="color: red">*</b>地址</label><input name="address" type="text" class="dfinput" /><i></i></li>
             <li><label>邮政编码</label><input name="postalcode" type="text" class="dfinput" /><i></i></li>
-            <li><label>手机号</label><input name="mobile" type="text" class="dfinput" /><i></i></li>
-            <li><label>身份证号</label><input name="identityCardNumber" type="text" class="dfinput" /><i></i></li>
+            <li><label><b style="color: red">*</b>手机号</label><input name="mobile" type="text" class="dfinput" /><i></i></li>
+            <li><label><b style="color: red">*</b>身份证号</label><input name="identityCardNumber" type="text" class="dfinput" /><i></i></li>
 
-            <li><label>学院</label><div class="vocation"><select class="select1" name="college"><option>--请选择--</option></select></div><i></i></li>
-            <li><label>专业</label><div class="vocation"><select class="select2" name="major"></select></div><i></i></li>
-            <li><label>班级</label><div class="vocation"><select class="select3" name="classId"></select></div><i></i></li>
+            <li><label><b style="color: red">*</b>学院</label><div class="vocation"><select class="select1" name="college"><option>--请选择--</option></select></div><i></i></li>
+            <li><label><b style="color: red">*</b>专业</label><div class="vocation"><select class="select2" name="major"></select></div><i></i></li>
+            <li><label><b style="color: red">*</b>班级</label><div class="vocation"><select class="select3" name="classId"></select></div><i></i></li>
             <li><label>性别</label><cite><input name="sex" type="radio" value="男" checked="checked" />男&nbsp;&nbsp;&nbsp;&nbsp;<input name="sex" type="radio" value="女" />女</cite></li>
         <li><label>&nbsp;</label><input name="" type="button" class="btn" value="确认保存" onclick="saveStudent()"/></li>
     </ul>

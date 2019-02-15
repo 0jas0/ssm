@@ -25,12 +25,12 @@
     <div class="formtitle"><span>班级信息</span></div>
     
     <ul class="forminfo">
-            <li><label>班级号</label><input name="classId" type="text" class="dfinput" /><i></i></li>
-            <li><label>班级名称</label><input name="name" type="text" class="dfinput" /><i></i></li>
-            <li><label>班级人数</label><input name="classNumber" type="text" class="dfinput" /><i></i></li>
+            <li><label><b style="color: red">*</b>班级号</label><input name="classId" type="text" class="dfinput" /><i></i></li>
+            <li><label><b style="color: red">*</b>班级名称</label><input name="name" type="text" class="dfinput" /><i></i></li>
+            <li><label><b style="color: red">*</b>班级人数</label><input name="classNumber" type="text" class="dfinput" /><i></i></li>
             <li><label>辅导员</label><input name="instructor" type="text" class="dfinput"/><i></i></li>
-            <li><label>学院</label><div class="vocation"><select class="select1" name="college"><option>--请选择--</option></select></div><i></i></li>
-            <li><label>专业</label><div class="vocation"><select class="select2" name="major"></select></div><i></i></li>
+            <li><label><b style="color: red">*</b>学院</label><div class="vocation"><select class="select1" name="college"><option>--请选择--</option></select></div><i></i></li>
+            <li><label><b style="color: red">*</b>专业</label><div class="vocation"><select class="select2" name="major"></select></div><i></i></li>
             <li><label>&nbsp;</label><input name="" type="button" class="btn" value="确认保存" onclick="saveClass()"/></li>
     </ul>
     </div>

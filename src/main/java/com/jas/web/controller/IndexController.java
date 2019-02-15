@@ -61,7 +61,7 @@ public class IndexController {
         }else if (type == 2){
             //登陆的是老师
             TeacherModel teacherModel = teacherService.getByTeacherId(username);
-            if (teacherModel != null && teacherModel.getPassword().equals(password)){
+            if (teacherModel != null && teacherModel.getId() != null && teacherModel.getPassword().equals(password)){
                 id = teacherModel.getId();
                 flag = true;
             }

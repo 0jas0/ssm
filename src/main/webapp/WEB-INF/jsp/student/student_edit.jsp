@@ -28,19 +28,19 @@
     <div class="formtitle"><span>学生信息</span></div>
     
     <ul class="forminfo">
-            <li><label>学号</label><input name="studentId" type="text" class="dfinput" value="${studentModel.studentId}" readonly/><i></i></li>
-            <li><label>密码</label><input name="password" type="password" class="dfinput"/><i></i></li>
-            <li><label>姓名</label><input name="name" type="text" class="dfinput" value="${studentModel.name}"/><i></i></li>
+            <li><label><b style="color: red">*</b>学号</label><input name="studentId" type="text" class="dfinput" value="${studentModel.studentId}" readonly/><i></i></li>
+            <li><label><b style="color: red">*</b>密码</label><input name="password" type="password" class="dfinput"/><i></i></li>
+            <li><label><b style="color: red">*</b>姓名</label><input name="name" type="text" class="dfinput" value="${studentModel.name}"/><i></i></li>
             <li><label>出生日期</label><input name="bornDate" class="dfinput" type="date" value="${studentModel.bornDate}"/><i></i></li>
             <li><label>政治面貌</label><input name="politicalOutlook" type="text" class="dfinput" value="${studentModel.politicalOutlook}"/><i></i></li>
-            <li><label>籍贯</label><input name="nativePlace" type="text" class="dfinput" value="${studentModel.nativePlace}"/><i></i></li>
-            <li><label>民族</label><input name="nation" type="text" class="dfinput" value="${studentModel.nation}"/><i></i></li>
-            <li><label>地址</label><input name="address" type="text" class="dfinput" value="${studentModel.address}" /><i></i></li>
+            <li><label><b style="color: red">*</b>籍贯</label><input name="nativePlace" type="text" class="dfinput" value="${studentModel.nativePlace}"/><i></i></li>
+            <li><label><b style="color: red">*</b>民族</label><input name="nation" type="text" class="dfinput" value="${studentModel.nation}"/><i></i></li>
+            <li><label><b style="color: red">*</b>地址</label><input name="address" type="text" class="dfinput" value="${studentModel.address}" /><i></i></li>
             <li><label>邮政编码</label><input name="postalcode" type="text" class="dfinput" value="${studentModel.postalcode}"/><i></i></li>
-            <li><label>手机号</label><input name="mobile" type="text" class="dfinput" value="${studentModel.mobile}"/><i></i></li>
-            <li><label>身份证号</label><input name="identityCardNumber" type="text" class="dfinput" value="${studentModel.identityCardNumber}"/><i></i></li>
+            <li><label><b style="color: red">*</b>手机号</label><input name="mobile" type="text" class="dfinput" value="${studentModel.mobile}"/><i></i></li>
+            <li><label><b style="color: red">*</b>身份证号</label><input name="identityCardNumber" type="text" class="dfinput" value="${studentModel.identityCardNumber}"/><i></i></li>
 
-            <li><label>学院</label><div class="vocation"><select class="select1" name="college">
+            <li><label><b style="color: red">*</b>学院</label><div class="vocation"><select class="select1" name="college">
                 <c:forEach items="${collegeList}" var = "college">
                     <c:if test="${college.id != studentModel.college}">
                         <option value="${college.id}">${college.name}</option>
@@ -50,7 +50,7 @@
                     </c:if>
                 </c:forEach>
             </select></div><i></i></li>
-            <li><label>专业</label><div class="vocation"><select class="select2" name="major">
+            <li><label><b style="color: red">*</b>专业</label><div class="vocation"><select class="select2" name="major">
                 <c:forEach items="${majorList}" var = "major">
                     <c:if test="${major.id == studentModel.major}">
                         <option value="${major.id}" selected>${major.name}</option>
@@ -60,7 +60,7 @@
                     </c:if>
                 </c:forEach>
             </select></div><i></i></li>
-            <li><label>班级</label><div class="vocation"><select class="select3" name="classId">
+            <li><label><b style="color: red">*</b>班级</label><div class="vocation"><select class="select3" name="classId">
                 <c:forEach items="${classList}" var = "class">
                     <c:if test="${class.id == studentModel.classId}">
                         <option value="${class.id}" selected>${class.name}</option>

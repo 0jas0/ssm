@@ -26,19 +26,19 @@
     <div class="formtitle"><span>教师信息</span></div>
     
     <ul class="forminfo">
-            <li><label>教师工号</label><input name="teacherId" type="text" class="dfinput" value="${teacherModel.teacherId}" readonly/><i></i></li>
-            <li><label>密码</label><input name="password" type="password" class="dfinput"/><i></i></li>
-            <li><label>教师名称</label><input name="name" type="text" class="dfinput" value="${teacherModel.name}"/><i></i></li>
+            <li><label><b style="color: red">*</b>教师工号</label><input name="teacherId" type="text" class="dfinput" value="${teacherModel.teacherId}" readonly/><i></i></li>
+            <li><label><b style="color: red">*</b>密码</label><input name="password" type="password" class="dfinput"/><i></i></li>
+            <li><label><b style="color: red">*</b>教师名称</label><input name="name" type="text" class="dfinput" value="${teacherModel.name}"/><i></i></li>
             <li><label>出生日期</label><input name="bornDate" type="date" class="dfinput" value="${teacherModel.bornDate}"/><i></i></li>
             <li><label>性别</label><cite><input name="sex" type="radio" value="男" <c:if test="${teacherModel.sex == '男'}">checked</c:if> />男&nbsp;&nbsp;&nbsp;&nbsp;
                 <input name="sex" type="radio" value="女" <c:if test="${teacherModel.sex == '女'}">checked</c:if>/>女</cite></li>
             <li><label>学历</label><input name="education" type="text" class="dfinput" value="${teacherModel.education}"/><i></i></li>
-            <li><label>职称</label><input name="position" type="text" class="dfinput" value="${teacherModel.position}"/><i></i></li>
-            <li><label>民族</label><input name="nation" type="text" class="dfinput" value="${teacherModel.nation}"/><i></i></li>
-            <li><label>住址</label><input name="address" type="text" class="dfinput" value="${teacherModel.address}"/><i></i></li>
+            <li><label><b style="color: red">*</b>职称</label><input name="position" type="text" class="dfinput" value="${teacherModel.position}"/><i></i></li>
+            <li><label><b style="color: red">*</b>民族</label><input name="nation" type="text" class="dfinput" value="${teacherModel.nation}"/><i></i></li>
+            <li><label><b style="color: red">*</b>住址</label><input name="address" type="text" class="dfinput" value="${teacherModel.address}"/><i></i></li>
             <li><label>邮政编码</label><input name="postalcode" type="text" class="dfinput" value="${teacherModel.postalcode}"/><i></i></li>
-            <li><label>联系电话</label><input name="mobile" type="text" class="dfinput" value="${teacherModel.mobile}"/><i></i></li>
-            <li><label>身份证号</label><input name="identityCardNumber" type="text" class="dfinput" value="${teacherModel.identityCardNumber}"/><i></i></li>
+            <li><label><b style="color: red">*</b>联系电话</label><input name="mobile" type="text" class="dfinput" value="${teacherModel.mobile}"/><i></i></li>
+            <li><label><b style="color: red">*</b>身份证号</label><input name="identityCardNumber" type="text" class="dfinput" value="${teacherModel.identityCardNumber}"/><i></i></li>
             <li><label>&nbsp;</label><input name="" type="button" class="btn" value="确认保存" onclick="saveTeacher()"/></li>
     </ul>
     </div>

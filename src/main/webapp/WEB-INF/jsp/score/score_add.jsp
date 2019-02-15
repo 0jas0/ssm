@@ -27,15 +27,15 @@
     
     <ul class="forminfo">
             <input type="hidden" name="courseId" value="${courseId}">
-            <li><label>学生名称</label><div class="vocation">
+            <li><label><b style="color: red">*</b>学生名称</label><div class="vocation">
                 <select class="select1" name="studentId">
                     <c:forEach items="${studentModels}" var="studentModel">
                         <option value="${studentModel.id}">${studentModel.name}</option>
                     </c:forEach>
                 </select>
             </div><i></i></li>
-            <li><label>分数</label><input name="grade" type="text" class="dfinput" /><i></i></li>
-            <li><label>所获学分</label><input name="accessCredits" type="text" class="dfinput" /><i></i></li>
+            <li><label><b style="color: red">*</b>分数</label><input name="grade" type="text" class="dfinput" /><i></i></li>
+            <li><label><b style="color: red">*</b>所获学分</label><input name="accessCredits" type="text" class="dfinput" /><i></i></li>
             <li><label>挂科原因</label><input name="failReason" type="text" class="dfinput" /><i></i></li>
             <li><label>重修情况</label><input name="reworkSituation" type="text" class="dfinput"/><i></i></li>
             <li><label>是否重修</label><cite><input name="isRework" type="radio" value="1" checked="checked" />是

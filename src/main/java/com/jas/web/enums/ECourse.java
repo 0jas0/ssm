@@ -4,10 +4,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 public enum ECourse {
-    FISRT_CLASS(1,"第一大节课"),
-    SECOND_CLASS(2,"第二大节课"),
-    THIRD_CLASS(3,"第三大节课"),
-    FOURTH_CLASS(4,"第四大节课");
+    FISRT_CLASS(1,"第1～2节课"),
+    SECOND_CLASS(2,"第3～4节课"),
+    THIRD_CLASS(3,"第5～6节课"),
+    FOURTH_CLASS(4,"第7～8节课");
 
     ECourse(Integer value, String desc) {
         this.value = value;
