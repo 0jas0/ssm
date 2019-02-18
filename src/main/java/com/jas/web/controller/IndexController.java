@@ -1,18 +1,14 @@
 package com.jas.web.controller;
 
 import com.jas.web.bean.domain.AdminDO;
-import com.jas.web.bean.model.StudentModel;
-import com.jas.web.bean.model.SystemSettingModel;
-import com.jas.web.bean.model.TeacherModel;
-import com.jas.web.bean.model.UserModel;
+import com.jas.web.bean.model.*;
 import com.jas.web.dao.IAdminDAO;
-import com.jas.web.service.IStudentService;
-import com.jas.web.service.ISystemSettingService;
-import com.jas.web.service.ITeacherService;
+import com.jas.web.service.*;
 import com.jas.web.utils.DateUtil;
 import com.jas.web.utils.ResponseUtil;
 import com.jas.web.utils.StringUtil;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,6 +17,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import javax.xml.crypto.Data;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class IndexController {
@@ -36,6 +33,12 @@ public class IndexController {
 
     @Resource
     ISystemSettingService systemSettingService;
+
+    @Resource
+    ICollegeMajorService collegeMajorService;
+
+    @Resource
+    IAdministrativeClassService administrativeClassService;
 
     @RequestMapping("/do-login")
     @ResponseBody
@@ -93,6 +96,27 @@ public class IndexController {
     public Object loginOut(HttpSession session){
         session.removeAttribute("userModel");
         return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS, "退出登陆成功", null);
+    }
+
+    @RequestMapping("/person/info")
+    public String personInfo(Model model, HttpSession session){
+        UserModel userModel = (UserModel)session.getAttribute("userModel");
+        if (userModel.getType() == 1){
+            // 学生
+            StudentModel studentModel = studentService.getStudentById(userModel.getId());
+            List<CollegeMajorModel> majorByParentId = collegeMajorService.getMajorByParentId(studentModel.getCollege());
+            List<AdministrativeClassModel> classDO = administrativeClassService.getByCollegeMajor(studentModel.getCollege(), studentModel.getMajor());
+            List<CollegeMajorModel> college = collegeMajorService.getMajorByParentId(0);
+            model.addAttribute("collegeList",college);
+            model.addAttribute("majorList",majorByParentId);
+            model.addAttribute("classList",classDO);
+            model.addAttribute("studentModel",studentModel);
+            return "person/student_edit";
+        }else {
+            TeacherModel teacherModel = teacherService.getById(userModel.getId());
+            model.addAttribute("teacherModel",teacherModel);
+            return "person/teacher_edit";
+        }
     }
 
     @RequestMapping("/login")

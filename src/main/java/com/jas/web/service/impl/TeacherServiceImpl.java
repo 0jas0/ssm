@@ -71,6 +71,13 @@ public class TeacherServiceImpl implements ITeacherService{
     }
 
     @Override
+    public TeacherModel getById(Integer teacherId) {
+        TeacherDO teacher = teacherDAO.getTeacherById(teacherId);
+        TeacherModel teacherModel = new TeacherModel(teacher);
+        return teacherModel;
+    }
+
+    @Override
     public PaperUtil<TeacherModel> getTeacherByPage(Integer currentPage, Integer pageSize) {
         PaperUtil<TeacherModel> paperUtil = new PaperUtil<>();
         int totalNum = teacherDAO.getTotalNum();

@@ -14,6 +14,8 @@ public interface ITeacherService {
 
     TeacherModel getByTeacherId(String teacherId);
 
+    TeacherModel getById(Integer teacherId);
+
     PaperUtil<TeacherModel> getTeacherByPage(Integer currentPage, Integer pageSize);
 
     void deleteTeacher(String teacherId);

@@ -44,6 +44,18 @@ $(function(){
             <li class="active"><cite></cite><a href="#">首页</a><i></i></li>
         </ul>
     </dd>
+
+    <c:if test="${userModel.type == 1 || userModel.type == 2}">
+        <dd>
+            <div class="title">
+                <span><img src="/images/leftico01.png" /></span>个人信息
+            </div>
+            <ul class="menuson">
+                <li><cite></cite><a href="/person/info" target="rightFrame">个人信息</a><i></i></li>
+            </ul>
+        </dd>
+    </c:if>
+
     <c:if test="${userModel.type == 0}">
         <dd>
         <div class="title">
