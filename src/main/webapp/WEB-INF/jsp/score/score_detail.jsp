@@ -127,10 +127,10 @@ pageEncoding="UTF-8"%>
                         html += '<td>'+item.studentId+'</td>';
                         html += "<td>"+item.studentName+"</td>";
                         html += "<td>"+item.className+"</td>";
-                        html += "<td>"+item.grade+"</td>";
-                        html += "<td>"+item.accessCredits+"</td>";
-                        html += "<td>"+item.failReason+"</td>";
-                        html += "<td>"+item.reworkSituation+"</td>";
+                        html += "<td onclick='changeValue(this)'>"+item.grade+"</td>";
+                        html += "<td onclick='changeValue(this)'>"+item.accessCredits+"</td>";
+                        html += "<td onclick='changeValue(this)'>"+item.failReason+"</td>";
+                        html += "<td onclick='changeValue(this)'>"+item.reworkSituation+"</td>";
                         html+="</tr>";
                     });
                     $("#totalRecord").text(res.data.totalRecord);
@@ -162,5 +162,51 @@ pageEncoding="UTF-8"%>
         })
     }
     $('.tablelist tbody tr:odd').addClass('odd');
-
+    function changeValue(obj) {
+        var value = $(obj).html();
+        if (value.indexOf("input") != -1){
+            return;
+        }
+        $(obj).html("<input type='text' name='tmp' value='"+value+"' onblur='changeValueStep2(this)'/>");
+    }
+    function changeValueStep2(obj) {
+        var  val = $(obj).val();
+        var td = $(obj).closest("td");
+        var tr = $(obj).closest("tr");
+        td.html(val);
+        var id = tr.find("td").eq(1).html();
+        var courseId = tr.find("td").eq(2).html();
+        var studentId = tr.find("td").eq(3).html();
+        var grade = tr.find("td").eq(6).html();
+        var accessCredits = tr.find("td").eq(7).html();
+        var failReason = tr.find("td").eq(8).html();
+        var reworkSituation = tr.find("td").eq(9).html();
+        console.log(id);
+        console.log(courseId);
+        console.log(studentId);
+        console.log(grade);
+        console.log(accessCredits);
+        console.log(failReason);
+        console.log(reworkSituation);
+        $.ajax({
+            type: 'post',
+            url: '/score/ajax/edit-score-studentId',
+            data: {
+                'id':id,
+                'courseId': courseId,
+                'studentId':studentId,
+                'grade':grade,
+                'accessCredits':accessCredits,
+                'failReason':failReason,
+                'reworkSituation':reworkSituation
+            },
+            success: function (res) {
+                if (res.status == 0){
+                    page(1,10);
+                }else {
+                    location.href = "/error";
+                }
+            }
+        })
+    }
 </script>

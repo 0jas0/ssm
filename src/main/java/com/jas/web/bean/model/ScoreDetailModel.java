@@ -2,7 +2,7 @@ package com.jas.web.bean.model;
 
 public class ScoreDetailModel {
 
-    private Integer id;
+    private String id;
 
     private Integer courseId;
 
@@ -12,20 +12,36 @@ public class ScoreDetailModel {
 
     private String className;
 
-    private Double grade;
+    private String grade;
 
-    private Double accessCredits;
+    private String accessCredits;
 
     private String failReason;
 
     private String reworkSituation;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
+    public void setAccessCredits(String accessCredits) {
+        this.accessCredits = accessCredits;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public String getAccessCredits() {
+        return accessCredits;
     }
 
     public Integer getCourseId() {
@@ -58,22 +74,6 @@ public class ScoreDetailModel {
 
     public void setClassName(String className) {
         this.className = className;
-    }
-
-    public Double getGrade() {
-        return grade;
-    }
-
-    public void setGrade(Double grade) {
-        this.grade = grade;
-    }
-
-    public Double getAccessCredits() {
-        return accessCredits;
-    }
-
-    public void setAccessCredits(Double accessCredits) {
-        this.accessCredits = accessCredits;
     }
 
     public String getFailReason() {

@@ -19,4 +19,10 @@ public interface IScoreService {
     ScoreModel getScoreById(Integer scoreId);
 
     void deleteScore(Integer scoreId);
+
+    /**
+     * 编辑学生的成绩信息
+     * @param scoreDetailModel
+     */
+    void editScoreByStudentId(ScoreDetailModel scoreDetailModel);
 }

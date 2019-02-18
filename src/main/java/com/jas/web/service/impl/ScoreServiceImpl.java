@@ -8,6 +8,7 @@ import com.jas.web.service.ICourseService;
 import com.jas.web.service.IScoreService;
 import com.jas.web.service.IStudentService;
 import com.jas.web.utils.PaperUtil;
+import com.jas.web.utils.StringUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -110,11 +111,15 @@ public class ScoreServiceImpl implements IScoreService{
         }
         for (ScoreDO scoreDO : scoreDOS){
             ScoreDetailModel scoreDetailModel = new ScoreDetailModel();
-            scoreDetailModel.setId(scoreDO.getId());
+            scoreDetailModel.setId(scoreDO.getId()+"");
             scoreDetailModel.setCourseId(courseId);
-            scoreDetailModel.setAccessCredits(scoreDO.getAccessCredits());
             scoreDetailModel.setFailReason(scoreDO.getFailReason());
-            scoreDetailModel.setGrade(scoreDO.getGrade());
+            if (scoreDO.getAccessCredits() != null) {
+                scoreDetailModel.setAccessCredits(scoreDO.getAccessCredits() + "");
+            }
+            if (scoreDO.getGrade() != null){
+                scoreDetailModel.setGrade(scoreDO.getGrade()+"");
+            }
             scoreDetailModel.setReworkSituation(scoreDO.getReworkSituation());
             StudentDO studentDO = studentDAO.getStudentById(scoreDO.getStudentId());
             scoreDetailModel.setStudentId(studentDO.getStudentId());
@@ -128,7 +133,11 @@ public class ScoreServiceImpl implements IScoreService{
         for (StudentModel studentModel : studentModels){
             ScoreDetailModel scoreDetailModel = new ScoreDetailModel();
             scoreDetailModel.setCourseId(courseId);
+            scoreDetailModel.setId("");
             scoreDetailModel.setFailReason("");
+            scoreDetailModel.setReworkSituation("");
+            scoreDetailModel.setGrade("");
+            scoreDetailModel.setAccessCredits("");
             scoreDetailModel.setStudentId(studentModel.getStudentId());
             scoreDetailModel.setStudentName(studentModel.getName());
             AdministrativeClassDO administrativeClassDO = classDOMap.get(studentModel.getClassId());
@@ -155,5 +164,30 @@ public class ScoreServiceImpl implements IScoreService{
     @Override
     public void deleteScore(Integer scoreId) {
         scoreDAO.deleteScore(scoreId);
+    }
+
+    @Override
+    public void editScoreByStudentId(ScoreDetailModel scoreDetailModel) {
+        StudentDO studentDO = studentDAO.getStudentByStudentId(scoreDetailModel.getStudentId());
+        ScoreDO scoreDO = new ScoreDO();
+        scoreDO.setCourseId(scoreDetailModel.getCourseId());
+        scoreDO.setStudentId(studentDO.getId());
+        if (!StringUtil.isEmpty(scoreDetailModel.getAccessCredits())){
+            scoreDO.setAccessCredits(Double.valueOf(scoreDetailModel.getAccessCredits()));
+        }
+        if (!StringUtil.isEmpty(scoreDetailModel.getGrade())){
+            scoreDO.setGrade(Double.valueOf(scoreDetailModel.getGrade()));
+        }
+        scoreDO.setFailReason(scoreDetailModel.getFailReason());
+        scoreDO.setReworkSituation(scoreDetailModel.getReworkSituation());
+        scoreDO.setIsRework(0);
+        if (StringUtil.isEmpty(scoreDetailModel.getId())){
+            // 执行添加操作
+            scoreDAO.addScore(scoreDO);
+        }else {
+            scoreDO.setId(Integer.valueOf(scoreDetailModel.getId()));
+            // 执行修操作
+            scoreDAO.updateScore(scoreDO);
+        }
     }
 }

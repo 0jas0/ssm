@@ -128,11 +128,23 @@ public class ScoreController {
         }
     }
 
+    @RequestMapping("ajax/edit-score-studentId")
+    @ResponseBody
+    public Object editScoreByStudentId(ScoreDetailModel scoreDetailModel){
+        try {
+            scoreService.editScoreByStudentId(scoreDetailModel);
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS,"获取成绩详情列表成功",null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"获取成绩详情列表失败",null);
+        }
+    }
+
+
     @RequestMapping("/score_detail")
     public String scoreDetailView(@RequestParam("courseId") Integer courseId, Model model){
         model.addAttribute("courseId", courseId);
         return "score/score_detail";
-
     }
 
     @RequestMapping("/score_add")
