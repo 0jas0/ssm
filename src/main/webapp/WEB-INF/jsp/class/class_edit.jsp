@@ -18,7 +18,8 @@
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
-    <li><a href="#">添加班级</a></li>
+    <li><a href="#">班级管理</a></li>
+    <li><a href="#">编辑班级信息</a></li>
     </ul>
     </div>
     <div class="formbody">

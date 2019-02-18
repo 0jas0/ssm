@@ -17,6 +17,7 @@
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
+    <li><a href="#">教师管理</a></li>
     <li><a href="#">添加教师</a></li>
     </ul>
     </div>

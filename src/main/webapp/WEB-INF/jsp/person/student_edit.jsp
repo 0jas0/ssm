@@ -18,8 +18,8 @@
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
-    <li><a href="#">首页</a></li>
-    <li><a href="#">表单</a></li>
+    <li><a href="#">个人信息</a></li>
+    <li><a href="#">学生信息</a></li>
     </ul>
     </div>
     
