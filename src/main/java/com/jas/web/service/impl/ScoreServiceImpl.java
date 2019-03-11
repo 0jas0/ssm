@@ -116,9 +116,13 @@ public class ScoreServiceImpl implements IScoreService{
             scoreDetailModel.setFailReason(scoreDO.getFailReason());
             if (scoreDO.getAccessCredits() != null) {
                 scoreDetailModel.setAccessCredits(scoreDO.getAccessCredits() + "");
+            }else {
+                scoreDetailModel.setAccessCredits("");
             }
             if (scoreDO.getGrade() != null){
                 scoreDetailModel.setGrade(scoreDO.getGrade()+"");
+            }else {
+                scoreDetailModel.setGrade("");
             }
             scoreDetailModel.setReworkSituation(scoreDO.getReworkSituation());
             StudentDO studentDO = studentDAO.getStudentById(scoreDO.getStudentId());
