@@ -40,7 +40,7 @@
             <li><label><b style="color: red">*</b>手机号</label><input name="mobile" type="text" class="dfinput" value="${studentModel.mobile}"/><i></i></li>
             <li><label><b style="color: red">*</b>身份证号</label><input name="identityCardNumber" type="text" class="dfinput" value="${studentModel.identityCardNumber}"/><i></i></li>
 
-            <li><label><b style="color: red">*</b>学院</label><div class="vocation"><select class="select1" name="college">
+            <li><label><b style="color: red">*</b>学院</label><div class="vocation"><select class="select1" name="college" disabled>
                 <c:forEach items="${collegeList}" var = "college">
                     <c:if test="${college.id != studentModel.college}">
                         <option value="${college.id}">${college.name}</option>
@@ -50,7 +50,7 @@
                     </c:if>
                 </c:forEach>
             </select></div><i></i></li>
-            <li><label><b style="color: red">*</b>专业</label><div class="vocation"><select class="select2" name="major">
+            <li><label><b style="color: red">*</b>专业</label><div class="vocation"><select class="select2" name="major" disabled>
                 <c:forEach items="${majorList}" var = "major">
                     <c:if test="${major.id == studentModel.major}">
                         <option value="${major.id}" selected>${major.name}</option>
@@ -60,7 +60,7 @@
                     </c:if>
                 </c:forEach>
             </select></div><i></i></li>
-            <li><label><b style="color: red">*</b>班级</label><div class="vocation"><select class="select3" name="classId">
+            <li><label><b style="color: red">*</b>班级</label><div class="vocation"><select class="select3" name="classId" disabled>
                 <c:forEach items="${classList}" var = "class">
                     <c:if test="${class.id == studentModel.classId}">
                         <option value="${class.id}" selected>${class.name}</option>
