@@ -42,8 +42,7 @@ pageEncoding="UTF-8"%>
         <th>班级名</th>
         <th>成绩</th>
         <th>学分</th>
-        <th>挂科原因</th>
-        <th>重修情况</th>
+        <th>备注</th>
         </tr>
         </thead>
         <tbody id="studentList">

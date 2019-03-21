@@ -32,11 +32,7 @@
             <li><label><b style="color: red">*</b>学生名称</label><input name="studentName" type="text" readonly value="${studentModel.name}" class="dfinput" /><i></i></li>
             <li><label><b style="color: red">*</b>分数</label><input name="grade" type="text" value="${scoreModel.grade}" class="dfinput" /><i></i></li>
             <li><label><b style="color: red">*</b>所获学分</label><input name="accessCredits" type="text" value="${scoreModel.accessCredits}" class="dfinput" /><i></i></li>
-            <li><label>挂科原因</label><input name="failReason" type="text" value="${scoreModel.failReason}" class="dfinput" /><i></i></li>
-            <li><label>重修情况</label><input name="reworkSituation" type="text" value="${scoreModel.reworkSituation}" class="dfinput"/><i></i></li>
-        <li><label>是否重修</label><cite><input name="isRework" type="radio" value="1" <c:if test="${scoreModel.isRework == 1}">checked</c:if> />是
-                &nbsp;&nbsp;&nbsp;&nbsp;<input name="isRework" type="radio" value="0" <c:if test="${scoreModel.isRework == 0}">checked</c:if>/>否</cite>
-            </li>
+            <li><label>备注</label><input name="failReason" type="text" value="${scoreModel.failReason}" class="dfinput" /><i></i></li>
             <li><label>&nbsp;</label><input name="" type="button" class="btn" value="确认保存" onclick="saveClass()"/></li>
     </ul>
     </div>

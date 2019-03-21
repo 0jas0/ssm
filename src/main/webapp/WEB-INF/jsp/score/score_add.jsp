@@ -36,11 +36,7 @@
             </div><i></i></li>
             <li><label><b style="color: red">*</b>分数</label><input name="grade" type="text" class="dfinput" /><i></i></li>
             <li><label><b style="color: red">*</b>所获学分</label><input name="accessCredits" type="text" class="dfinput" /><i></i></li>
-            <li><label>挂科原因</label><input name="failReason" type="text" class="dfinput" /><i></i></li>
-            <li><label>重修情况</label><input name="reworkSituation" type="text" class="dfinput"/><i></i></li>
-            <li><label>是否重修</label><cite><input name="isRework" type="radio" value="1" checked="checked" />是
-                &nbsp;&nbsp;&nbsp;&nbsp;<input name="isRework" type="radio" value="0" />否</cite>
-            </li>
+            <li><label>备注</label><input name="failReason" type="text" class="dfinput" /><i></i></li>
             <li><label>&nbsp;</label><input name="" type="button" class="btn" value="确认保存" onclick="saveClass()"/></li>
     </ul>
     </div>
