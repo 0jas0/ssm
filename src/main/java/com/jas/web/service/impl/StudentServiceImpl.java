@@ -1,26 +1,20 @@
 package com.jas.web.service.impl;
 
-import com.github.tobato.fastdfs.domain.FileInfo;
 import com.github.tobato.fastdfs.domain.StorePath;
-import com.github.tobato.fastdfs.exception.FdfsServerException;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import com.jas.web.bean.domain.*;
 import com.jas.web.bean.model.StudentModel;
-import com.jas.web.bean.model.TeacherModel;
 import com.jas.web.dao.*;
 import com.jas.web.exception.ParamNotValidException;
 import com.jas.web.service.IStudentService;
 import com.jas.web.utils.FileUtil;
 import com.jas.web.utils.PaperUtil;
 import com.jas.web.utils.StringUtil;
-import com.sun.imageio.plugins.jpeg.JPEG;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
@@ -89,11 +83,11 @@ public class StudentServiceImpl implements IStudentService{
     }
 
     @Override
-    public PaperUtil<StudentModel> getStudentByPage(Integer currentPage, Integer pageSize) {
+    public PaperUtil<StudentModel> getStudentByPage(Integer currentPage, Integer pageSize, String keyword) {
         PaperUtil<StudentModel> paperUtil = new PaperUtil<>();
         int totalNum = studentDAO.getTotalNum();
         int startRecord = (currentPage - 1) * pageSize > totalNum ? totalNum : (currentPage - 1) * pageSize;
-        List<StudentDO> studentDOList = studentDAO.listStudentByPage(startRecord, pageSize, "id", "desc");
+        List<StudentDO> studentDOList = studentDAO.listStudentByPage(keyword, startRecord, pageSize, "id", "desc");
         List<CollegeMajorDO> collegeMajor = collegeMajorDAO.getAllCollegeMajor();
         Map<Integer,CollegeMajorDO> collegeMajorDOMap = new HashMap<>();
         for (CollegeMajorDO collegeMajorDO : collegeMajor){

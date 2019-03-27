@@ -37,8 +37,7 @@ public interface IAdministrativeClassDAO {
     @Select("select count(*) from beihua.administrative_class where is_del = 0")
     public int getTotalNum();
 
-    @Select("select * from beihua.administrative_class where is_del = 0 order by #{sort} #{lift} limit ${start},${size}")
-    public List<AdministrativeClassDO> listByPage(@Param("start") Integer start, @Param("size") Integer size, @Param("sort") String sort, @Param("lift") String lift);
+    public List<AdministrativeClassDO> listByPage(@Param("keyword") String keyword, @Param("start") Integer start, @Param("size") Integer size, @Param("sort") String sort, @Param("lift") String lift);
 
     @Select("select * from beihua.administrative_class where id = #{id} and is_del = 0")
     public AdministrativeClassDO getAdminstrativeClassById(@Param("id") Integer id);

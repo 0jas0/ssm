@@ -70,9 +70,11 @@ public class AdministrativeClassController {
 
     @RequestMapping(value = "/ajax-get-class-by-page")
     @ResponseBody
-    public Object getAllTeacher(@RequestParam(value = "currentPage", defaultValue = "1") Integer currentPage, @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize){
+    public Object getAllTeacher(@RequestParam(value = "currentPage", defaultValue = "1") Integer currentPage,
+                                @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize,
+                                @RequestParam(value = "keyword") String keyword){
         try {
-            PaperUtil<AdministrativeClassModel> administrativeClassModels = administrativeClassService.getClassByPage(currentPage, pageSize);
+            PaperUtil<AdministrativeClassModel> administrativeClassModels = administrativeClassService.getClassByPage(keyword, currentPage, pageSize);
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS, "获取班级成功", administrativeClassModels);
         }catch (Exception e){
             e.printStackTrace();

@@ -16,7 +16,7 @@ public interface IAdministrativeClassService {
 
     List<AdministrativeClassModel> getByCollegeMajor(Integer college, Integer major);
 
-    PaperUtil<AdministrativeClassModel> getClassByPage(Integer currentPage, Integer pageSize);
+    PaperUtil<AdministrativeClassModel> getClassByPage(String keyword, Integer currentPage, Integer pageSize);
 
     void deleteClass(Integer id);
 

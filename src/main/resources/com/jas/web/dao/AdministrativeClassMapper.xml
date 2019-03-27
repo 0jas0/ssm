@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jas.web.dao.IAdministrativeClassDAO">
+    <select id="listByPage" resultType="com.jas.web.bean.domain.AdministrativeClassDO">
+        SELECT * FROM beihua.administrative_class WHERE is_del = 0
+        <if test='keyword != null and keyword != ""'>
+            AND `name` LIKE (concat('%',#{keyword},'%')) OR `class_id` LIKE (concat('%',#{keyword},'%'))
+        </if>
+        ORDER BY  #{sort} #{lift} limit ${start},${size}
+    </select>
+</mapper>

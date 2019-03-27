@@ -8,18 +8,13 @@ import com.jas.web.enums.ECourseType;
 import com.jas.web.enums.EEvaluationGrade;
 import com.jas.web.service.ICourseService;
 import com.jas.web.service.IScoreService;
-import com.jas.web.service.ITeacherEvaluationService;
 import com.jas.web.service.ITeacherService;
-import com.jas.web.utils.DateUtil;
 import com.jas.web.utils.PaperUtil;
 import com.jas.web.utils.StringUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 
 import javax.annotation.Resource;
-import javax.validation.Valid;
 import java.util.*;
 
 @Service
@@ -78,11 +73,11 @@ public class TeacherServiceImpl implements ITeacherService{
     }
 
     @Override
-    public PaperUtil<TeacherModel> getTeacherByPage(Integer currentPage, Integer pageSize) {
+    public PaperUtil<TeacherModel> getTeacherByPage(String keyword, Integer currentPage, Integer pageSize) {
         PaperUtil<TeacherModel> paperUtil = new PaperUtil<>();
         int totalNum = teacherDAO.getTotalNum();
         int startRecord = (currentPage - 1) * pageSize > totalNum ? totalNum : (currentPage - 1) * pageSize;
-        List<TeacherDO> teacherDOList = teacherDAO.listTeacherByPage(startRecord, pageSize, "id", "desc");
+        List<TeacherDO> teacherDOList = teacherDAO.listTeacherByPage(keyword, startRecord, pageSize, "id", "desc");
         List<TeacherModel> teacherModelList = new LinkedList<>();
         for (TeacherDO teacherDO : teacherDOList){
             teacherModelList.add(new TeacherModel(teacherDO));

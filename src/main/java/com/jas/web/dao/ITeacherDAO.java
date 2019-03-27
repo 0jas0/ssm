@@ -28,8 +28,7 @@ public interface ITeacherDAO {
     public TeacherDO getTeacherById(@Param("id") Integer id);
 
 
-    @Select("select * from beihua.teacher where is_del = 0 order by #{sort} #{lift} limit ${start},${size}")
-    public List<TeacherDO> listTeacherByPage(@Param("start") Integer start, @Param("size") Integer size, @Param("sort") String sort, @Param("lift") String lift);
+    public List<TeacherDO> listTeacherByPage(String keyword, @Param("start") Integer start, @Param("size") Integer size, @Param("sort") String sort, @Param("lift") String lift);
 
     @Select("select count(*) from beihua.teacher where is_del = 0")
     public Integer getTotalNum();

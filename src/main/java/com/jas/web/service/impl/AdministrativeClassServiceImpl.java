@@ -2,9 +2,7 @@ package com.jas.web.service.impl;
 
 import com.jas.web.bean.domain.AdministrativeClassDO;
 import com.jas.web.bean.domain.CollegeMajorDO;
-import com.jas.web.bean.domain.StudentDO;
 import com.jas.web.bean.model.AdministrativeClassModel;
-import com.jas.web.bean.model.StudentModel;
 import com.jas.web.dao.IAdministrativeClassDAO;
 import com.jas.web.dao.ICollegeMajorDAO;
 import com.jas.web.service.IAdministrativeClassService;
@@ -65,11 +63,11 @@ public class AdministrativeClassServiceImpl implements IAdministrativeClassServi
     }
 
     @Override
-    public PaperUtil<AdministrativeClassModel> getClassByPage(Integer currentPage, Integer pageSize) {
+    public PaperUtil<AdministrativeClassModel> getClassByPage(String keyword, Integer currentPage, Integer pageSize) {
         PaperUtil<AdministrativeClassModel> paperUtil = new PaperUtil<>();
         int totalNum = administrativeClassDAO.getTotalNum();
         int startRecord = (currentPage - 1) * pageSize > totalNum ? totalNum : (currentPage - 1) * pageSize;
-        List<AdministrativeClassDO> administrativeClassDOS = administrativeClassDAO.listByPage(startRecord, pageSize, "id", "desc");
+        List<AdministrativeClassDO> administrativeClassDOS = administrativeClassDAO.listByPage(keyword, startRecord, pageSize, "id", "desc");
         List<CollegeMajorDO> collegeMajor = collegeMajorDAO.getAllCollegeMajor();
         Map<Integer,CollegeMajorDO> collegeMajorDOMap = new HashMap<>();
         for (CollegeMajorDO collegeMajorDO : collegeMajor){

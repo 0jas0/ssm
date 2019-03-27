@@ -30,9 +30,11 @@ public class TeacherController {
 
     @RequestMapping(value = "/ajax-get-teacher-by-page")
     @ResponseBody
-    public Object getTeacherByPage(@RequestParam(value = "currentPage", defaultValue = "1") Integer currentPage, @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize){
+    public Object getTeacherByPage(@RequestParam(value = "currentPage", defaultValue = "1") Integer currentPage,
+                                   @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize,
+                                   @RequestParam(value = "keyword") String keyword){
         try {
-            PaperUtil<TeacherModel> teacherModelList = teacherService.getTeacherByPage(currentPage, pageSize);
+            PaperUtil<TeacherModel> teacherModelList = teacherService.getTeacherByPage(keyword, currentPage, pageSize);
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS, "获取所有教师成功", teacherModelList);
         }catch (Exception e){
             e.printStackTrace();

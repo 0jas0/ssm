@@ -1,7 +1,6 @@
 package com.jas.web.service;
 
 import com.jas.web.bean.model.StudentModel;
-import com.jas.web.bean.model.TeacherModel;
 import com.jas.web.utils.PaperUtil;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,7 +14,7 @@ public interface IStudentService {
 
     void modifyStudent(StudentModel studentModel) throws IOException;
 
-    PaperUtil<StudentModel> getStudentByPage(Integer currentPage, Integer pageSize);
+    PaperUtil<StudentModel> getStudentByPage(Integer currentPage, Integer pageSize, String keyword);
 
     String uploadFile(MultipartFile image) throws IOException;
 

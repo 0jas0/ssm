@@ -111,9 +111,11 @@ public class StudentController {
 
     @RequestMapping(value = "/ajax-get-student-by-page")
     @ResponseBody
-    public Object getAllTeacher(@RequestParam(value = "currentPage", defaultValue = "1") Integer currentPage, @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize){
+    public Object getAllTeacher(@RequestParam(value = "currentPage", defaultValue = "1") Integer currentPage,
+                                @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize,
+                                @RequestParam(value = "keyword") String keyword){
         try {
-            PaperUtil<StudentModel> studentPape = studentService.getStudentByPage(currentPage, pageSize);
+            PaperUtil<StudentModel> studentPape = studentService.getStudentByPage(currentPage, pageSize, keyword);
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS, "获取学生成功", studentPape);
         }catch (Exception e){
             e.printStackTrace();

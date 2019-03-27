@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jas.web.dao.ITeacherDAO">
-    <select id="listTeacherByPage" resultType="com.jas.web.bean.domain.TeacherDO">
-        SELECT * FROM beihua.teacher WHERE is_del = 0
+<mapper namespace="com.jas.web.dao.IStudentDAO">
+    <select id="listStudentByPage" resultType="com.jas.web.bean.domain.StudentDO">
+        SELECT * FROM beihua.student WHERE is_del = 0
         <if test='keyword != null and keyword != ""'>
-            AND `name` LIKE (concat('%',#{keyword},'%')) OR `teacher_id` LIKE (concat('%',#{keyword},'%'))
+            AND `name` LIKE (concat('%',#{keyword},'%')) OR `student_id` LIKE (concat('%',#{keyword},'%'))
         </if>
         ORDER BY  #{sort} #{lift} limit ${start},${size}
     </select>
