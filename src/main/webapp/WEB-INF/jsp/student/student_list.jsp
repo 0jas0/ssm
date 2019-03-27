@@ -9,7 +9,6 @@ pageEncoding="UTF-8"%>
 <script type="text/javascript" src="/js/jquery.js"></script>
 </head>
 <body>
-
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
@@ -17,21 +16,16 @@ pageEncoding="UTF-8"%>
     <li><a href="#">学生列表</a></li>
     </ul>
     </div>
-    
     <div class="rightinfo">
-    
     <div class="tools">
-    
     	<ul class="toolbar">
         <li class="AddStudent"><span><img src="/images/t01.png" /></span>添加</li>
         <li class="editStudent"><span><img src="/images/t02.png" /></span>修改</li>
         <li class="removeStudent"><span><img src="/images/t03.png" /></span>删除</li>
         </ul>
-
-
+        <input id="studentKeyword" type="text" name="keyword" style="margin:4px 2px;border:0.5px solid #060305;height: 28px">
+        <button onclick="searchList()">搜索</button>
     </div>
-    
-    
     <table class="tablelist">
     	<thead>
     	<tr>
@@ -55,7 +49,6 @@ pageEncoding="UTF-8"%>
         <ul class="paginList">
         </ul>
     </div>
-
     </div>
 </body>
 </html>
@@ -103,18 +96,21 @@ pageEncoding="UTF-8"%>
             location.href = "/student/student_list";
         });
 
-
-
-        page(1,10);
+        page(1,10,'');
 
     });
-    function page(currentPage,pageSize) {
+    function searchList() {
+        var keyword = $("#studentKeyword").val();
+        page(1, 10, keyword);
+    }
+    function page(currentPage,pageSize, keyword) {
         $.ajax({
             type: 'post',
             url: '/student/ajax-get-student-by-page',
             data: {
                 'currentPage': currentPage,
-                'pageSize':pageSize
+                'pageSize':pageSize,
+                'keyword':keyword
             },
             success: function (res) {
                 if (res.status == 0){

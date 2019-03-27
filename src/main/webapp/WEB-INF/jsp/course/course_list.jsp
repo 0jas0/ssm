@@ -21,14 +21,11 @@ pageEncoding="UTF-8"%>
     <div class="rightinfo">
     
     <div class="tools">
-    
     	<ul class="toolbar">
         <li class="AddCourse"><span><img src="/images/t01.png" /></span>添加</li>
         <li class="editCourse"><span><img src="/images/t02.png" /></span>修改</li>
         <li class="removeCourse"><span><img src="/images/t03.png" /></span>删除</li>
         </ul>
-
-    
     </div>
     
     

@@ -26,6 +26,8 @@ pageEncoding="UTF-8"%>
         <li class="AddClass"><span><img src="/images/t01.png" /></span>添加</li>
         <li class="editClass"><span><img src="/images/t02.png" /></span>修改</li>
         <li class="removeClass"><span><img src="/images/t03.png" /></span>删除</li>
+        <input id="classKeyword" type="text" name="keyword" style="margin:4px 2px;border:0.5px solid #060305;height: 28px">
+        <button onclick="searchList()">搜索</button>
         </ul>
     
     </div>
@@ -98,19 +100,20 @@ pageEncoding="UTF-8"%>
                 location.href = "/class/class_list";
             }
         });
-
-
-
-        page(1,10);
-
+        page(1,10,'');
     });
-    function page(currentPage,pageSize) {
+    function searchList() {
+        var keyword = $("#classKeyword").val();
+        page(1, 10, keyword);
+    }
+    function page(currentPage, pageSize, keyword) {
         $.ajax({
             type: 'post',
             url: '/class/ajax-get-class-by-page',
             data: {
                 'currentPage': currentPage,
-                'pageSize':pageSize
+                'pageSize':pageSize,
+                'keyword':keyword
             },
             success: function (res) {
                 if (res.status == 0){

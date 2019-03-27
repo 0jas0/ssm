@@ -21,18 +21,14 @@ pageEncoding="UTF-8"%>
     <div class="rightinfo">
     
     <div class="tools">
-    
     	<ul class="toolbar">
         <li class="AddTeacher"><span><img src="/images/t01.png" /></span>添加</li>
         <li class="editTeacher"><span><img src="/images/t02.png" /></span>修改</li>
         <li class="removeTeacher"><span><img src="/images/t03.png" /></span>删除</li>
+        <input id="teacherKeyword" type="text" name="keyword" style="margin:4px 2px;border:0.5px solid #060305;height: 28px">
+        <button onclick="searchList()">搜索</button>
         </ul>
-        
-        
-
     </div>
-    
-    
     <table class="tablelist">
     	<thead>
     	<tr>
@@ -100,18 +96,21 @@ pageEncoding="UTF-8"%>
             }
         });
 
-
-
-        page(1,10);
+        page(1,10,'');
 
     });
-    function page(currentPage,pageSize) {
+    function searchList() {
+        var keyword = $("#teacherKeyword").val();
+        page(1, 10, keyword);
+    }
+    function page(currentPage,pageSize, keyword) {
         $.ajax({
             type: 'post',
             url: '/teacher/ajax-get-teacher-by-page',
             data: {
                 'currentPage': currentPage,
-                'pageSize':pageSize
+                'pageSize':pageSize,
+                'keyword':keyword
             },
             success: function (res) {
                 if (res.status == 0){
