@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jas.web.dao.IChoiceCoursesDAO">
+    <select id="getCourseByStudentIds" resultType="com.jas.web.bean.domain.ChoiceCoursesDO">
+        select * from beihua.choice_courses where  student_id in
+        <foreach collection="studentIdList" open="(" close=")" separator="," item="item" index="index">
+            #{studentId}
+        </foreach>
+        and is_del = 0
+    </select>
+</mapper>

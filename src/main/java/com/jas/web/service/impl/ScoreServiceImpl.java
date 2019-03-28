@@ -39,6 +39,9 @@ public class ScoreServiceImpl implements IScoreService{
     @Resource
     IStudentService studentService;
 
+    @Resource
+    ICourseService courseService;
+
     @Override
     @Transactional
     public void addScore(ScoreModel scoreModel) {
@@ -193,5 +196,49 @@ public class ScoreServiceImpl implements IScoreService{
             // 执行修操作
             scoreDAO.updateScore(scoreDO);
         }
+    }
+
+    @Override
+    public List<ClassScoreModel> getScoreByClassId(Integer classId) {
+        // 获取班级所得学生
+        List<StudentDO> studentList = studentDAO.getStudentByClassId(classId);
+        Map<Integer, StudentDO> studentDOMap = new HashMap<>();
+        List<Integer> studentIdList = new ArrayList<>();
+        for (StudentDO studentDO : studentList){
+            studentIdList.add(studentDO.getId());
+            studentDOMap.put(studentDO.getId(), studentDO);
+        }
+
+        // 查看班级的每个学生的课程
+        Map<Integer, List<CourseDO>> classCourseList = courseService.getCourseByStudentId(classId, studentIdList);
+        List<ClassScoreModel> classScoreModelList = new ArrayList<>();
+        // 查看成绩列表
+        for (Map.Entry<Integer, List<CourseDO>> entry : classCourseList.entrySet()){
+            Integer StudentId = entry.getKey();
+            List<CourseDO> courseDOS = entry.getValue();
+            List<ScoreDO> scoreDOS = scoreDAO.getScoreByStudentId(StudentId);
+            Map<Integer, ScoreDO> scoreDOMap = new HashMap<>();
+            for (ScoreDO scoreDO : scoreDOS){
+                scoreDOMap.put(scoreDO.getCourseId(), scoreDO);
+            }
+            for (CourseDO courseDO : courseDOS){
+                ClassScoreModel scoreModel = new ClassScoreModel();
+                scoreModel.setId(courseDO.getId());
+                scoreModel.setName(courseDO.getName());
+                scoreModel.setCollege(courseDO.getCollege());
+                scoreModel.setCredit(courseDO.getCredit());
+                scoreModel.setPeriod(courseDO.getPeriod());
+                scoreModel.setTypeName(courseDO.getType() == 0 ? "选修" : "必修");
+                StudentDO studentDO = studentDOMap.get(StudentId);
+                scoreModel.setStudentName(studentDO == null ? "" : studentDO.getName());
+                ScoreDO scoreDO = scoreDOMap.get(courseDO.getId());
+                if (scoreDO == null){
+                    scoreModel.setGrade(0d);
+                }else {
+                    scoreModel.setGrade(scoreDO.getGrade());
+                }
+            }
+        }
+        return classScoreModelList;
     }
 }

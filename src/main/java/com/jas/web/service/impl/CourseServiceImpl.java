@@ -1,30 +1,21 @@
 package com.jas.web.service.impl;
 
-import com.alibaba.fastjson.JSONObject;
 import com.jas.web.annotation.MethodTime;
 import com.jas.web.bean.domain.*;
-import com.jas.web.bean.model.ChoiceCourseModel;
 import com.jas.web.bean.model.CourseModel;
 import com.jas.web.bean.model.CourseTimePlaceModel;
 import com.jas.web.bean.model.StudentModel;
 import com.jas.web.dao.*;
 import com.jas.web.enums.ECourse;
 import com.jas.web.enums.ECourseWeek;
-import com.jas.web.helper.NettyClient;
 import com.jas.web.service.ICourseService;
 import com.jas.web.service.IStudentService;
 import com.jas.web.utils.PaperUtil;
-import com.jas.web.utils.StringUtil;
-import io.netty.buffer.Unpooled;
-import io.netty.channel.Channel;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonObject;
 import java.util.*;
 
 @Service
@@ -357,6 +348,62 @@ public class CourseServiceImpl implements ICourseService{
             map.put(ECourseWeek.getDescByValue(courseWeek),"课程名称：" + courseDO.getName() + "<br/>　上课地点：" + coursePlace);
         }
         return mapMap;
+    }
+
+    @Override
+    public Map<Integer, List<CourseDO>> getCourseByStudentId(Integer classId, List<Integer> studentIdList) {
+        Map<Integer, List<CourseDO>> result = new HashMap<>();
+        List<CourseTimePlaceDO> timePlaceDOList = courseTimePlaceDAO.getCourseTimePlaceByClassId(classId);
+        List<CourseDO> courseAll = courseDAO.getCourseAll();
+        Map<Integer, CourseDO> courseDOMap = new HashMap<>();
+        for (CourseDO courseDO : courseAll){
+            courseDOMap.put(courseDO.getId(), courseDO);
+        }
+
+        // 删除班级课程中的选修课程
+        Iterator<CourseTimePlaceDO> iterator = timePlaceDOList.iterator();
+        while (iterator.hasNext()){
+            CourseTimePlaceDO courseTimePlaceDO = iterator.next();
+            CourseDO courseDO = courseDOMap.get(courseTimePlaceDO.getCourseId());
+            if (courseDO.getType() == 0){
+                iterator.remove();
+            }
+        }
+        // 查看所有人的选修课程有哪些
+        List<ChoiceCoursesDO> choiceCoursesDOList = choiceCoursesDAO.getCourseByStudentIds(studentIdList);
+        Map<Integer, List<ChoiceCoursesDO>> choiceCourseMap = new HashMap<>();
+        for (ChoiceCoursesDO choiceCoursesDO : choiceCoursesDOList){
+            List<ChoiceCoursesDO> choiceCoursesDOS = choiceCourseMap.get(choiceCoursesDO.getStudentId());
+            if (choiceCoursesDOS == null){
+                choiceCoursesDOS = new ArrayList<>();
+                choiceCourseMap.put(choiceCoursesDO.getStudentId(), choiceCoursesDOS);
+            }
+            choiceCoursesDOS.add(choiceCoursesDO);
+        }
+        for (Integer studentId : studentIdList){
+            List<Integer> courseIdList = new ArrayList<>();
+            List<CourseDO> courseDOList = new ArrayList<>();
+            // 获取每个学生具体的课程
+            // 加入班级的课程
+            for (CourseTimePlaceDO courseTimePlaceDO : timePlaceDOList){
+                if (!courseIdList.contains(courseTimePlaceDO.getId())) {
+                    courseDOList.add(courseDOMap.get(courseTimePlaceDO.getCourseId()));
+                    courseIdList.add(courseTimePlaceDO.getCourseId());
+                }
+            }
+            // 加入选修的课程
+            List<ChoiceCoursesDO> choiceCoursesDOS = choiceCourseMap.get(studentId);
+            if (!CollectionUtils.isEmpty(choiceCoursesDOS)){
+                for (ChoiceCoursesDO choiceCoursesDO : choiceCoursesDOS){
+                    if (!courseIdList.contains(choiceCoursesDO.getId())) {
+                        courseDOList.add(courseDOMap.get(choiceCoursesDO.getCourseId()));
+                        courseIdList.add(choiceCoursesDO.getCourseId());
+                    }
+                }
+            }
+            result.put(studentId, courseDOList);
+        }
+        return result;
     }
 
 }

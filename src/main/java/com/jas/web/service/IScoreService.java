@@ -1,4 +1,5 @@
 package com.jas.web.service;
+import com.jas.web.bean.model.ClassScoreModel;
 import com.jas.web.bean.model.CourseModel;
 import com.jas.web.bean.model.ScoreDetailModel;
 import com.jas.web.bean.model.ScoreModel;
@@ -25,4 +26,12 @@ public interface IScoreService {
      * @param scoreDetailModel
      */
     void editScoreByStudentId(ScoreDetailModel scoreDetailModel);
+
+    /**
+     * 获取整个班级的成绩
+     * 通过courseId排序
+     * @param classId
+     * @return
+     */
+    List<ClassScoreModel> getScoreByClassId(Integer classId);
 }

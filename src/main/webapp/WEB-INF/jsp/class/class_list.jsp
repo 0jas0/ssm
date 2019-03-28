@@ -44,6 +44,7 @@ pageEncoding="UTF-8"%>
         <th>辅导员</th>
         <th>所属学院</th>
         <th>所属专业</th>
+        <th>查看班级成绩列表</th>
         </tr>
         </thead>
         <tbody id="studentList">
@@ -128,6 +129,7 @@ pageEncoding="UTF-8"%>
                         html += "<td>"+item.instructor+"</td>";
                         html += "<td>"+item.collegeName+"</td>";
                         html += "<td>"+item.majorName+"</td>";
+                        html += "<td><a href='/score/class_score_list?classId="+item.id+"'>查看成绩<a/></td>";
                         html+="</tr>";
                     });
                     $("#totalRecord").text(res.data.totalRecord);

@@ -140,6 +140,17 @@ public class ScoreController {
         }
     }
 
+    @RequestMapping("ajax/get-score-list-by-classId")
+    @ResponseBody
+    public Object getCourseTimePlaceByCourseId(@RequestParam("classId") Integer classId){
+        try {
+            List<ClassScoreModel> list = scoreService.getScoreByClassId(classId);
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS,"获取成绩列表成功",list);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"获取成绩列表失败",null);
+        }
+    }
 
     @RequestMapping("/score_detail")
     public String scoreDetailView(@RequestParam("courseId") Integer courseId, Model model){
@@ -165,4 +176,9 @@ public class ScoreController {
         return "score/score_edit";
     }
 
+    @RequestMapping("/class_score_list")
+    public String courseTimePlaceView(@RequestParam("classId") Integer classId,Model model){
+        model.addAttribute("classId",classId);
+        return "score/class_score_list";
+    }
 }

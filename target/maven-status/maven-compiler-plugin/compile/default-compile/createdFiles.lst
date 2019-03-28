@@ -31,6 +31,7 @@ com/jas/web/controller/SystemSettingController.class
 com/jas/web/dao/IChoiceCoursesDAO.class
 com/jas/web/exception/UserException.class
 com/jas/web/bean/model/CollegeMajorModel.class
+com/jas/web/bean/model/ClassScoreModel.class
 com/jas/web/helper/NettyClient$2.class
 com/jas/web/service/impl/TeacherEvaluationServiceImpl.class
 com/jas/web/utils/DateUtil.class

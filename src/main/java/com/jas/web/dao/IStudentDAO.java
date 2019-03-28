@@ -3,6 +3,7 @@ package com.jas.web.dao;
 import com.jas.web.bean.domain.StudentDO;
 import com.jas.web.bean.domain.TeacherDO;
 import org.apache.ibatis.annotations.*;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -35,4 +36,7 @@ public interface IStudentDAO {
 
     @Select("select * from beihua.student where is_del = 0")
     List<StudentDO> getAllStudent();
+
+    @Select("select * from beihua.student where class_id = #{classId} and is_del = 0")
+    List<StudentDO> getStudentByClassId(Integer classId);
 }
