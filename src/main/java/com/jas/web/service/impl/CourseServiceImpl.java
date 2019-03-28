@@ -370,7 +370,10 @@ public class CourseServiceImpl implements ICourseService{
             }
         }
         // 查看所有人的选修课程有哪些
-        List<ChoiceCoursesDO> choiceCoursesDOList = choiceCoursesDAO.getCourseByStudentIds(studentIdList);
+        List<ChoiceCoursesDO> choiceCoursesDOList = new ArrayList<>();
+        if (!CollectionUtils.isEmpty(studentIdList)) {
+            choiceCoursesDOList = choiceCoursesDAO.getCourseByStudentIds(studentIdList);
+        }
         Map<Integer, List<ChoiceCoursesDO>> choiceCourseMap = new HashMap<>();
         for (ChoiceCoursesDO choiceCoursesDO : choiceCoursesDOList){
             List<ChoiceCoursesDO> choiceCoursesDOS = choiceCourseMap.get(choiceCoursesDO.getStudentId());
