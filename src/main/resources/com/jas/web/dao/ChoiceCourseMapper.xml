@@ -5,7 +5,7 @@
     <select id="getCourseByStudentIds" resultType="com.jas.web.bean.domain.ChoiceCoursesDO">
         select * from beihua.choice_courses where  student_id in
         <foreach collection="list" open="(" close=")" separator="," item="item" index="index">
-            #{studentId}
+            #{item}
         </foreach>
         and is_del = 0
     </select>

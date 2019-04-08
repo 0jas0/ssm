@@ -237,6 +237,7 @@ public class ScoreServiceImpl implements IScoreService{
                 }else {
                     scoreModel.setGrade(scoreDO.getGrade());
                 }
+                classScoreModelList.add(scoreModel);
             }
         }
         return classScoreModelList;

@@ -26,7 +26,6 @@ pageEncoding="UTF-8"%>
     <table class="tablelist">
     	<thead>
     	<tr>
-        <th></th>
         <th>课程序号</th>
         <th>课程名称</th>
         <th>学生姓名</th>
@@ -58,14 +57,13 @@ pageEncoding="UTF-8"%>
                     var data = res.data;
                     var html = "";
                     data.forEach(function (item, index) {
-                        html += '<tr><td><input name=\"selectFlag\" type=\"checkbox\" /></td>';
+                        html += '<tr>';
                         html += "<td>"+item.id+"</td>";
-                        html += '<td>'+item.courseName+'</td>';
+                        html += '<td>'+item.name+'</td>';
                         html += '<td>'+item.studentName+'</td>';
-                        html += "<td>"+item.courseWeekName+"</td>";
-                        html += "<td>"+item.courseTimeName+"</td>";
-                        html += "<td>"+item.coursePlace+"</td>";
-                        html += "<td>"+item.className+"</td>";
+                        html += "<td>"+item.credit+"</td>";
+                        html += "<td>"+item.typeName+"</td>";
+                        html += "<td>"+item.grade+"</td>";
                         html+="</tr>";
                     });
                     $("#studentList").html(html);
