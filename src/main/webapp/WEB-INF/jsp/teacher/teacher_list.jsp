@@ -132,21 +132,21 @@ pageEncoding="UTF-8"%>
                     $("#currentPage").text(res.data.currentPage);
                     $(".paginList").empty();
                     if(res.data.currentPage != 1){
-                        $(".paginList").append("<li class=\"paginItem\"><a href=\"javascript:;\" onclick='page("+(res.data.currentPage-1)+",10)'><span class=\"pagepre\"></span></a></li>");
+                        $(".paginList").append("<li class=\"paginItem\"><a href=\"javascript:;\" onclick='page("+(res.data.currentPage-1)+",10,\""+keyword+"\")'><span class=\"pagepre\"></span></a></li>");
                     }
 
                     var begin = ((res.data.currentPage - 2) < 1) ? 1: res.data.currentPage - 2;
                     var end = ((res.data.currentPage + 2) > res.data.totalPage)? res.data.totalPage :res.data.currentPage + 2;
                     for(var i = begin; i<= end; i++){
                         if(i == res.data.currentPage){
-                            $(".paginList").append("<li class='paginItem current'><a href='javascript:;' onclick='page("+i+",10)'>"+i+"</a></li>");
+                            $(".paginList").append("<li class='paginItem current'><a href='javascript:;' onclick='page("+i+",10,\""+keyword+"\")'>"+i+"</a></li>");
                         }else {
-                            $(".paginList").append("<li class='paginItem'><a href='javascript:;' onclick='page("+i+",10)'>"+i+"</a></li>");
+                            $(".paginList").append("<li class='paginItem'><a href='javascript:;' onclick='page("+i+",10,\""+keyword+"\")'>"+i+"</a></li>");
                         }
                     }
 
                     if(res.data.currentPage != res.data.totalPage){
-                        $(".paginList").append("<li class='paginItem'><a href='javascript:;' onclick='page("+(res.data.currentPage+1)+",10)'><span class=\"pagenxt\"></span></a></li>");
+                        $(".paginList").append("<li class='paginItem'><a href='javascript:;' onclick='page("+(res.data.currentPage+1)+",10,\""keyword+"\")'><span class=\"pagenxt\"></span></a></li>");
                     }
                     $("#studentList").empty();
                     $("#studentList").html(html);
