@@ -409,4 +409,47 @@ public class CourseServiceImpl implements ICourseService{
         return result;
     }
 
+    @Override
+    public Map<String, Map<String, String>> getCourseScheduleByClassId(String classId) {
+        List<CourseTimePlaceDO> timePlaceModelList = courseTimePlaceDAO.getCourseTimePlaceByClassId(Integer.valueOf(classId));
+        List<CourseDO> courseAll = courseDAO.getCourseAll();
+        Map<Integer, CourseDO> courseDOMap = new HashMap<>();
+        for (CourseDO courseDO : courseAll){
+            courseDOMap.put(courseDO.getId(), courseDO);
+            // 选修的课程，先删除
+            if (courseDO.getType() == 0){
+                Iterator<CourseTimePlaceDO> iterator = timePlaceModelList.iterator();
+                while (iterator.hasNext()){
+                    CourseTimePlaceDO courseTimePlaceDO = iterator.next();
+                    if (courseTimePlaceDO.getCourseId() == courseDO.getId()){
+                        iterator.remove();
+                    }
+                }
+            }
+        }
+        //获取课程时间
+        List<String> ecourseList = ECourse.getDescs();
+        //获取课程的星期
+        List<String> ecourseWeekList = ECourseWeek.getDescs();
+        Map<String,Map<String,String>> mapMap = new LinkedHashMap<>();
+        for (String course : ecourseList){
+            Map<String,String> map = new LinkedHashMap<>();
+            for (String week : ecourseWeekList){
+                map.put(week,"");
+            }
+            mapMap.put(course,map);
+        }
+
+        //获取最新一学期
+        //所有的课程的时间和地点
+        for (CourseTimePlaceDO courseTimePlaceDO : timePlaceModelList){
+            CourseDO courseDO = courseDOMap.get(courseTimePlaceDO.getCourseId());
+            Integer courseWeek = courseTimePlaceDO.getCourseWeek();
+            Integer courseTime = courseTimePlaceDO.getCourseTime();
+            String coursePlace = courseTimePlaceDO.getCoursePlace();
+            Map<String, String> map = mapMap.get(ECourse.getDescByValue(courseTime));
+            map.put(ECourseWeek.getDescByValue(courseWeek),"课程名称：" + courseDO.getName() + "<br/>　上课地点：" + coursePlace);
+        }
+        return mapMap;
+    }
 }

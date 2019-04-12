@@ -136,7 +136,7 @@ pageEncoding="UTF-8"%>
                     $("#currentPage").text(res.data.currentPage);
                     $(".paginList").empty();
                     if(res.data.currentPage != 1){
-                        $(".paginList").append("<li class=\"paginItem\"><a href=\"javascript:;\" onclick='page("+(res.data.currentPage-1)+",10,\""keyword+"\")'><span class=\"pagepre\"></span></a></li>");
+                        $(".paginList").append("<li class=\"paginItem\"><a href=\"javascript:;\" onclick='page("+(res.data.currentPage-1)+",10,\""+keyword+"\")'><span class=\"pagepre\"></span></a></li>");
                     }
 
                     var begin = ((res.data.currentPage - 2) < 1) ? 1: res.data.currentPage - 2;

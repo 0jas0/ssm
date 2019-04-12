@@ -89,7 +89,9 @@ $(function(){
         <dd><div class="title"><span><img src="/images/leftico03.png" /></span>课程管理</div>
         <ul class="menuson">
             <c:if test="${userModel.type == 0}">
-                    <li><cite></cite><a href="/course/course_list" target="rightFrame">课程列表</a><i></i></li>
+                <li><cite></cite><a href="/course/course_list" target="rightFrame">课程列表</a><i></i></li>
+                <li><cite></cite><a href="/course/simple_class_list" target="rightFrame">班级课程表</a><i></i></li>
+                <li><cite></cite><a href="/course/simple_teacher_list" target="rightFrame">教师课程表</a><i></i></li>
             </c:if>
             <c:if test="${userModel.type != 0}">
                     <li><cite></cite><a href="/course/course_schedule" target="rightFrame">课程表</a><i></i></li>

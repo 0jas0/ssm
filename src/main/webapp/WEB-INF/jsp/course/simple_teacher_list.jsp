@@ -13,8 +13,8 @@ pageEncoding="UTF-8"%>
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
-    <li><a href="#">教师管理</a></li>
-    <li><a href="#">教师列表</a></li>
+    <li><a href="#">课程管理</a></li>
+    <li><a href="#">教师课程表</a></li>
     </ul>
     </div>
     
@@ -22,9 +22,6 @@ pageEncoding="UTF-8"%>
     
     <div class="tools">
     	<ul class="toolbar">
-        <li class="AddTeacher"><span><img src="/images/t01.png" /></span>添加</li>
-        <li class="editTeacher"><span><img src="/images/t02.png" /></span>修改</li>
-        <li class="removeTeacher"><span><img src="/images/t03.png" /></span>删除</li>
         <input id="teacherKeyword" type="text" name="keyword" style="margin:4px 2px;border:0.5px solid #060305;height: 28px">
         <button onclick="searchList()">搜索</button>
         </ul>
@@ -35,12 +32,7 @@ pageEncoding="UTF-8"%>
         <th></th>
         <th>教师工号<i class="sort"><img src="/images/px.gif" /></i></th>
         <th>教师名称</th>
-        <th>出生日期</th>
-        <th>性别</th>
-        <th>学历</th>
-        <th>职称</th>
-        <th>住址</th>
-        <th>联系电话</th>
+        <th>查看课程表</th>
         </tr>
         </thead>
         <tbody id="studentList">
@@ -120,12 +112,7 @@ pageEncoding="UTF-8"%>
                         html += '<tr><td><input name=\"selectFlag\" type=\"checkbox\" /></td>';
                         html += "<td>"+item.teacherId+"</td>";
                         html += '<td>'+item.name+'</td>';
-                        html += "<td>"+item.bornDate+"</td>";
-                        html += "<td>"+item.sex+"</td>";
-                        html += "<td>"+item.education+"</td>";
-                        html += "<td>"+item.position+"</td>";
-                        html += "<td>"+item.address+"</td>";
-                        html += "<td>"+item.mobile+"</td>";
+                        html += "<td><a href='/course/teacher_schedule?teacherId="+item.teacherId+"'>查看课程表<a/></td>";
                         html+="</tr>";
                     });
                     $("#totalRecord").text(res.data.totalRecord);

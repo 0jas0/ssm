@@ -140,6 +140,29 @@ public class CourseController {
     public String studentListView(){
         return "course/course_list";
     }
+
+    @RequestMapping("/simple_class_list")
+    public String classCourseListView(){
+        return "course/simple_class_list";
+    }
+
+    @RequestMapping("/class_schedule")
+    public String classSchedule(@RequestParam("classId") String classId, Model model){
+        model.addAttribute("classId", classId);
+        return "course/class_schedule";
+    }
+
+    @RequestMapping("/simple_teacher_list")
+    public String teacherCourseListView(){
+        return "course/simple_teacher_list";
+    }
+
+    @RequestMapping("/teacher_schedule")
+    public String teacherSchedule(@RequestParam("teacherId") String teacherId, Model model){
+        model.addAttribute("teacherId", teacherId);
+        return "course/teacher_schedule";
+    }
+
     @RequestMapping("/course_add")
     public String studentAddView(){
         return "course/course_add";
@@ -209,6 +232,32 @@ public class CourseController {
             return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"获取课程表失败",null);
         }
     }
+
+    @RequestMapping("ajax/cousre-schedule-class-Id")
+    @ResponseBody
+    public Object courseScheduleByClassId(@RequestParam("classId") String classId){
+        try {
+            Map<String,Map<String,String>> courseSchedule = courseService.getCourseScheduleByClassId(classId);
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS,"获取课程表成功",courseSchedule);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"获取课程表失败",null);
+        }
+    }
+
+    @RequestMapping("ajax/cousre-schedule-teacher-Id")
+    @ResponseBody
+    public Object courseScheduleByTeacherId(@RequestParam("teacherId") String teacherId){
+        try {
+            TeacherModel teacherModel = teacherService.getByTeacherId(teacherId);
+            Map<String,Map<String,String>> courseSchedule = courseSchedule = courseService.getCourseScheduleByTeacherId(teacherModel.getId());
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_SUCCESS,"获取课程表成功",courseSchedule);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseUtil.constructResponse(ResponseUtil.RETURN_STATUS_FAILED,"获取课程表失败",null);
+        }
+    }
+
 
     @RequestMapping("/course_schedule")
     public String courseScheduleView(){

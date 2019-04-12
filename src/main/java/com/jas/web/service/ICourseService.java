@@ -52,4 +52,6 @@ public interface ICourseService {
     Map<String,Map<String,String>> getCourseScheduleByTeacherId(Integer id);
 
     Map<Integer, List<CourseDO>> getCourseByStudentId(Integer classId, List<Integer> studentIdList);
+
+    Map<String,Map<String,String>> getCourseScheduleByClassId(String classId);
 }

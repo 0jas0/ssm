@@ -13,34 +13,33 @@ pageEncoding="UTF-8"%>
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
-    <li><a href="#">教师管理</a></li>
-    <li><a href="#">教师列表</a></li>
+    <li><a href="#">课程管理</a></li>
+    <li><a href="#">班级课程表</a></li>
     </ul>
     </div>
     
     <div class="rightinfo">
     
     <div class="tools">
+    
     	<ul class="toolbar">
-        <li class="AddTeacher"><span><img src="/images/t01.png" /></span>添加</li>
-        <li class="editTeacher"><span><img src="/images/t02.png" /></span>修改</li>
-        <li class="removeTeacher"><span><img src="/images/t03.png" /></span>删除</li>
-        <input id="teacherKeyword" type="text" name="keyword" style="margin:4px 2px;border:0.5px solid #060305;height: 28px">
+        <input id="classKeyword" type="text" name="keyword" style="margin:4px 2px;border:0.5px solid #060305;height: 28px">
         <button onclick="searchList()">搜索</button>
         </ul>
+    
     </div>
+    
+    
     <table class="tablelist">
     	<thead>
     	<tr>
         <th></th>
-        <th>教师工号<i class="sort"><img src="/images/px.gif" /></i></th>
-        <th>教师名称</th>
-        <th>出生日期</th>
-        <th>性别</th>
-        <th>学历</th>
-        <th>职称</th>
-        <th>住址</th>
-        <th>联系电话</th>
+        <th>序号<i class="sort"><img src="/images/px.gif" /></i></th>
+        <th>班级号</th>
+        <th>班级名称</th>
+        <th>所属学院</th>
+        <th>所属专业</th>
+        <th>查看课程表</th>
         </tr>
         </thead>
         <tbody id="studentList">
@@ -57,11 +56,11 @@ pageEncoding="UTF-8"%>
 </html>
 <script type="text/javascript">
     $(document).ready(function(){
-        $(".AddTeacher").click(function () {
-            location.href = "/teacher/teacher_add";
+        $(".AddClass").click(function () {
+            location.href = "/class/class_add";
         });
 
-        $(".editTeacher").click(function () {
+        $(".editClass").click(function () {
             var  length = $("input[name='selectFlag']:checked").length;
             if(length != 1){
                 alert("请选择一行");
@@ -69,12 +68,12 @@ pageEncoding="UTF-8"%>
             }
             $("input[name='selectFlag']:checked").each(function () {
                 var id = $(this).closest("tr").find("td:eq(1)").text();
-                location.href = "/teacher/teacher_edit?teacherId="+id;
+                location.href = "/class/class_edit?id="+id;
             });
         });
 
 
-        $(".removeTeacher").click(function () {
+        $(".removeClass").click(function () {
             var  length = $("input[name='selectFlag']:checked").length;
             if (length < 1){
                 alert("至少选择一行");
@@ -83,30 +82,30 @@ pageEncoding="UTF-8"%>
 
             if (confirm("确认删除这些数据？") == true){
                 $("input[name='selectFlag']:checked").each(function () {
-                    var teacherId = $(this).closest("tr").find("td:eq(1)").text();
+                    var id = $(this).closest("tr").find("td:eq(1)").text();
                     $.ajax({
                         type: 'post',
-                        url: '/teacher/ajax-delete-teacher?teacherId='+teacherId,
+                        url: '/class/ajax-delete-class',
+                        cache: false,
+                        data:{"id": id},
                         success: function (res) {
                             console.log(res)
                         }
                     });
                 });
-                location.href = "/teacher/teacher_list";
+                location.href = "/class/class_list";
             }
         });
-
         page(1,10,'');
-
     });
     function searchList() {
-        var keyword = $("#teacherKeyword").val();
+        var keyword = $("#classKeyword").val();
         page(1, 10, keyword);
     }
-    function page(currentPage,pageSize, keyword) {
+    function page(currentPage, pageSize, keyword) {
         $.ajax({
             type: 'post',
-            url: '/teacher/ajax-get-teacher-by-page',
+            url: '/class/ajax-get-class-by-page',
             data: {
                 'currentPage': currentPage,
                 'pageSize':pageSize,
@@ -118,14 +117,12 @@ pageEncoding="UTF-8"%>
                     var html = "";
                     data.forEach(function (item, index) {
                         html += '<tr><td><input name=\"selectFlag\" type=\"checkbox\" /></td>';
-                        html += "<td>"+item.teacherId+"</td>";
-                        html += '<td>'+item.name+'</td>';
-                        html += "<td>"+item.bornDate+"</td>";
-                        html += "<td>"+item.sex+"</td>";
-                        html += "<td>"+item.education+"</td>";
-                        html += "<td>"+item.position+"</td>";
-                        html += "<td>"+item.address+"</td>";
-                        html += "<td>"+item.mobile+"</td>";
+                        html += "<td>"+item.id+"</td>";
+                        html += '<td>'+item.classId+'</td>';
+                        html += "<td>"+item.name+"</td>";
+                        html += "<td>"+item.collegeName+"</td>";
+                        html += "<td>"+item.majorName+"</td>";
+                        html += "<td><a href='/course/class_schedule?classId="+item.id+"'>查看课程表<a/></td>";
                         html+="</tr>";
                     });
                     $("#totalRecord").text(res.data.totalRecord);
