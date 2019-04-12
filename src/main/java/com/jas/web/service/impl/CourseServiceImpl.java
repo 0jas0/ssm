@@ -189,7 +189,7 @@ public class CourseServiceImpl implements ICourseService{
             }
         }
         for (ChoiceCoursesDO choiceCoursesDO : choiceCoursesDOS){
-            List<CourseTimePlaceDO> courseTimePlace = courseTimePlaceDAO.getCourseTimePlaceByCourseId(choiceCoursesDO.getCourseId());
+            List<CourseTimePlaceDO> courseTimePlace = courseTimePlaceDAO.getCourseTimePlaceByClassAndCourseId(studentModel.getClassId(), choiceCoursesDO.getCourseId());
             timePlaceModelList.addAll(courseTimePlace);
         }
         //获取课程时间
@@ -416,16 +416,6 @@ public class CourseServiceImpl implements ICourseService{
         Map<Integer, CourseDO> courseDOMap = new HashMap<>();
         for (CourseDO courseDO : courseAll){
             courseDOMap.put(courseDO.getId(), courseDO);
-            // 选修的课程，先删除
-            if (courseDO.getType() == 0){
-                Iterator<CourseTimePlaceDO> iterator = timePlaceModelList.iterator();
-                while (iterator.hasNext()){
-                    CourseTimePlaceDO courseTimePlaceDO = iterator.next();
-                    if (courseTimePlaceDO.getCourseId() == courseDO.getId()){
-                        iterator.remove();
-                    }
-                }
-            }
         }
         //获取课程时间
         List<String> ecourseList = ECourse.getDescs();

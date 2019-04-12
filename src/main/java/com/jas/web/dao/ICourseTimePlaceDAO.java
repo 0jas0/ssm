@@ -30,6 +30,9 @@ public interface ICourseTimePlaceDAO {
     @Select("select * from beihua.course_time_place where course_id = #{courseId} and is_del = 0")
     public List<CourseTimePlaceDO> getCourseTimePlaceByCourseId(@Param("courseId") Integer courseId);
 
+    @Select("select * from beihua.course_time_place where course_id = #{courseId} and class_id = #{classId} and is_del = 0")
+    public List<CourseTimePlaceDO> getCourseTimePlaceByClassAndCourseId(@Param("classId") Integer classId,@Param("courseId") Integer courseId);
+
     @Select("select * from beihua.course_time_place where class_id = #{classId} and is_del = 0")
     List<CourseTimePlaceDO> getCourseTimePlaceByClassId(@Param("classId") Integer classId);
 
