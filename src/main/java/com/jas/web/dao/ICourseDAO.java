@@ -44,6 +44,6 @@ public interface ICourseDAO {
     @Select("select count(*) from beihua.course where teacher_id = #{teacherId} and is_del = 0")
     int getCourseNumByTeacherId(@Param("teacherId") String teacherId);
 
-    @Select("select bc.* from beihua.course bc left join beihua.course_time_place bct on bc.id = bct.course_id where bc.type = #{type} and bct.class_id = #{classId} and bc.is_del = 0")
+    @Select("select bc.* from beihua.course bc left join beihua.course_time_place bct on bc.id = bct.course_id where bc.type = #{type} and bct.class_id = #{classId} and bc.is_del = 0 group by bc.id")
     List<CourseDO> getCourseByClassAndType(@Param("classId") Integer classId,@Param("type") Integer type);
 }
